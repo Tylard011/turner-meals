@@ -1,0 +1,35 @@
+name: Update Meal Plan
+
+on:
+  schedule:
+    - cron: '0 14 * * 0'  # Every Sunday 9am CT
+  workflow_dispatch:       # Manual trigger anytime
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download meal plan from Google Drive
+        run: |
+          FILE_ID="${{ secrets.GDRIVE_FILE_ID }}"
+          curl -L "https://drive.google.com/uc?export=download&id=${FILE_ID}" -o index.html
+          echo "File size: $(wc -c < index.html) bytes"
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "Claude Meal Planner"
+          git config user.email "actions@github.com"
+          git add index.html
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update meal plan $(date +'%Y-%m-%d')"
+            git push
+            echo "Pushed!"
+          fi
