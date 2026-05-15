@@ -2,7 +2,11 @@ name: Update Meal Plan
 
 on:
   schedule:
-    - cron: '0 14 * * 0'  # Every Sunday 9am CT
+    - cron: '0 14 * * 2'  # Tuesday 9am CT
+    - cron: '0 14 * * 4'  # Thursday 9am CT
+    - cron: '0 14 * * 5'  # Friday 9am CT
+    - cron: '0 14 * * 6'  # Saturday 9am CT
+    - cron: '0 14 * * 0'  # Sunday 9am CT
   workflow_dispatch:       # Manual trigger anytime
 
 jobs:
