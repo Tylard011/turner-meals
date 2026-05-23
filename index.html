@@ -12,6 +12,7 @@
     --accent: #C2622D; --accent-light: #FDF0E8; --green: #3D6B44; --green-light: #EAF2EB;
     --blue: #2563A8; --blue-light: #EBF2FB; --smoke: #8B4513; --smoke-light: #FDF3EC;
     --meatless: #6B45A8; --meatless-light: #F3EEFB; --pork: #9B2335; --pork-light: #FDEEF0;
+    --gold: #8B6914; --gold-light: #FDF8EC;
     --shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -31,16 +32,18 @@
   .glance-grid { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.2rem; }
   .glance-row { display: flex; align-items: center; gap: 0.7rem; background: var(--card); border-radius: 10px; padding: 0.7rem 0.9rem; box-shadow: var(--shadow); border: 1px solid var(--border); cursor: pointer; transition: transform 0.15s; color: inherit; }
   .glance-row:active { transform: scale(0.98); }
-  .glance-day { font-size: 0.7rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; min-width: 28px; }
+  .glance-day { font-size: 0.7rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; min-width: 32px; }
   .glance-meal { flex: 1; font-size: 0.9rem; font-weight: 500; }
   .glance-badge { font-size: 0.7rem; padding: 2px 8px; border-radius: 20px; font-weight: 500; white-space: nowrap; }
   .b-quick { background: #FEF3C7; color: #92400E; }
   .b-venison { background: var(--blue-light); color: var(--blue); }
   .b-chicken { background: var(--green-light); color: var(--green); }
-  .b-meatless { background: var(--meatless-light); color: var(--meatless); }
   .b-smoke { background: var(--smoke-light); color: var(--smoke); }
   .b-pork { background: var(--pork-light); color: var(--pork); }
   .b-free { background: var(--border); color: var(--muted); }
+  .b-fish { background: #EBF5FB; color: #1a5276; }
+  .b-hp { background: var(--gold-light); color: var(--gold); }
+  .b-fry { background: #FEF9E7; color: #7D6608; }
   .section-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin: 1.2rem 0 0.6rem; }
   .day-card { background: var(--card); border-radius: 14px; padding: 1rem 1.1rem; margin-bottom: 0.8rem; box-shadow: var(--shadow); border: 1px solid var(--border); transition: border-color 0.3s, box-shadow 0.3s; }
   .day-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--text); line-height: 1.2; }
@@ -52,6 +55,7 @@
   .day-detail strong { color: var(--text); font-weight: 500; }
   .event-note { display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; color: var(--accent); font-weight: 500; margin-top: 0.4rem; background: var(--accent-light); padding: 3px 9px; border-radius: 20px; }
   .prep-note { font-size: 0.75rem; color: #4A7C59; background: var(--green-light); padding: 3px 9px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px; margin-top: 0.4rem; font-weight: 500; }
+  .thaw-note { font-size: 0.75rem; color: var(--blue); background: var(--blue-light); padding: 3px 9px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px; margin-top: 0.4rem; font-weight: 500; }
   .recipe-link { display: inline-flex; align-items: center; gap: 5px; margin-top: 0.6rem; font-size: 0.8rem; font-weight: 600; color: var(--accent); text-decoration: none; padding: 5px 12px; background: var(--accent-light); border-radius: 8px; border: 1px solid #F0C4A8; }
   .recipe-link:active { opacity: 0.7; }
   .grocery-section { background: var(--card); border-radius: 14px; margin-bottom: 0.8rem; box-shadow: var(--shadow); border: 1px solid var(--border); overflow: hidden; }
@@ -72,7 +76,6 @@
   .g-stocked { padding: 0.65rem 1rem; border-bottom: 1px solid var(--border); font-size: 0.82rem; color: var(--muted); display: flex; align-items: center; gap: 0.5rem; }
   .g-stocked:last-child { border-bottom: none; }
   .g-stocked.dynamic { cursor: pointer; }
-  .g-stocked.dynamic:hover { background: var(--bg); }
   .g-tag { font-size: 0.68rem; padding: 1px 7px; border-radius: 10px; }
   .t-freezer { background: var(--blue-light); color: var(--blue); }
   .t-pantry { background: var(--border); color: var(--muted); }
@@ -99,7 +102,7 @@
 </head>
 <body>
 <div class="header">
-  <div class="header-top"><h1>Turner Family Meals</h1><span class="header-week">Updated weekly</span></div>
+  <div class="header-top"><h1>Turner Family Meals</h1><span class="header-week">May 23 – May 31</span></div>
   <div class="sync-status" id="sync-status">Connecting...</div>
   <div class="tabs">
     <button class="tab active" onclick="showTab('menu',this)">🗓 Menu</button>
@@ -110,94 +113,153 @@
 </div>
 
 <div class="panel active" id="panel-menu">
-  <p class="section-label">Week of May 17 — Quick Look</p>
+  <p class="section-label">May 23–31 — Quick Look</p>
   <div class="glance-grid">
-    <div class="glance-row" onclick="goToDay('sun-pre')"><div class="glance-day">Sun</div><div class="glance-meal">Sous Vide Pork Steaks</div><span class="glance-badge b-pork">🥩 Pork</span></div>
-    <div class="glance-row" onclick="goToDay('mon')"><div class="glance-day">Mon</div><div class="glance-meal">Pasta with Meat Sauce</div><span class="glance-badge b-venison">🫙 Venison</span></div>
-    <div class="glance-row" onclick="goToDay('tue')"><div class="glance-day">Tue</div><div class="glance-meal">Sheet Pan Quesadillas</div><span class="glance-badge b-meatless">🌿 Meatless</span></div>
-    <div class="glance-row" onclick="goToDay('wed')"><div class="glance-day">Wed</div><div class="glance-meal">Korean Beef Bowls</div><span class="glance-badge b-quick">⚡ Quick</span></div>
-    <div class="glance-row" onclick="goToDay('thu')"><div class="glance-day">Thu</div><div class="glance-meal">Lemon Herb Chicken</div><span class="glance-badge b-chicken">🍗 Chicken</span></div>
-    <div class="glance-row" onclick="goToDay('fri')"><div class="glance-day">Fri</div><div class="glance-meal">Homemade Pizza Night</div><span class="glance-badge b-free">⭐ Free</span></div>
-    <div class="glance-row" onclick="goToDay('sat')"><div class="glance-day">Sat</div><div class="glance-meal">Your Call</div><span class="glance-badge b-free">⭐ Free</span></div>
-    <div class="glance-row" onclick="goToDay('sun')"><div class="glance-day">Sun</div><div class="glance-meal">Smoked Chicken Wings</div><span class="glance-badge b-smoke">🔥 Pellet Grill</span></div>
+    <div class="glance-row" onclick="goToDay('sat23')"><div class="glance-day">Sat 23</div><div class="glance-meal">Harry Potter Feast Night</div><span class="glance-badge b-hp">🧙 HP Night</span></div>
+    <div class="glance-row" onclick="goToDay('sun24')"><div class="glance-day">Sun 24</div><div class="glance-meal">Smoked Chicken Wings</div><span class="glance-badge b-smoke">🔥 Pellet Grill</span></div>
+    <div class="glance-row" onclick="goToDay('mon25')"><div class="glance-day">Mon 25</div><div class="glance-meal">Sous Vide Venison Steaks</div><span class="glance-badge b-venison">🥩 Memorial Day</span></div>
+    <div class="glance-row" onclick="goToDay('tue26')"><div class="glance-day">Tue 26</div><div class="glance-meal">Fish Stick Tacos</div><span class="glance-badge b-quick">⚡ Quick</span></div>
+    <div class="glance-row" onclick="goToDay('wed27')"><div class="glance-day">Wed 27</div><div class="glance-meal">Stuffed Peppers</div><span class="glance-badge b-venison">🫙 Venison</span></div>
+    <div class="glance-row" onclick="goToDay('thu28')"><div class="glance-day">Thu 28</div><div class="glance-meal">Grilled Marinated Pork Loin</div><span class="glance-badge b-pork">🥩 Pork</span></div>
+    <div class="glance-row" onclick="goToDay('fri29')"><div class="glance-day">Fri 29</div><div class="glance-meal">Leftovers</div><span class="glance-badge b-free">⭐ Free</span></div>
+    <div class="glance-row" onclick="goToDay('sat30')"><div class="glance-day">Sat 30</div><div class="glance-meal">Cast Iron Fry Night</div><span class="glance-badge b-fry">🍳 Fry Night</span></div>
+    <div class="glance-row" onclick="goToDay('sun31')"><div class="glance-day">Sun 31</div><div class="glance-meal">Air Fryer Chicken Drumsticks</div><span class="glance-badge b-chicken">🍗 Chicken</span></div>
   </div>
+
   <p class="section-label">Daily Detail</p>
-  <div class="day-card" id="sun-pre">
-    <div class="day-name">Sunday</div><div class="day-date">May 17</div>
-    <div class="day-meal-name">Sous Vide Pork Steaks</div>
-    <div class="badges-row"><span class="badge b-pork">🥩 Pork steaks</span></div>
-    <div class="day-detail"><strong>Sides:</strong> Frozen corn<br><strong>Marinade:</strong> Olive oil, soy sauce, brown sugar, garlic powder, smoked paprika, black pepper, ACV<br><strong>Temp:</strong> 140°F · Sear on cast iron at 5:15 PM CT</div>
-    <div style="margin-top:0.5rem"><span class="event-note">📅 IRC Ref Meeting 7:00 PM CT</span></div>
+
+  <div class="day-card" id="sat23">
+    <div class="day-name">Saturday</div><div class="day-date">May 23 — Tonight</div>
+    <div class="day-meal-name">⚡ Harry Potter Feast Night</div>
+    <div class="badges-row"><span class="badge b-hp">🧙 HP Night</span></div>
+    <div class="day-detail">
+      <strong>Opening Snack:</strong> Aunt Petunia's Pudding (chocolate pudding cups)<br>
+      <strong>Appetizer:</strong> Polyjuice Potion (guacamole + tortilla chips)<br>
+      <strong>Main:</strong> Basilisk Fangs (corn dogs) + Dragon Nuggets (chicken nuggets) + Mandrake Veggie Cups<br>
+      <strong>Dipping Potions:</strong> Skele-Gro (Chick-fil-A sauce) + Mrs. Weasley's Secret Sauce (BBQ)<br>
+      <strong>Dessert:</strong> Pumpkin Pasties — crescent roll dough + pumpkin + brown sugar + cinnamon, 375°F 12-15 min<br>
+      <strong>Drinks:</strong> Butterbeer — cream soda + caramel syrup + vanilla + whipped cream (+ rum for adults)
+    </div>
+    <div style="margin-top:0.5rem"><span class="event-note">🎬 Movie night in the basement</span></div>
+    <div style="margin-top:0.4rem"><span class="prep-note">🌙 Apply dry rub to wings tonight for Sunday</span></div>
   </div>
-  <div class="day-card" id="mon">
-    <div class="day-name">Monday</div><div class="day-date">May 18</div>
-    <div class="day-meal-name">Pasta with Meat Sauce</div>
-    <div class="badges-row"><span class="badge b-venison">Ground venison</span></div>
-    <div class="day-detail"><strong>Sides:</strong> Garlic bread, frozen green beans, salad<br><strong>From freezer/pantry:</strong> Ground venison, homemade pasta sauce</div>
-    <div style="margin-top:0.5rem"><span class="event-note">📅 Pictures tonight</span></div>
-  </div>
-  <div class="day-card" id="tue">
-    <div class="day-name">Tuesday</div><div class="day-date">May 19</div>
-    <div class="day-meal-name">Sheet Pan Quesadillas</div>
-    <div class="badges-row"><span class="badge b-quick">⚡ ~15 min</span><span class="badge b-meatless">Meatless</span></div>
-    <div class="day-detail"><strong>Sides:</strong> Homemade salsa, sour cream, apple slices<br><strong>Notes:</strong> Black beans, cheese, bell peppers — bake all at once. Done by 5:10.<br><strong>From pantry:</strong> Homemade salsa</div>
-    <div style="margin-top:0.5rem"><span class="event-note">📅 Dance 5:45 PM CT</span></div>
-    <div style="margin-top:0.4rem"><span class="prep-note">🌙 Marinate chicken tonight for Thursday</span></div>
-  </div>
-  <div class="day-card" id="wed">
-    <div class="day-name">Wednesday</div><div class="day-date">May 20</div>
-    <div class="day-meal-name">Korean Beef Bowls</div>
-    <div class="badges-row"><span class="badge b-quick">⚡ ~20 min</span><span class="badge b-venison">Ground venison</span></div>
-    <div class="day-detail"><strong>Sides:</strong> Minute rice, frozen broccoli, fruit<br><strong>From freezer/pantry:</strong> Ground venison, soy sauce, sesame oil, brown sugar, ginger</div>
-    <div style="margin-top:0.5rem"><span class="event-note">📅 Pictures</span></div>
-    <div><a class="recipe-link" href="https://damndelicious.net/2013/07/07/korean-beef-bowl/" target="_blank">📖 View Recipe →</a></div>
-  </div>
-  <div class="day-card" id="thu">
-    <div class="day-name">Thursday</div><div class="day-date">May 21</div>
-    <div class="day-meal-name">Lemon Herb Baked Chicken & Roasted Veggies</div>
-    <div class="badges-row"><span class="badge b-chicken">Chicken breast</span></div>
-    <div class="day-detail"><strong>Sides:</strong> Roasted veggies on sheet pan, dinner rolls, salad<br><strong>From freezer:</strong> Chicken breast</div>
-    <div><a class="recipe-link" href="https://www.hurryupmeals.com/sheet-pan-lemon-herb-chicken/" target="_blank">📖 View Recipe →</a></div>
-  </div>
-  <div class="day-card" id="fri">
-    <div class="day-name">Friday</div><div class="day-date">May 22</div>
-    <div class="day-meal-name">Homemade Pizza Night</div>
-    <div class="badges-row"><span class="badge b-free">Free night</span></div>
-    <div class="day-detail"><strong>Sides:</strong> Fruit bowl, simple salad<br><strong>From pantry:</strong> Homemade pizza sauce</div>
-  </div>
-  <div class="day-card" id="sat">
-    <div class="day-name">Saturday</div><div class="day-date">May 23</div>
-    <div class="day-meal-name">Your Call</div>
-    <div class="badges-row"><span class="badge b-free">Free night</span></div>
-    <div class="day-detail">Leftovers, eat out, or ask Claude for a suggestion!</div>
-  </div>
-  <div class="day-card" id="sun">
+
+  <div class="day-card" id="sun24">
     <div class="day-name">Sunday</div><div class="day-date">May 24</div>
     <div class="day-meal-name">Smoked Chicken Wings</div>
     <div class="badges-row"><span class="badge b-smoke">🔥 Pellet grill</span></div>
     <div class="day-detail"><strong>Sides:</strong> Frozen broccoli, dinner rolls, fruit<br><strong>Notes:</strong> Low & slow 225°F for 45 min → crank to 400–425°F for crispy skin</div>
-    <div style="margin-top:0.5rem"><span class="prep-note">🌙 Dry rub Saturday night, refrigerate uncovered</span></div>
+    <div style="margin-top:0.5rem"><span class="thaw-note">🧊 Big pull today: venison steaks + fish sticks + pork loin + ground venison — all for Mon–Thu</span></div>
     <div><a class="recipe-link" href="https://pelletsandpits.com/crispy-smoked-chicken-wings/" target="_blank">📖 View Recipe →</a></div>
+  </div>
+
+  <div class="day-card" id="mon25">
+    <div class="day-name">Monday</div><div class="day-date">May 25 — Memorial Day</div>
+    <div class="day-meal-name">Sous Vide Venison Steaks + Smashed Baby Potatoes</div>
+    <div class="badges-row"><span class="badge b-venison">Venison steaks</span></div>
+    <div class="day-detail">
+      <strong>Sides:</strong> Smashed baby potatoes + sautéed zucchini<br>
+      <strong>Steaks:</strong> 131°F · Drop in morning · Pull and sear on cast iron over gas burner at 5:15 PM CT<br>
+      <strong>Potatoes:</strong> 190°F for 1 hour with butter, garlic, salt, pepper · Smash and sear in cast iron · Top with fresh chives<br>
+      <strong>Zucchini:</strong> Slice and sauté in cast iron while steaks rest
+    </div>
+  </div>
+
+  <div class="day-card" id="tue26">
+    <div class="day-name">Tuesday</div><div class="day-date">May 26</div>
+    <div class="day-meal-name">Fish Stick Tacos</div>
+    <div class="badges-row"><span class="badge b-quick">⚡ ~20 min</span><span class="badge b-fish">Fish</span></div>
+    <div class="day-detail">
+      <strong>Sides:</strong> Homemade salsa, sour cream, avocado slices, lime wedges<br>
+      <strong>Notes:</strong> Air fry fish sticks · Char tortillas on gas burner · Everyone tops their own<br>
+      <strong>From pantry:</strong> Flour tortillas, homemade salsa
+    </div>
+    <div style="margin-top:0.5rem"><span class="event-note">📅 Dance 5:45 PM CT</span></div>
+    <div style="margin-top:0.4rem"><span class="prep-note">🌙 Marinate pork loin tonight for Thursday</span></div>
+    <div><a class="recipe-link" href="https://www.chelseasmessyapron.com/fish-stick-tacos/" target="_blank">📖 View Recipe →</a></div>
+  </div>
+
+  <div class="day-card" id="wed27">
+    <div class="day-name">Wednesday</div><div class="day-date">May 27</div>
+    <div class="day-meal-name">Stuffed Peppers</div>
+    <div class="badges-row"><span class="badge b-venison">Ground venison</span></div>
+    <div class="day-detail">
+      <strong>Filling:</strong> Ground venison + Minute rice + tomato sauce + onion + garlic + Italian seasoning<br>
+      <strong>Topping:</strong> Mozzarella cheese<br>
+      <strong>Method:</strong> Brown venison with onion · Mix in rice + sauce + seasoning · Stuff peppers · Top with cheese · Bake 400°F ~35 min<br>
+      <strong>From pantry/freezer:</strong> Ground venison, homemade pasta sauce, Minute rice
+    </div>
+    <div><a class="recipe-link" href="https://www.onceuponachef.com/recipes/stuffed-peppers.html" target="_blank">📖 View Recipe →</a></div>
+  </div>
+
+  <div class="day-card" id="thu28">
+    <div class="day-name">Thursday</div><div class="day-date">May 28</div>
+    <div class="day-meal-name">Grilled Marinated Pork Loin</div>
+    <div class="badges-row"><span class="badge b-pork">Sliced pork loin</span></div>
+    <div class="day-detail">
+      <strong>Sides:</strong> Frozen green beans + couscous<br>
+      <strong>Notes:</strong> Marinated overnight Tuesday · Grill over medium-high heat
+    </div>
+    <div style="margin-top:0.5rem"><span class="event-note">📅 PACT Shark Tank 2:15–3:15 PM CT (virtual)</span></div>
+    <div style="margin-top:0.4rem"><span class="thaw-note">🧊 Pull walleye + chicken drumsticks from freezer tonight for Sat & Sun</span></div>
+  </div>
+
+  <div class="day-card" id="fri29">
+    <div class="day-name">Friday</div><div class="day-date">May 29</div>
+    <div class="day-meal-name">Leftovers</div>
+    <div class="badges-row"><span class="badge b-free">Free night</span></div>
+    <div class="day-detail">Use up whatever's left from the week!</div>
+    <div style="margin-top:0.5rem"><span class="event-note">📅 Kinsley Picnic in the Park 11:00 AM CT</span></div>
+  </div>
+
+  <div class="day-card" id="sat30">
+    <div class="day-name">Saturday</div><div class="day-date">May 30</div>
+    <div class="day-meal-name">Cast Iron Fry Night</div>
+    <div class="badges-row"><span class="badge b-fry">🍳 Fry Night</span><span class="badge b-fish">Walleye</span></div>
+    <div class="day-detail">
+      <strong>Fry lineup:</strong> Walleye + fresh foraged oyster mushrooms + fried pickles<br>
+      <strong>Sides:</strong> Coleslaw + salad + dinner rolls<br>
+      <strong>Dipping:</strong> Tartar sauce + ranch<br>
+      <strong>Notes:</strong> Seasoned flour/cornmeal breading · Fry in batches in cast iron · Everything fresh to order<br>
+      <strong>Forage oyster mushrooms Saturday morning</strong>
+    </div>
+    <div style="margin-top:0.5rem"><span class="event-note">📅 Kate — Farmers Market 6:30–11:00 AM CT</span></div>
+  </div>
+
+  <div class="day-card" id="sun31">
+    <div class="day-name">Sunday</div><div class="day-date">May 31</div>
+    <div class="day-meal-name">Air Fryer Chicken Drumsticks</div>
+    <div class="badges-row"><span class="badge b-chicken">Chicken drumsticks</span></div>
+    <div class="day-detail">
+      <strong>Seasoning:</strong> Half lemon pepper · Half BBQ dry rub (brown sugar, smoked paprika, garlic powder, onion powder, cayenne)<br>
+      <strong>Sides:</strong> Creamy garlic pasta (pantry) + frozen broccoli<br>
+      <strong>Air fryer:</strong> 400°F · 25–30 min · Flip halfway
+    </div>
   </div>
 </div>
 
 <div class="panel" id="panel-grocery">
-  <p class="section-label">Aldi Shopping List — Week of May 18</p>
+  <p class="section-label">Aldi Shopping List — Week of May 25</p>
   <div id="grocery-list-container"><div class="loading">Loading list...</div></div>
 </div>
 
 <div class="panel" id="panel-reminders">
-  <p class="section-label">This week's prep reminders</p>
+  <p class="section-label">Prep Reminders</p>
   <p style="font-size:0.8rem;color:var(--muted);margin-bottom:0.8rem;">Calendar popup reminders set for Tyler & Kate.</p>
-  <div class="reminder-card"><div class="reminder-icon">🍝</div><div><div class="reminder-time">Mon May 18 — Tonight</div><div class="reminder-text">Pasta with Meat Sauce — quick weeknight dinner before pictures</div></div></div>
-  <div class="reminder-card"><div class="reminder-icon">🍋</div><div><div class="reminder-time">Tue May 19 · After Dance</div><div class="reminder-text">Marinate chicken for Thursday — olive oil, lemon juice, Italian seasoning, garlic powder, paprika</div></div></div>
-  <div class="reminder-card"><div class="reminder-icon">🧊</div><div><div class="reminder-time">Wed May 20 · 5:00 PM CT</div><div class="reminder-text">Pull chicken wings from freezer for Sunday</div></div></div>
+
+  <div class="reminder-card"><div class="reminder-icon">🧙</div><div><div class="reminder-time">Sat May 23 — Morning</div><div class="reminder-text">Slip HP invitations under Teagan & Kinsley's doors before they wake up!</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🌙</div><div><div class="reminder-time">Sat May 23 — Before Bed</div><div class="reminder-text">Apply dry rub to chicken wings · Refrigerate uncovered overnight for crispy skin Sunday</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🧊</div><div><div class="reminder-time">Sun May 24 · 5:00 PM CT</div><div class="reminder-text">Big freezer pull — venison steaks (Mon) + fish sticks (Tue) + pork loin (Thu) + ground venison (Wed) · All go in the fridge to thaw</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🥩</div><div><div class="reminder-time">Mon May 25 · Morning</div><div class="reminder-text">Drop venison steaks + baby potatoes in sous vide · Steaks 131°F · Potatoes 190°F for 1 hour · Sear everything at 5:15 PM CT on cast iron</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🌙</div><div><div class="reminder-time">Tue May 26 · After Dance</div><div class="reminder-text">Marinate pork loin overnight for Thursday — use marinade from cupboard</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🧊</div><div><div class="reminder-time">Thu May 28 · Evening</div><div class="reminder-text">Pull walleye (Sat) + chicken drumsticks (Sun) from freezer to thaw — that's it for the week!</div></div></div>
 </div>
 
 <div class="panel" id="panel-archive">
   <p class="section-label">Past weeks</p>
-  <div class="week-archive-item">Week of May 17, 2026 <span>Current ↑</span></div>
-  <div class="archive-note">Past weeks will appear here as the season progresses.</div>
+  <div class="week-archive-item">Week of May 23, 2026 <span>Current ↑</span></div>
+  <div class="week-archive-item">Week of May 17, 2026 <span>Previous</span></div>
+  <div class="archive-note">Earlier weeks coming soon.</div>
   <div class="footer">Turner Family Meal Planning · Updated by Claude weekly</div>
 </div>
 
@@ -211,60 +273,81 @@
 
 <script>
 const DB_URL = 'https://turner-meals-default-rtdb.firebaseio.com';
-const WEEK_KEY = 'week_may17_2026';
+const WEEK_KEY = 'week_may23_2026';
+
 const BASE_ITEMS = {
-  'Meat': [{ name: 'Chicken wings (3–4 lbs)', note: 'Sunday pellet grill — ON SALE!' }],
+  'Meat & Fish': [
+    { name: 'Frozen fish sticks', note: 'Tuesday fish tacos' },
+    { name: 'Chicken wings (if needed)', note: 'Sunday smoked wings — check freezer first' },
+  ],
   'Produce': [
-    { name: 'Bell peppers (2–3)', note: 'Quesadillas + sheet pan chicken' },
-    { name: 'Zucchini or broccoli crown', note: 'Sheet pan chicken' },
-    { name: 'Lemons (2)', note: 'Thursday marinade' },
-    { name: 'Romaine or bagged salad mix', note: 'Wed, Thu, Fri' },
-    { name: 'Apples or grapes', note: 'Tue side + snacking' },
-    { name: 'Mixed berries or fruit', note: 'Fri, Sun sides' },
-    { name: 'Yellow onion (1–2)', note: 'Pasta sauce, bowls' },
-    { name: 'Garlic (1 bulb)', note: 'If running low' }
+    { name: 'Bell peppers (6)', note: 'Wednesday stuffed peppers' },
+    { name: 'Yellow onion (2)', note: 'Stuffed peppers + general use' },
+    { name: 'Garlic (1 bulb)', note: 'Stuffed peppers + potatoes' },
+    { name: 'Baby potatoes', note: 'Monday sous vide smashed potatoes' },
+    { name: 'Avocados (2)', note: 'Tuesday fish tacos' },
+    { name: 'Limes (2)', note: 'Tuesday fish tacos' },
+    { name: 'Romaine or bagged salad mix', note: 'Saturday fry night salad' },
+    { name: 'Coleslaw mix', note: 'Saturday fry night' },
+    { name: 'Lemons', note: 'Sunday lemon pepper drumsticks' },
   ],
   'Frozen': [
-    { name: 'Frozen corn', note: 'Sun pork steaks — check freezer first!' },
-    { name: 'Frozen green beans', note: 'Monday pasta side' },
-    { name: 'Frozen broccoli (2 bags)', note: 'Wed bowls + Sun wings' }
+    { name: 'Frozen green beans', note: 'Thursday pork loin side' },
+    { name: 'Frozen broccoli (2 bags)', note: 'Sunday wings + Sunday drumsticks' },
   ],
   'Dairy & Refrigerated': [
-    { name: 'Shredded Mexican cheese blend', note: 'Quesadillas' },
-    { name: 'Sour cream', note: 'Quesadillas' },
-    { name: 'Shredded mozzarella', note: 'Friday pizza' },
+    { name: 'Shredded mozzarella', note: 'Wednesday stuffed peppers topping' },
+    { name: 'Sour cream', note: 'Tuesday fish tacos' },
     { name: 'Butter', note: 'If running low' },
-    { name: 'Eggs', note: 'General use' }
   ],
   'Pantry': [
-    { name: 'Minute rice', note: 'Wednesday bowls' },
-    { name: 'Flour tortillas (large)', note: 'Tuesday quesadillas' },
-    { name: 'Black beans (1 can)', note: 'Tuesday quesadillas' },
-    { name: 'Pasta (1 lb)', note: 'Monday' },
-    { name: 'Pizza dough or naan', note: 'Friday pizza night' },
-    { name: 'Pizza toppings', note: 'Pepperoni, olives, etc.' },
-    { name: 'Dinner rolls', note: 'Thu & Sun wings' },
-    { name: 'French bread or hoagie roll', note: 'Monday garlic bread' },
-    { name: 'Salad dressing', note: 'If running low' },
-    { name: 'Brown sugar', note: 'If running low' },
-    { name: 'Ritz crackers', note: '' }
-  ]
+    { name: 'Couscous', note: 'Thursday pork loin side' },
+    { name: 'Flour tortillas (large)', note: 'Tuesday fish tacos' },
+    { name: 'Cornmeal or panko', note: 'Saturday fry night breading' },
+    { name: 'Frying oil (vegetable or canola)', note: 'Saturday cast iron fry night' },
+    { name: 'Pickles (dill)', note: 'Saturday fried pickles' },
+    { name: 'Tartar sauce', note: 'Saturday fry night' },
+    { name: 'Dinner rolls', note: 'Saturday fry night' },
+  ],
+  'HP Night (Sat May 23)': [
+    { name: 'Frozen corn dogs', note: 'Basilisk Fangs' },
+    { name: 'Frozen chicken nuggets', note: 'Dragon Nuggets' },
+    { name: 'Crescent roll dough', note: 'Pumpkin Pasties' },
+    { name: 'Canned pumpkin', note: 'Pumpkin Pasties' },
+    { name: 'Cream soda (x2)', note: 'Butterbeer' },
+    { name: 'Caramel syrup', note: 'Butterbeer' },
+    { name: 'Whipped cream', note: 'Butterbeer' },
+    { name: 'Avocados or premade guac', note: 'Polyjuice Potion' },
+    { name: 'Tortilla chips', note: 'Polyjuice Potion' },
+    { name: 'Chick-fil-A sauce or honey mustard', note: 'Skele-Gro' },
+    { name: 'BBQ sauce', note: "Mrs. Weasley's Secret Sauce" },
+    { name: 'Ranch dressing', note: 'Mandrake Veggie Cups' },
+    { name: 'Chocolate pudding cups', note: "Aunt Petunia's Pudding" },
+    { name: 'Black tablecloths x3', note: 'Dollar Tree — basement projector' },
+  ],
 };
+
 const BASE_STOCKED = [
-  { name: 'Pork steaks (2.5 lbs)', tag: 'freezer' },
-  { name: 'Ground venison (x2)', tag: 'freezer' },
-  { name: 'Chicken breast', tag: 'freezer' },
+  { name: 'Venison steaks', tag: 'freezer' },
+  { name: 'Sliced pork loin', tag: 'freezer' },
+  { name: 'Ground venison', tag: 'freezer' },
+  { name: 'Walleye (2 packs)', tag: 'freezer' },
+  { name: 'Chicken drumsticks', tag: 'freezer' },
   { name: 'Pasta sauce (homemade)', tag: 'pantry' },
-  { name: 'Pizza sauce (homemade)', tag: 'pantry' },
   { name: 'Salsa (homemade)', tag: 'pantry' },
-  { name: 'Soy sauce, sesame oil, brown sugar, ACV', tag: 'pantry' }
+  { name: 'Creamy garlic pasta side', tag: 'pantry' },
+  { name: 'Minute rice', tag: 'pantry' },
+  { name: 'Marinade for pork loin', tag: 'pantry' },
 ];
+
 let state = { checked: {}, extras: {}, stocked: {}, removed: {} };
 let activeItemKey = null, activeItemEl = null, longPressTimer = null;
+
 function setStatus(msg, cls) { const el = document.getElementById('sync-status'); el.textContent = msg; el.className = 'sync-status ' + (cls || ''); }
 async function fbGet() { try { const r = await fetch(`${DB_URL}/${WEEK_KEY}.json`); return await r.json(); } catch(e) { return null; } }
 async function fbPatch(path, data) { try { await fetch(`${DB_URL}/${WEEK_KEY}/${path}.json`, { method: 'PATCH', body: JSON.stringify(data) }); } catch(e) {} }
 async function fbDelete(path) { try { await fetch(`${DB_URL}/${WEEK_KEY}/${path}.json`, { method: 'DELETE' }); } catch(e) {} }
+
 async function loadAndRender() {
   setStatus('Syncing...', 'syncing');
   const remote = await fbGet();
@@ -272,7 +355,9 @@ async function loadAndRender() {
   renderGroceryList(); setStatus('✓ Synced', 'synced');
   setInterval(async () => { const r = await fbGet(); if (r) { state.checked = r.checked || {}; state.extras = r.extras || {}; state.stocked = r.stocked || {}; state.removed = r.removed || {}; renderGroceryList(); } }, 10000);
 }
+
 function itemKey(s, n) { return (s + '_' + n).replace(/[^a-zA-Z0-9_]/g, '_'); }
+
 function renderGroceryList() {
   const container = document.getElementById('grocery-list-container');
   let html = '';
@@ -298,6 +383,7 @@ function renderGroceryList() {
   html += `</div>`;
   container.innerHTML = html;
 }
+
 function renderItem(section, nameOrId, note, isExtra, displayName) {
   const key = isExtra ? 'extra_' + nameOrId : itemKey(section, nameOrId);
   const isChecked = !!state.checked[key];
@@ -305,7 +391,12 @@ function renderItem(section, nameOrId, note, isExtra, displayName) {
   const noteHtml = note ? `<div class="g-note">${note}</div>` : '';
   return `<div class="grocery-item${isChecked ? ' checked' : ''}" data-key="${key}" data-name="${name.replace(/"/g,'&quot;')}" data-extra="${isExtra ? nameOrId : ''}" data-section="${section}" onclick="toggleItem(this)" ontouchstart="startLongPress(this)" ontouchend="cancelLongPress()" ontouchmove="cancelLongPress()" onmousedown="startLongPress(this)" onmouseup="cancelLongPress()" onmouseleave="cancelLongPress()"><div class="g-check">${isChecked ? '✓' : ''}</div><div><div class="g-name">${name}</div>${noteHtml}</div></div>`;
 }
-function sectionEmoji(s) { return { Meat: '🥩', Produce: '🥦', Frozen: '🧊', 'Dairy & Refrigerated': '🧀', Pantry: '🫙', Other: '➕' }[s] || '📦'; }
+
+function sectionEmoji(s) {
+  const map = { 'Meat & Fish': '🥩', Produce: '🥦', Frozen: '🧊', 'Dairy & Refrigerated': '🧀', Pantry: '🫙', Other: '➕', 'HP Night (Sat May 23)': '🧙' };
+  return map[s] || '📦';
+}
+
 async function toggleItem(el) {
   if (longPressTimer) return;
   const key = el.dataset.key, isChecked = el.classList.contains('checked');
@@ -314,15 +405,18 @@ async function toggleItem(el) {
   if (isChecked) { await fbDelete(`checked/${key}`); } else { await fbPatch('checked', { [key]: true }); }
   setStatus('✓ Synced', 'synced');
 }
+
 async function addItem(input) {
   const val = input.value.trim(); if (!val) return;
   const section = input.dataset.section || 'Other', id = Date.now().toString();
   setStatus('Saving...', 'syncing'); state.extras[id] = { name: val, section };
   await fbPatch('extras', { [id]: { name: val, section } }); input.value = ''; renderGroceryList(); setStatus('✓ Synced', 'synced');
 }
+
 function startLongPress(el) { cancelLongPress(); longPressTimer = setTimeout(() => { longPressTimer = null; activeItemEl = el; activeItemKey = el.dataset.key; document.getElementById('action-sheet-title').textContent = el.dataset.name; document.getElementById('action-sheet').classList.add('show'); document.getElementById('overlay').classList.add('show'); }, 600); }
 function cancelLongPress() { if (longPressTimer) { clearTimeout(longPressTimer); longPressTimer = null; } }
 function closeActionSheet() { document.getElementById('action-sheet').classList.remove('show'); document.getElementById('overlay').classList.remove('show'); activeItemKey = null; activeItemEl = null; }
+
 async function moveToStocked() {
   if (!activeItemEl) return;
   const name = activeItemEl.dataset.name, key = activeItemEl.dataset.key, extraId = activeItemEl.dataset.extra, id = Date.now().toString();
@@ -330,6 +424,7 @@ async function moveToStocked() {
   if (extraId) { delete state.extras[extraId]; await fbDelete(`extras/${extraId}`); } else { state.removed[key] = true; await fbPatch('removed', { [key]: true }); }
   delete state.checked[key]; await fbDelete(`checked/${key}`); closeActionSheet(); renderGroceryList(); setStatus('✓ Synced', 'synced');
 }
+
 async function deleteItem() {
   if (!activeItemEl) return;
   const key = activeItemEl.dataset.key, extraId = activeItemEl.dataset.extra;
@@ -337,14 +432,18 @@ async function deleteItem() {
   if (extraId) { delete state.extras[extraId]; await fbDelete(`extras/${extraId}`); } else { state.removed[key] = true; await fbPatch('removed', { [key]: true }); }
   delete state.checked[key]; await fbDelete(`checked/${key}`); closeActionSheet(); renderGroceryList(); setStatus('✓ Synced', 'synced');
 }
+
 async function removeFromStocked(id) { if (!confirm('Move back to shopping list?')) return; delete state.stocked[id]; await fbDelete(`stocked/${id}`); renderGroceryList(); }
+
 function showTab(id, btn) { document.querySelectorAll('.panel').forEach(p => p.classList.remove('active')); document.querySelectorAll('.tab').forEach(t => t.classList.remove('active')); document.getElementById('panel-' + id).classList.add('active'); btn.classList.add('active'); window.scrollTo(0, 0); }
+
 function goToDay(id) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active')); document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.getElementById('panel-menu').classList.add('active'); document.querySelector('.tab').classList.add('active');
   const card = document.getElementById(id); if (!card) return;
   setTimeout(() => { const top = card.getBoundingClientRect().top + window.scrollY - document.querySelector('.header').offsetHeight - 12; window.scrollTo({ top, behavior: 'smooth' }); card.style.borderColor = '#C2622D'; card.style.boxShadow = '0 0 0 3px rgba(194,98,45,0.15)'; setTimeout(() => { card.style.borderColor = ''; card.style.boxShadow = ''; }, 1400); }, 50);
 }
+
 loadAndRender();
 </script>
 </body>
