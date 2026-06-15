@@ -56,6 +56,8 @@
   .event-note { display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; color: var(--accent); font-weight: 500; margin-top: 0.4rem; background: var(--accent-light); padding: 3px 9px; border-radius: 20px; }
   .prep-note { font-size: 0.75rem; color: #4A7C59; background: var(--green-light); padding: 3px 9px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px; margin-top: 0.4rem; font-weight: 500; }
   .thaw-note { font-size: 0.75rem; color: var(--blue); background: var(--blue-light); padding: 3px 9px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px; margin-top: 0.4rem; font-weight: 500; }
+  .recipe-link { display: inline-flex; align-items: center; gap: 5px; margin-top: 0.6rem; font-size: 0.8rem; font-weight: 600; color: var(--accent); text-decoration: none; padding: 5px 12px; background: var(--accent-light); border-radius: 8px; border: 1px solid #F0C4A8; }
+  .recipe-link:active { opacity: 0.7; }
   .grocery-section { background: var(--card); border-radius: 14px; margin-bottom: 0.8rem; box-shadow: var(--shadow); border: 1px solid var(--border); overflow: hidden; }
   .grocery-section-title { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); padding: 0.7rem 1rem 0.4rem; border-bottom: 1px solid var(--border); }
   .grocery-item { display: flex; align-items: flex-start; gap: 0.7rem; padding: 0.65rem 1rem; border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; transition: opacity 0.2s; position: relative; }
@@ -100,7 +102,7 @@
 </head>
 <body>
 <div class="header">
-  <div class="header-top"><h1>Turner Family Meals</h1><span class="header-week">June 8 – June 13</span></div>
+  <div class="header-top"><h1>Turner Family Meals</h1><span class="header-week">June 15 – June 21</span></div>
   <div class="sync-status" id="sync-status">Connecting...</div>
   <div class="tabs">
     <button class="tab active" onclick="showTab('menu',this)">🗓 Menu</button>
@@ -111,70 +113,94 @@
 </div>
 
 <div class="panel active" id="panel-menu">
-  <p class="section-label">June 8–13 — Quick Look</p>
+  <p class="section-label">June 15–21 — Quick Look</p>
   <div class="glance-grid">
-    <div class="glance-row" onclick="goToDay('mon8')"><div class="glance-day">Mon 8</div><div class="glance-meal">Chicken Cobbler</div><span class="glance-badge b-chicken">🍗 Chicken</span></div>
-    <div class="glance-row" onclick="goToDay('tue9')"><div class="glance-day">Tue 9</div><div class="glance-meal">Oyster Mushroom Orzotto</div><span class="glance-badge b-meatless">🍄 Meatless</span></div>
-    <div class="glance-row" onclick="goToDay('wed10')"><div class="glance-day">Wed 10</div><div class="glance-meal">Venison Stew Meat Stir Fry</div><span class="glance-badge b-venison">🥩 Venison</span></div>
-    <div class="glance-row" onclick="goToDay('thu11')"><div class="glance-day">Thu 11</div><div class="glance-meal">Instant Pot Ham Mac & Cheese</div><span class="glance-badge b-pork">🧀 Ham</span></div>
-    <div class="glance-row" onclick="goToDay('fri12')"><div class="glance-day">Fri 12</div><div class="glance-meal">Leftovers</div><span class="glance-badge b-free">⭐ Free</span></div>
+    <div class="glance-row" onclick="goToDay('sun14')"><div class="glance-day">Sun 14</div><div class="glance-meal">Sloppy Joes</div><span class="glance-badge b-quick">🌙 Tonight</span></div>
+    <div class="glance-row" onclick="goToDay('mon15')"><div class="glance-day">Mon 15</div><div class="glance-meal">Sous Vide Venison Backstrap + Cheesy Hot Dogs</div><span class="glance-badge b-venison">🥩 Venison</span></div>
+    <div class="glance-row" onclick="goToDay('tue16')"><div class="glance-day">Tue 16</div><div class="glance-meal">Tikka Masala</div><span class="glance-badge b-chicken">🍛 Indian</span></div>
+    <div class="glance-row" onclick="goToDay('wed17')"><div class="glance-day">Wed 17</div><div class="glance-meal">Porcupines</div><span class="glance-badge b-venison">🥩 Ground Venison</span></div>
+    <div class="glance-row" onclick="goToDay('thu18')"><div class="glance-day">Thu 18</div><div class="glance-meal">Shake & Bake Pheasant Nuggets</div><span class="glance-badge b-wild">🦅 Wild Game</span></div>
+    <div class="glance-row" onclick="goToDay('fri19')"><div class="glance-day">Fri 19</div><div class="glance-meal">Leftovers / Open</div><span class="glance-badge b-free">⭐ Free</span></div>
+    <div class="glance-row" onclick="goToDay('sat20')"><div class="glance-day">Sat 20</div><div class="glance-meal">St. Louis Ribs + Smoked Funeral Potatoes</div><span class="glance-badge b-smoke">🔥 Pellet Grill</span></div>
   </div>
 
   <p class="section-label">Daily Detail</p>
 
-  <div class="day-card" id="mon8">
-    <div class="day-name">Monday</div><div class="day-date">June 8</div>
-    <div class="day-meal-name">Chicken Cobbler</div>
-    <div class="badges-row"><span class="badge b-chicken">Rotisserie chicken</span></div>
+  <div class="day-card" id="sun14">
+    <div class="day-name">Sunday</div><div class="day-date">June 14 — Tonight</div>
+    <div class="day-meal-name">Sloppy Joes</div>
+    <div class="badges-row"><span class="badge b-quick">Heat & Serve</span></div>
     <div class="day-detail">
-      <strong>Ingredients:</strong> Rotisserie chicken (Sam's) · Frozen mixed veggies · Cheddar Bay biscuit mix · Cream of chicken soup (pantry) · Chicken broth · Butter<br>
-      <strong>Method:</strong> Layer butter on bottom of baking dish · Add shredded chicken + veggies · Mix soup + broth and pour over · Top with Cheddar Bay biscuit mix + water · Bake 375°F 45-55 min until golden<br>
-      <strong>Side:</strong> Bagged salad
+      <strong>Notes:</strong> Bag from freezer — heat and serve<br>
+      <strong>Topping ideas:</strong> Fried egg on top · Pickles · Shredded cheese · Coleslaw
     </div>
-    <div style="margin-top:0.5rem"><span class="thaw-note">🧊🍄 4:45 PM — Pull venison stew meat + forage oyster mushrooms</span></div>
-    <div><a class="recipe-link" href="https://kitchenfunwithmy3sons.com/chicken-cobbler/" target="_blank">📖 View Recipe →</a></div>
+    <div style="margin-top:0.5rem"><span class="prep-note">🌙 Pull venison backstrap from freezer tonight — thaw in fridge for Monday</span></div>
   </div>
 
-  <div class="day-card" id="tue9">
-    <div class="day-name">Tuesday</div><div class="day-date">June 9</div>
-    <div class="day-meal-name">Oyster Mushroom Orzotto</div>
-    <div class="badges-row"><span class="badge b-meatless">🍄 Meatless</span></div>
+  <div class="day-card" id="mon15">
+    <div class="day-name">Monday</div><div class="day-date">June 15</div>
+    <div class="day-meal-name">Sous Vide Venison Backstrap + Cheesy Hot Dogs</div>
+    <div class="badges-row"><span class="badge b-venison">Venison backstrap</span></div>
     <div class="day-detail">
-      <strong>Ingredients:</strong> Fresh foraged oyster mushrooms · Orzo pasta · Butter · Onion · Minced garlic · White wine · Chicken broth · Grated Parmesan · Salt & pepper<br>
-      <strong>Method:</strong> Sauté mushrooms in butter until golden · Set aside · Sauté onion + garlic · Add orzo and toast 2 min · Add white wine, stir until absorbed · Add broth one ladle at a time stirring like risotto · Fold mushrooms back in · Finish with Parmesan and butter<br>
-      <strong>Side:</strong> Frozen broccoli
+      <strong>Backstrap:</strong> Drop in sous vide at 2:45 PM · 131°F · Pull and sear on cast iron around 5:00 PM<br>
+      <strong>Cheesy hot dogs:</strong> For the girls alongside the backstrap<br>
+      <strong>Sides:</strong> Couscous + frozen broccoli
     </div>
+    <div style="margin-top:0.5rem"><span class="prep-note">🫕 2:45 PM — Drop backstrap in sous vide at 131°F</span></div>
   </div>
 
-  <div class="day-card" id="wed10">
-    <div class="day-name">Wednesday</div><div class="day-date">June 10</div>
-    <div class="day-meal-name">Venison Stew Meat Stir Fry</div>
-    <div class="badges-row"><span class="badge b-venison">Venison stew meat</span></div>
+  <div class="day-card" id="tue16">
+    <div class="day-name">Tuesday</div><div class="day-date">June 16</div>
+    <div class="day-meal-name">Tikka Masala</div>
+    <div class="badges-row"><span class="badge b-chicken">Tikka masala simmer sauce</span></div>
     <div class="day-detail">
-      <strong>Ingredients:</strong> Venison stew meat · Aldi teriyaki sauce · California blend veggies · Rice · Minced garlic · Butter or oil<br>
-      <strong>Method:</strong> Cook rice · Sear venison in hot cast iron until browned · Add garlic + veggies · Pour in teriyaki sauce · Toss and cook until veggies are tender · Serve over rice<br>
-      <strong>Side:</strong> California blend veggies mixed in
-    </div>
-    <div style="margin-top:0.5rem"><span class="thaw-note">🧊 5:00 PM — Pull Easter ham from freezer for Thursday</span></div>
-  </div>
-
-  <div class="day-card" id="thu11">
-    <div class="day-name">Thursday</div><div class="day-date">June 11</div>
-    <div class="day-meal-name">Instant Pot Ham Mac & Cheese</div>
-    <div class="badges-row"><span class="badge b-pork">Easter ham</span></div>
-    <div class="day-detail">
-      <strong>Ingredients:</strong> 16 oz elbow macaroni · 4 tbsp melted butter · 4 cups water · 1¼ cups evaporated milk · 2 cups shredded cheddar · 8 oz Velveeta cut into pieces · Diced Easter ham<br>
-      <strong>Method:</strong> Combine pasta, water, butter in Instant Pot · High pressure 5 min · Quick release · Stir in cheeses + evaporated milk until melted · Fold in diced ham · Use sauté mode if cheese needs more heat<br>
-      <strong>Side:</strong> Peas
+      <strong>Method:</strong> Brown chicken breast · Pour in Aldi tikka masala simmer sauce · Simmer 15-20 min · Serve over basmati rice<br>
+      <strong>Sides:</strong> Basmati rice + frozen green beans
     </div>
   </div>
 
-  <div class="day-card" id="fri12">
-    <div class="day-name">Friday</div><div class="day-date">June 12</div>
-    <div class="day-meal-name">Leftovers</div>
+  <div class="day-card" id="wed17">
+    <div class="day-name">Wednesday</div><div class="day-date">June 17</div>
+    <div class="day-meal-name">Porcupines</div>
+    <div class="badges-row"><span class="badge b-venison">Ground venison</span></div>
+    <div class="day-detail">
+      <strong>Method:</strong> Mix ground venison + uncooked rice + egg + seasonings · Form into balls · Brown in pan · Simmer in tomato sauce until rice is cooked through<br>
+      <strong>Side:</strong> Instant mashed potatoes
+    </div>
+    <div style="margin-top:0.5rem"><span class="thaw-note">🧊 5:00 PM — Pull St. Louis ribs from freezer — thaw for Saturday</span></div>
+  </div>
+
+  <div class="day-card" id="thu18">
+    <div class="day-name">Thursday</div><div class="day-date">June 18</div>
+    <div class="day-meal-name">Shake & Bake Pheasant Nuggets</div>
+    <div class="badges-row"><span class="badge b-wild">🦅 Pheasant</span></div>
+    <div class="day-detail">
+      <strong>Method:</strong> Cut pheasant breast into nugget-sized pieces · Coat in Shake & Bake · Bake or air fry until golden and cooked through<br>
+      <strong>Side:</strong> Garlic bread (from freezer)<br>
+      <strong>Dipping:</strong> Ranch + honey mustard
+    </div>
+    <div style="margin-top:0.5rem"><span class="event-note">📅 Kate — Dr Bemus 1:15–2:15 PM</span></div>
+  </div>
+
+  <div class="day-card" id="fri19">
+    <div class="day-name">Friday</div><div class="day-date">June 19</div>
+    <div class="day-meal-name">Leftovers / Open</div>
     <div class="badges-row"><span class="badge b-free">Free night</span></div>
     <div class="day-detail">Use up whatever's left from the week!</div>
-    <div style="margin-top:0.5rem"><span class="event-note">📅 Kinsley Well Child 4:00 PM · USMNT vs Paraguay 8:00 PM</span></div>
+  </div>
+
+  <div class="day-card" id="sat20">
+    <div class="day-name">Saturday</div><div class="day-date">June 20</div>
+    <div class="day-meal-name">St. Louis Ribs + Smoked Funeral Potatoes</div>
+    <div class="badges-row"><span class="badge b-smoke">🔥 Pellet grill</span><span class="badge b-pork">St. Louis ribs</span></div>
+    <div class="day-detail">
+      <strong>Ribs:</strong> 225°F low and slow · On at 11:00 AM · Eat at 5:30 PM<br>
+      <strong>Funeral potatoes:</strong> Cast iron skillet · Smoker at 300°F · On at 4:45 PM · 45 min<br>
+      <strong>Potatoes ingredients:</strong> Frozen hash browns · Cream of chicken soup · Sour cream · Cheddar · Parmesan · Butter · Onion · Garlic · Corn flake topping<br>
+    </div>
+    <div style="margin-top:0.5rem"><span class="prep-note">🔥 11:00 AM — Ribs on pellet grill at 225°F</span></div>
+    <div style="margin-top:0.4rem"><span class="prep-note">🥔 4:45 PM — Funeral potatoes on smoker at 300°F</span></div>
+    <div><a class="recipe-link" href="https://heygrillhey.com/smoked-funeral-potatoes/" target="_blank">📖 Funeral Potatoes Recipe →</a></div>
   </div>
 
   <p class="section-label">Lunch Ideas This Week</p>
@@ -182,34 +208,35 @@
     <div class="day-meal-name">Rotation — pick any day</div>
     <div class="day-detail">
       🥫 Beefaroni (pantry)<br>
-      🌯 Deli meat wraps — ham + chicken + provolone + colby jack + tortillas<br>
+      🌯 Deli meat wraps — ham + chicken + provolone + colby jack<br>
       🐟 Tuna salad sandwiches — mayo + relish<br>
       🫓 Quesadillas — cheese + deli meat<br>
-      🍗 Chicken cobbler leftovers (from Monday)<br>
-      🥣 Campbell's chicken noodle soup + crackers<br>
-      🥚 Egg salad sandwiches — fresh eggs from hens
+      🥚 Egg salad sandwiches — fresh eggs from hens<br>
+      🍳 English muffin sandwiches — eggs + cheese<br>
+      🧇 Waffles + Nutella
     </div>
   </div>
 </div>
 
 <div class="panel" id="panel-grocery">
-  <p class="section-label">Aldi + Sam's Shopping List — Week of June 8</p>
+  <p class="section-label">Aldi Shopping List — Week of June 15</p>
   <div id="grocery-list-container"><div class="loading">Loading list...</div></div>
 </div>
 
 <div class="panel" id="panel-reminders">
   <p class="section-label">Prep Reminders</p>
   <p style="font-size:0.8rem;color:var(--muted);margin-bottom:0.8rem;">Calendar popup reminders set for Tyler & Kate.</p>
-  <div class="reminder-card"><div class="reminder-icon">🧊🍄</div><div><div class="reminder-time">Mon June 8 · 4:45 PM</div><div class="reminder-text">1. Pull venison stew meat from freezer — thaw in fridge for Wednesday stir fry<br>2. Head out and forage oyster mushrooms — needed fresh for Tuesday orzotto</div></div></div>
-  <div class="reminder-card"><div class="reminder-icon">🧊</div><div><div class="reminder-time">Wed June 10 · 5:00 PM</div><div class="reminder-text">Pull Easter ham from freezer — thaw in fridge for Thursday Instant Pot mac & cheese</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🫕</div><div><div class="reminder-time">Mon June 15 · 2:45 PM</div><div class="reminder-text">Drop venison backstrap in sous vide at 131°F — sear on cast iron around 5:00 PM</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🧊</div><div><div class="reminder-time">Wed June 17 · 5:00 PM</div><div class="reminder-text">Pull St. Louis ribs from freezer — thaw in fridge for Saturday pellet grill</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🔥</div><div><div class="reminder-time">Sat June 20 · 11:00 AM</div><div class="reminder-text">Ribs on pellet grill at 225°F — low and slow, eating at 5:30 PM</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🥔</div><div><div class="reminder-time">Sat June 20 · 4:45 PM</div><div class="reminder-text">Funeral potatoes on smoker at 300°F in cast iron skillet — 45 min, ready for 5:30 PM</div></div></div>
 </div>
 
 <div class="panel" id="panel-archive">
   <p class="section-label">Past weeks</p>
-  <div class="week-archive-item">Week of June 8, 2026 <span>Current ↑</span></div>
-  <div class="week-archive-item">Week of June 1, 2026 <span>Previous</span></div>
-  <div class="week-archive-item">Week of May 23, 2026 <span>Earlier</span></div>
-  <div class="archive-note">Full archive coming soon.</div>
+  <div class="week-archive-item">Week of June 15, 2026 <span>Current ↑</span></div>
+  <div class="week-archive-item">Week of June 8, 2026 <span>Previous</span></div>
+  <div class="week-archive-item">Week of June 1, 2026 <span>Earlier</span></div>
   <div class="footer">Turner Family Meal Planning · Updated by Claude weekly</div>
 </div>
 
@@ -223,60 +250,53 @@
 
 <script>
 const DB_URL = 'https://turner-meals-default-rtdb.firebaseio.com';
-const WEEK_KEY = 'week/jun8_2026';
+const WEEK_KEY = 'week/jun15_2026';
 
 const BASE_ITEMS = {
   'Meat': [
-    { name: 'Rotisserie chicken', note: 'Sam\'s Club — Monday chicken cobbler' },
+    { name: 'Cheesy hot dogs', note: 'Monday — for the girls alongside backstrap' },
   ],
   'Produce': [
-    { name: 'Bagged salad kit', note: 'Monday chicken cobbler side' },
+    { name: 'Apples', note: 'Lunches + snacks' },
   ],
   'Dairy & Refrigerated': [
-    { name: 'Evaporated milk', note: 'Thursday Instant Pot mac & cheese' },
-    { name: 'Velveeta 8 oz', note: 'Thursday mac & cheese — check if you have enough first' },
-    { name: 'Shredded cheddar (2 cups)', note: 'Thursday mac & cheese' },
-    { name: 'Butter tub', note: 'Orzotto + general use' },
-    { name: 'Grated Parmesan tub', note: 'Tuesday orzotto' },
-    { name: 'Cottage cheese', note: 'Lunches' },
-    { name: 'Vanilla yogurt', note: 'Lunches' },
-    { name: 'Cheese sticks', note: 'Lunches' },
-    { name: 'Mayo', note: 'Check if running low — tuna salad lunches' },
+    { name: 'Sour cream tub', note: 'Saturday funeral potatoes' },
+    { name: 'Milk', note: 'General use' },
+    { name: 'Creamer', note: 'General use' },
   ],
   'Bread & Bakery': [
-    { name: 'Red Lobster Cheddar Bay biscuit mix', note: 'Monday chicken cobbler' },
+    { name: 'English muffins', note: 'Lunches' },
+    { name: 'Bread', note: 'Lunches' },
+    { name: 'Waffles', note: 'Lunches' },
   ],
   'Frozen': [
-    { name: 'California blend veggies', note: 'Wednesday stir fry side' },
+    { name: 'Frozen hash browns', note: 'Saturday smoked funeral potatoes' },
   ],
   'Pantry': [
-    { name: 'Elbow macaroni 16 oz', note: 'Thursday Instant Pot mac & cheese' },
-    { name: 'Orzo pasta', note: 'Tuesday orzotto' },
-    { name: 'Chicken broth (2-3 cartons)', note: 'Monday cobbler + Tuesday orzotto' },
-    { name: 'Aldi teriyaki sauce', note: 'Wednesday venison stir fry' },
-    { name: 'Aldi butter chicken simmer sauce', note: 'Next week' },
-    { name: 'Canned mushrooms x3', note: 'Pantry stock' },
-    { name: 'Tuna x4', note: 'Lunches' },
+    { name: 'Couscous', note: 'Monday backstrap side' },
+    { name: 'Instant mashed potato packets', note: 'Wednesday porcupines side' },
+    { name: 'Cream of chicken soup', note: 'Saturday funeral potatoes' },
+    { name: 'Corn flakes', note: 'Saturday funeral potato topping' },
+    { name: 'Nutella', note: 'Lunches' },
   ],
 };
 
 const BASE_STOCKED = [
-  { name: 'Venison stew meat', tag: 'freezer' },
-  { name: 'Easter ham (2 packs)', tag: 'freezer' },
-  { name: 'Cream of chicken soup', tag: 'pantry' },
-  { name: 'Butter', tag: 'pantry' },
-  { name: 'White wine', tag: 'pantry' },
-  { name: 'Onion', tag: 'pantry' },
-  { name: 'Minced garlic in olive oil', tag: 'pantry' },
-  { name: 'Rice', tag: 'pantry' },
-  { name: 'Frozen peas', tag: 'freezer' },
+  { name: 'Venison backstrap', tag: 'freezer' },
+  { name: 'St. Louis ribs', tag: 'freezer' },
+  { name: 'Pheasant', tag: 'freezer' },
+  { name: 'Ground venison', tag: 'freezer' },
+  { name: 'Sloppy joes (heat & serve)', tag: 'freezer' },
+  { name: 'Tikka masala simmer sauce', tag: 'pantry' },
+  { name: 'Basmati rice', tag: 'pantry' },
+  { name: 'Shake & Bake seasoning', tag: 'pantry' },
+  { name: 'Garlic bread', tag: 'freezer' },
   { name: 'Frozen broccoli', tag: 'freezer' },
+  { name: 'Frozen green beans', tag: 'freezer' },
+  { name: 'Butter, onion, minced garlic', tag: 'pantry' },
+  { name: 'Parmesan + cheddar', tag: 'pantry' },
+  { name: 'Homemade pasta sauce (porcupines)', tag: 'pantry' },
   { name: 'Fresh eggs (hens)', tag: 'pantry' },
-  { name: 'Deli ham + chicken + provolone + colby jack', tag: 'pantry' },
-  { name: 'Tortillas', tag: 'pantry' },
-  { name: 'Tuna (some)', tag: 'pantry' },
-  { name: 'Mayo + relish', tag: 'pantry' },
-  { name: 'Beefaroni', tag: 'pantry' },
 ];
 
 let state = { checked: {}, extras: {}, stocked: {}, removed: {} };
