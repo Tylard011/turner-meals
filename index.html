@@ -44,7 +44,8 @@
   .b-meatless { background: var(--meatless-light); color: var(--meatless); }
   .b-wild { background: var(--smoke-light); color: var(--smoke); }
   .b-fish { background: #EBF5FB; color: #1a5276; }
-  .b-grandparent { background: var(--gold-light); color: var(--gold); }
+  .b-asian { background: #FEF3C7; color: #92400E; }
+  .b-outdoor { background: var(--green-light); color: var(--green); }
   .section-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin: 1.2rem 0 0.6rem; }
   .day-card { background: var(--card); border-radius: 14px; padding: 1rem 1.1rem; margin-bottom: 0.8rem; box-shadow: var(--shadow); border: 1px solid var(--border); transition: border-color 0.3s, box-shadow 0.3s; }
   .day-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--text); line-height: 1.2; }
@@ -99,77 +100,106 @@
   .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 999; }
   .overlay.show { display: block; }
   .loading { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.85rem; }
-  .playbook-item { padding: 0.6rem 1rem; border-bottom: 1px solid var(--border); font-size: 0.85rem; color: var(--text); }
-  .playbook-item:last-child { border-bottom: none; }
-  .playbook-category { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); padding: 0.6rem 1rem 0.3rem; background: var(--bg); border-bottom: 1px solid var(--border); }
-  .playbook-note { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
 </style>
 </head>
 <body>
 <div class="header">
-  <div class="header-top"><h1>Turner Family Meals</h1><span class="header-week">June 29 – July 2</span></div>
+  <div class="header-top"><h1>Turner Family Meals</h1><span class="header-week">July 10 – July 17</span></div>
   <div class="sync-status" id="sync-status">Connecting...</div>
   <div class="tabs">
     <button class="tab active" onclick="showTab('menu',this)">🗓 Menu</button>
     <button class="tab" onclick="showTab('grocery',this)">🛒 Grocery</button>
-    <button class="tab" onclick="showTab('playbook',this)">👴👵 Grandparents</button>
+    <button class="tab" onclick="showTab('reminders',this)">🔔 Reminders</button>
     <button class="tab" onclick="showTab('archive',this)">📁 Archive</button>
   </div>
 </div>
 
 <div class="panel active" id="panel-menu">
-  <p class="section-label">June 29 – July 2 — Quick Look</p>
+  <p class="section-label">July 10–17 — Quick Look</p>
   <div class="glance-grid">
-    <div class="glance-row" onclick="goToDay('mon29')"><div class="glance-day">Mon 29</div><div class="glance-meal">Ham Fried Rice</div><span class="glance-badge b-pork">🍳 Easter Ham</span></div>
-    <div class="glance-row" onclick="goToDay('tue30')"><div class="glance-day">Tue 30</div><div class="glance-meal">Grilled Marinated Pork Loin</div><span class="glance-badge b-pork">🥩 Pork</span></div>
-    <div class="glance-row" onclick="goToDay('wed1')"><div class="glance-day">Wed 1</div><div class="glance-meal">Kielbasa, Green Bean & Potato Casserole</div><span class="glance-badge b-smoke">🫙 One Pan</span></div>
-    <div class="glance-row" onclick="goToDay('thu2')"><div class="glance-day">Thu 2</div><div class="glance-meal">Tyler & Kate leave — Grandparent Playbook begins</div><span class="glance-badge b-grandparent">👴👵 Grandparents</span></div>
+    <div class="glance-row" onclick="goToDay('fri10')"><div class="glance-day">Fri 10</div><div class="glance-meal">Stuffed Peppers</div><span class="glance-badge b-venison">🫙 Venison Brats</span></div>
+    <div class="glance-row" onclick="goToDay('sat11')"><div class="glance-day">Sat 11</div><div class="glance-meal">Turkey Breast Schnitzel Sandwich</div><span class="glance-badge b-wild">🦃 Wild Turkey</span></div>
+    <div class="glance-row" onclick="goToDay('sun12')"><div class="glance-day">Sun 12</div><div class="glance-meal">Venison Bulgogi Fried Rice</div><span class="glance-badge b-asian">🥢 Korean</span></div>
+    <div class="glance-row" onclick="goToDay('mon13')"><div class="glance-day">Mon 13</div><div class="glance-meal">TikTok Ramen</div><span class="glance-badge b-asian">🍜 Ramen</span></div>
+    <div class="glance-row" onclick="goToDay('tue14')"><div class="glance-day">Tue 14</div><div class="glance-meal">Pond Night — Venison Burgers & Brats</div><span class="glance-badge b-outdoor">🎣 Pond Night</span></div>
+    <div class="glance-row" onclick="goToDay('wed15')"><div class="glance-day">Wed 15</div><div class="glance-meal">Melt in Your Mouth Chicken</div><span class="glance-badge b-chicken">🍗 Chicken</span></div>
+    <div class="glance-row" onclick="goToDay('thu16')"><div class="glance-day">Thu 16</div><div class="glance-meal">Leftovers</div><span class="glance-badge b-free">⭐ Free</span></div>
   </div>
 
   <p class="section-label">Daily Detail</p>
 
-  <div class="day-card" id="mon29">
-    <div class="day-name">Monday</div><div class="day-date">June 29</div>
-    <div class="day-meal-name">Ham Fried Rice</div>
-    <div class="badges-row"><span class="badge b-pork">Easter ham</span></div>
+  <div class="day-card" id="fri10">
+    <div class="day-name">Friday</div><div class="day-date">July 10 — Tonight</div>
+    <div class="day-meal-name">Stuffed Peppers</div>
+    <div class="badges-row"><span class="badge b-venison">Venison brats cut up</span></div>
     <div class="day-detail">
-      <strong>Method:</strong> Cook rice · Dice Easter ham · Scramble eggs in wok or cast iron · Add cold rice, ham, frozen peas & carrots · Season with soy sauce, garlic · Toss and fry until hot and slightly crispy<br>
-      <strong>Note:</strong> Use chicken or beef broth to cook the rice for extra flavor<br>
-      <strong>Side:</strong> Frozen veggie
+      <strong>Filling:</strong> Venison brats/hot dogs cut into pieces · Minute rice · Open pasta sauce from fridge · Onion · Garlic · Italian seasoning<br>
+      <strong>Topping:</strong> Shredded mozzarella<br>
+      <strong>Method:</strong> Mix filling · Stuff peppers · Top with cheese · Bake 400°F ~35 min<br>
+      <strong>Note:</strong> Uses up the open pasta sauce in the fridge
     </div>
   </div>
 
-  <div class="day-card" id="tue30">
-    <div class="day-name">Tuesday</div><div class="day-date">June 30</div>
-    <div class="day-meal-name">Grilled Marinated Pork Loin</div>
-    <div class="badges-row"><span class="badge b-pork">Sliced pork loin</span></div>
+  <div class="day-card" id="sat11">
+    <div class="day-name">Saturday</div><div class="day-date">July 11</div>
+    <div class="day-meal-name">Turkey Breast Schnitzel Sandwich</div>
+    <div class="badges-row"><span class="badge b-wild">🦃 Wild turkey breast</span></div>
     <div class="day-detail">
-      <strong>Notes:</strong> Marinate overnight Monday · Grill over medium-high heat<br>
-      <strong>Side:</strong> Creamy garlic pasta (pantry)
+      <strong>Method:</strong> Slice turkey breast thin · Pound flat · Dredge in flour, egg wash, breadcrumbs · Pan fry in oil until golden and cooked through<br>
+      <strong>Serve as:</strong> Sandwich on hamburger bun with sliced tomato<br>
+      <strong>Note:</strong> Forage oyster mushrooms Saturday morning if available
     </div>
-    <div style="margin-top:0.5rem"><span class="prep-note">🌙 Monday night — marinate pork loin overnight</span></div>
+    <div style="margin-top:0.5rem"><span class="prep-note">🌙 Tonight — marinate venison stew meat overnight for Sunday bulgogi</span></div>
   </div>
 
-  <div class="day-card" id="wed1">
-    <div class="day-name">Wednesday</div><div class="day-date">July 1</div>
-    <div class="day-meal-name">Kielbasa, Green Bean & Potato Casserole</div>
-    <div class="badges-row"><span class="badge b-smoke">One pan meal</span></div>
+  <div class="day-card" id="sun12">
+    <div class="day-name">Sunday</div><div class="day-date">July 12</div>
+    <div class="day-meal-name">Venison Bulgogi Fried Rice</div>
+    <div class="badges-row"><span class="badge b-venison">Venison stew meat</span><span class="badge b-asian">🥢 Korean</span></div>
     <div class="day-detail">
-      <strong>Ingredients:</strong> Kielbasa · Baby potatoes · Frozen green beans · Butter · Garlic · Italian seasoning · Salt & pepper · Olive oil spray<br>
-      <strong>Method:</strong> Slice kielbasa and potatoes · Toss everything with seasonings and olive oil · Spread on sheet pan or baking dish · Bake 400°F 35-40 min until potatoes are tender and kielbasa is browned
+      <strong>Bulgogi marinade:</strong> Soy sauce · Sesame oil · Brown sugar or honey · Minced garlic · Fresh ginger · Grated pear or apple · Black pepper<br>
+      <strong>Method:</strong> Marinate overnight · Sous vide at 135°F for 2-3 hrs · Sear in screaming hot cast iron to caramelize<br>
+      <strong>Fried rice:</strong> Day-old rice · Eggs · Soy sauce · Sesame oil · Garlic · Frozen veggie<br>
+      <strong>Finish:</strong> Sesame seeds on top
     </div>
-    <div><a class="recipe-link" href="https://www.greatgrubdelicioustreats.com/sausage-green-bean-potato-casserole/" target="_blank">📖 View Recipe →</a></div>
+    <div style="margin-top:0.5rem"><span class="thaw-note">🧊 Pull venison stew meat from freezer Friday night — thaw for Saturday marinade</span></div>
   </div>
 
-  <div class="day-card" id="thu2">
-    <div class="day-name">Thursday</div><div class="day-date">July 2 — Tyler & Kate leave</div>
-    <div class="day-meal-name">Grandparent Playbook begins 👴👵</div>
-    <div class="badges-row"><span class="badge b-grandparent">Grandparents</span></div>
+  <div class="day-card" id="mon13">
+    <div class="day-name">Monday</div><div class="day-date">July 13</div>
+    <div class="day-meal-name">TikTok Ramen</div>
+    <div class="badges-row"><span class="badge b-asian">🍜 Ramen</span></div>
     <div class="day-detail">
-      See the Grandparents tab for meal options July 2–8.<br>
-      <strong>Grandma</strong> with girls Thu July 2 – Sun July 6 noon<br>
-      <strong>Grandpa</strong> with girls Sun July 6 noon – Wed July 8
+      <strong>Notes:</strong> Kate's recipe · Noodles + broth based<br>
+      <strong>Tip:</strong> Soft boiled egg on top — 6.5 min in boiling water, ice bath
     </div>
+  </div>
+
+  <div class="day-card" id="tue14">
+    <div class="day-name">Tuesday</div><div class="day-date">July 14 — Pond Night 🎣</div>
+    <div class="day-meal-name">Venison Burgers & Hy-Vee Brats</div>
+    <div class="badges-row"><span class="badge b-outdoor">🎣 Pond Night</span><span class="badge b-venison">Venison burgers</span></div>
+    <div class="day-detail">
+      <strong>Pack for the pond:</strong> Venison burger patties · Hy-Vee brats · Watermelon · Chips · Buns · Condiments<br>
+      <strong>Notes:</strong> Grill at the pond after work · Easy outdoor dinner
+    </div>
+  </div>
+
+  <div class="day-card" id="wed15">
+    <div class="day-name">Wednesday</div><div class="day-date">July 15</div>
+    <div class="day-meal-name">Melt in Your Mouth Chicken</div>
+    <div class="badges-row"><span class="badge b-chicken">Chicken breast</span></div>
+    <div class="day-detail">
+      <strong>Method:</strong> Mix mayo + grated Parmesan + garlic + seasoning · Coat chicken breasts generously · Bake 375°F 30-35 min until golden and cooked through · Mayo keeps the chicken incredibly moist<br>
+      <strong>Sides:</strong> Creamy garlic pasta side (pantry) + bagged salad
+    </div>
+  </div>
+
+  <div class="day-card" id="thu16">
+    <div class="day-name">Thursday</div><div class="day-date">July 16</div>
+    <div class="day-meal-name">Leftovers</div>
+    <div class="badges-row"><span class="badge b-free">Free night</span></div>
+    <div class="day-detail">Use up whatever's left from the week!</div>
   </div>
 
   <p class="section-label">Lunch Ideas This Week</p>
@@ -189,64 +219,23 @@
 </div>
 
 <div class="panel" id="panel-grocery">
-  <p class="section-label">Aldi Shopping List — Week of June 29</p>
+  <p class="section-label">Shopping List — Week of July 10</p>
   <div id="grocery-list-container"><div class="loading">Loading list...</div></div>
 </div>
 
-<div class="panel" id="panel-playbook">
-  <p class="section-label">Grandparent Meal Playbook — July 2–8</p>
-  <p style="font-size:0.8rem;color:var(--muted);margin-bottom:0.8rem;">Pick whatever sounds good — no set schedule. Go out to eat whenever you want! Hawaiian rolls are in the freezer. Pancake mix is in the pantry.</p>
-
-  <div class="grocery-section">
-    <div class="playbook-category">⚡ Heat & Serve — Easiest</div>
-    <div class="playbook-item">
-      <strong>Pulled Pork</strong>
-      <div class="playbook-note">Bag in freezer — thaw and heat · Serve on Hawaiian rolls or over rice</div>
-    </div>
-    <div class="playbook-item">
-      <strong>BBQ Shredded Chicken</strong>
-      <div class="playbook-note">Bag in freezer — thaw and heat · Serve on Hawaiian rolls or over rice</div>
-    </div>
-  </div>
-
-  <div class="grocery-section">
-    <div class="playbook-category">🍳 Quick & Easy — 30 min or less</div>
-    <div class="playbook-item">
-      <strong>Breakfast for Supper</strong>
-      <div class="playbook-note">French toast or pancakes (mix in pantry) + venison breakfast sausage + fresh eggs from the hens</div>
-    </div>
-    <div class="playbook-item">
-      <strong>Ravioli & Garlic Bread</strong>
-      <div class="playbook-note">Frozen cheese ravioli · Boil and serve with garlic bread · Top with homemade pasta sauce from pantry</div>
-    </div>
-    <div class="playbook-item">
-      <strong>Pigs in a Blanket</strong>
-      <div class="playbook-note">Quick and easy — girls love these</div>
-    </div>
-    <div class="playbook-item">
-      <strong>Tacos</strong>
-      <div class="playbook-note">Ground venison · Season with taco seasoning · Serve with homemade salsa from pantry · Save leftover meat for nachos the next day!</div>
-    </div>
-  </div>
-
-  <div class="grocery-section">
-    <div class="playbook-category">🍽 More Involved</div>
-    <div class="playbook-item">
-      <strong>Ground Venison Stroganoff</strong>
-      <div class="playbook-note">Brown ground venison · Add cream of mushroom soup + beef broth + sour cream · Season with garlic, Worcestershire · Serve over egg noodles</div>
-    </div>
-    <div class="playbook-item">
-      <strong>Spaghetti</strong>
-      <div class="playbook-note">Brown ground venison · Add homemade pasta sauce from pantry · Serve over spaghetti noodles with garlic bread</div>
-    </div>
-  </div>
+<div class="panel" id="panel-reminders">
+  <p class="section-label">Prep Reminders</p>
+  <p style="font-size:0.8rem;color:var(--muted);margin-bottom:0.8rem;">Calendar popup reminders set for Tyler & Kate.</p>
+  <div class="reminder-card"><div class="reminder-icon">🧊</div><div><div class="reminder-time">Fri July 10 · Evening</div><div class="reminder-text">Pull venison stew meat from freezer — thaw in fridge for Saturday night bulgogi marinade</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🌙</div><div><div class="reminder-time">Sat July 11 · After Dinner</div><div class="reminder-text">Mix bulgogi marinade — soy sauce, sesame oil, brown sugar, garlic, fresh ginger, grated pear/apple · Marinate stew meat overnight for Sunday</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🫕</div><div><div class="reminder-time">Sun July 12 · Morning</div><div class="reminder-text">Drop marinated stew meat in sous vide at 135°F — cook 2-3 hours · Sear in hot cast iron before serving</div></div></div>
 </div>
 
 <div class="panel" id="panel-archive">
   <p class="section-label">Past weeks</p>
-  <div class="week-archive-item">Week of June 29, 2026 <span>Current ↑</span></div>
-  <div class="week-archive-item">Week of June 22, 2026 <span>Previous</span></div>
-  <div class="week-archive-item">Week of June 15, 2026 <span>Earlier</span></div>
+  <div class="week-archive-item">Week of July 10, 2026 <span>Current ↑</span></div>
+  <div class="week-archive-item">Week of June 29, 2026 <span>Previous</span></div>
+  <div class="week-archive-item">Week of June 22, 2026 <span>Earlier</span></div>
   <div class="footer">Turner Family Meal Planning · Updated by Claude weekly</div>
 </div>
 
@@ -260,55 +249,55 @@
 
 <script>
 const DB_URL = 'https://turner-meals-default-rtdb.firebaseio.com';
-const WEEK_KEY = 'week/jun29_2026';
+const WEEK_KEY = 'week/jul10_2026';
 
 const BASE_ITEMS = {
-  'Meat': [
-    { name: 'Kielbasa', note: 'Wednesday casserole' },
+  'Meat — Fareway': [
+    { name: 'Iowa chops x2 packs', note: 'Going in freezer — Fareway' },
   ],
   'Produce': [
-    { name: 'Baby potatoes', note: 'Wednesday kielbasa casserole' },
+    { name: 'Fresh ginger', note: 'Sunday bulgogi marinade' },
+    { name: 'Pear or apple', note: 'Sunday bulgogi marinade — tenderizes meat' },
+    { name: '1 red tomato', note: 'Saturday schnitzel sandwich' },
+    { name: 'Watermelon', note: 'Tuesday pond night' },
+    { name: 'Bagged salad kit', note: 'Wednesday melt in your mouth chicken' },
   ],
   'Dairy & Refrigerated': [
-    { name: 'Sour cream', note: 'Grandparent stroganoff' },
-    { name: 'Milk', note: 'General use' },
+    { name: 'Mozzarella cheese', note: 'Friday stuffed peppers' },
+    { name: 'Parmesan', note: 'Wednesday melt in your mouth chicken' },
   ],
   'Bread & Bakery': [
-    { name: 'Garlic bread', note: 'Grandparent ravioli + spaghetti' },
-    { name: 'White bread', note: 'Lunches' },
-  ],
-  'Frozen': [
-    { name: 'Frozen green beans', note: 'Wednesday kielbasa casserole' },
-    { name: 'Frozen veggies x2', note: 'General use' },
-    { name: 'Frozen cheese ravioli', note: 'Grandparent playbook' },
+    { name: 'Hamburger buns', note: 'Saturday schnitzel sandwich + Tuesday pond burgers' },
   ],
   'Pantry': [
-    { name: 'Chicken or beef broth', note: 'Monday ham fried rice — cook rice in broth' },
-    { name: 'Cream of mushroom soup', note: 'Grandparent stroganoff' },
-    { name: 'Egg noodles', note: 'Grandparent stroganoff' },
-    { name: 'Mac & cheese boxes x2-3', note: 'Lunches' },
-    { name: 'Shredded cheese', note: 'Tacos + nachos' },
-    { name: 'Pizza rolls', note: 'Lunches' },
-    { name: 'Sweet and sour sauce', note: 'Pizza rolls dipping sauce' },
+    { name: 'Minute rice', note: 'General use' },
+    { name: 'Soy sauce', note: 'Sunday bulgogi + fried rice' },
+    { name: 'Worcestershire sauce', note: 'Restock' },
+    { name: 'Sesame seeds', note: 'Sunday bulgogi finish' },
+    { name: 'Pasta side', note: 'Wednesday melt in your mouth chicken' },
+  ],
+  'Household': [
+    { name: 'Tylenol PM', note: '' },
+    { name: 'Sandwich bags', note: '' },
   ],
 };
 
 const BASE_STOCKED = [
-  { name: 'Easter ham (2 packs)', tag: 'freezer' },
-  { name: 'Sliced pork loin', tag: 'freezer' },
-  { name: 'Pulled pork bag', tag: 'freezer' },
-  { name: 'BBQ shredded chicken (2 lbs)', tag: 'freezer' },
-  { name: 'Ground venison', tag: 'freezer' },
-  { name: 'Venison breakfast sausage', tag: 'freezer' },
-  { name: 'Hawaiian rolls', tag: 'freezer' },
+  { name: 'Venison brats/hot dogs', tag: 'freezer' },
+  { name: 'Wild turkey breast (large)', tag: 'freezer' },
+  { name: 'Venison stew meat', tag: 'freezer' },
+  { name: 'Venison burger patties', tag: 'freezer' },
+  { name: 'Hy-Vee brats', tag: 'freezer' },
+  { name: 'Chicken breast', tag: 'freezer' },
+  { name: 'Open pasta sauce', tag: 'pantry' },
+  { name: 'Breadcrumbs', tag: 'pantry' },
+  { name: 'Mayo', tag: 'pantry' },
+  { name: 'Sesame oil', tag: 'pantry' },
+  { name: 'Minced garlic in olive oil', tag: 'pantry' },
+  { name: 'Minute rice', tag: 'pantry' },
   { name: 'Creamy garlic pasta side', tag: 'pantry' },
-  { name: 'Homemade pasta sauce', tag: 'pantry' },
-  { name: 'Homemade salsa', tag: 'pantry' },
-  { name: 'Pancake mix', tag: 'pantry' },
-  { name: 'Soy sauce + garlic', tag: 'pantry' },
-  { name: 'Nacho chips', tag: 'pantry' },
+  { name: 'Chips', tag: 'pantry' },
   { name: 'Fresh eggs (hens)', tag: 'pantry' },
-  { name: 'Marinade for pork loin', tag: 'pantry' },
 ];
 
 let state = { checked: {}, extras: {}, stocked: {}, removed: {} };
@@ -373,7 +362,7 @@ function renderItem(section, nameOrId, note, isExtra, displayName) {
 }
 
 function sectionEmoji(s) {
-  const map = { Meat: '🥩', Produce: '🥦', Frozen: '🧊', 'Dairy & Refrigerated': '🧀', Pantry: '🫙', 'Bread & Bakery': '🍞', Other: '➕' };
+  const map = { 'Meat — Fareway': '🥩', Produce: '🥦', Frozen: '🧊', 'Dairy & Refrigerated': '🧀', Pantry: '🫙', 'Bread & Bakery': '🍞', Household: '🏠', Other: '➕' };
   return map[s] || '📦';
 }
 
