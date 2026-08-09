@@ -44,8 +44,8 @@
   .b-meatless { background: var(--meatless-light); color: var(--meatless); }
   .b-fish { background: #EBF5FB; color: #1a5276; }
   .b-garden { background: var(--green-light); color: var(--green); }
-  .b-asian { background: #FEF3C7; color: #92400E; }
   .b-pasta { background: var(--gold-light); color: var(--gold); }
+  .b-indian { background: var(--accent-light); color: var(--accent); }
   .section-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin: 1.2rem 0 0.6rem; }
   .day-card { background: var(--card); border-radius: 14px; padding: 1rem 1.1rem; margin-bottom: 0.8rem; box-shadow: var(--shadow); border: 1px solid var(--border); transition: border-color 0.3s, box-shadow 0.3s; }
   .day-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--text); line-height: 1.2; }
@@ -58,6 +58,7 @@
   .event-note { display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; color: var(--accent); font-weight: 500; margin-top: 0.4rem; background: var(--accent-light); padding: 3px 9px; border-radius: 20px; }
   .prep-note { font-size: 0.75rem; color: #4A7C59; background: var(--green-light); padding: 3px 9px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px; margin-top: 0.4rem; font-weight: 500; }
   .thaw-note { font-size: 0.75rem; color: var(--blue); background: var(--blue-light); padding: 3px 9px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px; margin-top: 0.4rem; font-weight: 500; }
+  .recipe-link { display: inline-flex; align-items: center; gap: 5px; margin-top: 0.6rem; font-size: 0.8rem; font-weight: 600; color: var(--accent); text-decoration: none; padding: 5px 12px; background: var(--accent-light); border-radius: 8px; border: 1px solid #F0C4A8; }
   .grocery-section { background: var(--card); border-radius: 14px; margin-bottom: 0.8rem; box-shadow: var(--shadow); border: 1px solid var(--border); overflow: hidden; }
   .grocery-section-title { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); padding: 0.7rem 1rem 0.4rem; border-bottom: 1px solid var(--border); }
   .grocery-item { display: flex; align-items: flex-start; gap: 0.7rem; padding: 0.65rem 1rem; border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; transition: opacity 0.2s; position: relative; }
@@ -102,7 +103,7 @@
 </head>
 <body>
 <div class="header">
-  <div class="header-top"><h1>Turner Family Meals</h1><span class="header-week">Aug 3 – Aug 8</span></div>
+  <div class="header-top"><h1>Turner Family Meals</h1><span class="header-week">Aug 9 – Aug 15</span></div>
   <div class="sync-status" id="sync-status">Connecting...</div>
   <div class="tabs">
     <button class="tab active" onclick="showTab('menu',this)">🗓 Menu</button>
@@ -113,75 +114,83 @@
 </div>
 
 <div class="panel active" id="panel-menu">
-  <p class="section-label">Aug 3–8 — Quick Look</p>
+  <p class="section-label">Aug 9–15 — Quick Look</p>
   <div class="glance-grid">
-    <div class="glance-row" onclick="goToDay('mon3')"><div class="glance-day">Mon 3</div><div class="glance-meal">Udon Stir Fry</div><span class="glance-badge b-asian">🥢 Tyler + Girls</span></div>
-    <div class="glance-row" onclick="goToDay('tue4')"><div class="glance-day">Tue 4</div><div class="glance-meal">BLTs</div><span class="glance-badge b-garden">🍅 Garden Tomatoes!</span></div>
-    <div class="glance-row" onclick="goToDay('wed5')"><div class="glance-day">Wed 5</div><div class="glance-meal">Big Mac Tacos</div><span class="glance-badge b-venison">🥩 Ground Venison</span></div>
-    <div class="glance-row" onclick="goToDay('thu6')"><div class="glance-day">Thu 6</div><div class="glance-meal">Ravioli with Basil Pesto</div><span class="glance-badge b-pasta">🌿 Garden Basil</span></div>
-    <div class="glance-row" onclick="goToDay('fri7')"><div class="glance-day">Fri 7</div><div class="glance-meal">Shakshuka</div><span class="glance-badge b-garden">🍅 Fresh Romas</span></div>
+    <div class="glance-row" onclick="goToDay('sun9')"><div class="glance-day">Sun 9</div><div class="glance-meal">BLTs</div><span class="glance-badge b-garden">🍅 Garden Tomatoes</span></div>
+    <div class="glance-row" onclick="goToDay('mon10')"><div class="glance-day">Mon 10</div><div class="glance-meal">Tater Tot Casserole</div><span class="glance-badge b-venison">🥩 Ground Venison</span></div>
+    <div class="glance-row" onclick="goToDay('tue11')"><div class="glance-day">Tue 11</div><div class="glance-meal">Fish Stick Tacos</div><span class="glance-badge b-fish">🐟 Fish Tacos</span></div>
+    <div class="glance-row" onclick="goToDay('wed12')"><div class="glance-day">Wed 12</div><div class="glance-meal">Baked Feta Tomato Pasta</div><span class="glance-badge b-pasta">🧀 Viral Recipe</span></div>
+    <div class="glance-row" onclick="goToDay('thu13')"><div class="glance-day">Thu 13</div><div class="glance-meal">Tuna Melts</div><span class="glance-badge b-fish">🐟 Kate Solo</span></div>
+    <div class="glance-row" onclick="goToDay('fri14')"><div class="glance-day">Fri 14</div><div class="glance-meal">Butter Chicken</div><span class="glance-badge b-indian">🍛 Indian</span></div>
   </div>
 
   <p class="section-label">Daily Detail</p>
 
-  <div class="day-card" id="mon3">
-    <div class="day-name">Monday</div><div class="day-date">Aug 3 — Tyler + Girls Solo</div>
-    <div class="day-meal-name">Udon Stir Fry</div>
-    <div class="badges-row"><span class="badge b-asian">🥢 Asian</span><span class="badge b-quick">⚡ Quick</span></div>
-    <div class="day-detail">
-      <strong>Ingredients:</strong> Udon noodles · Canned chicken · Frozen stir fry veggies · Soy sauce · Sesame oil · Garlic · Sweet & sour sauce<br>
-      <strong>Method:</strong> Cook udon noodles · Stir fry veggies and chicken in cast iron · Add noodles + soy sauce + sesame oil · Toss everything together · Serve with sweet & sour sauce on top<br>
-      <strong>Notes:</strong> Kate out 6:00–7:00 PM
-    </div>
-    <div style="margin-top:0.5rem"><span class="event-note">📅 Kate — Queens 6:00–7:00 PM</span></div>
-  </div>
-
-  <div class="day-card" id="tue4">
-    <div class="day-name">Tuesday</div><div class="day-date">Aug 4 — Garden Tomatoes! 🍅</div>
+  <div class="day-card" id="sun9">
+    <div class="day-name">Sunday</div><div class="day-date">Aug 9 — Garden Tomatoes! 🍅</div>
     <div class="day-meal-name">BLTs</div>
     <div class="badges-row"><span class="badge b-garden">🍅 Fresh garden tomatoes</span></div>
     <div class="day-detail">
-      <strong>Ingredients:</strong> Bacon · Fresh garden tomatoes · Head of lettuce · Bread · Mayo<br>
-      <strong>Sides:</strong> Iowa sweet corn (3 ears) · Chips · Fruit<br>
-      <strong>Notes:</strong> Finally — garden tomatoes are ready!
+      <strong>Ingredients:</strong> Bacon · Fresh garden tomatoes · Head of lettuce · Sandwich bread · Mayo<br>
+      <strong>Sides:</strong> Chips + fruit + fresh veggies
     </div>
-    <div style="margin-top:0.5rem"><span class="event-note">📅 Girls dentist 8:00 AM · Swim lessons 10:20 AM · Kate Dr. Bemus 3:45 PM</span></div>
+    <div style="margin-top:0.5rem"><span class="event-note">📅 Kate — Buckets & Boards 4:00–5:00 PM North Liberty</span></div>
   </div>
 
-  <div class="day-card" id="wed5">
-    <div class="day-name">Wednesday</div><div class="day-date">Aug 5</div>
-    <div class="day-meal-name">Big Mac Tacos</div>
+  <div class="day-card" id="mon10">
+    <div class="day-name">Monday</div><div class="day-date">Aug 10</div>
+    <div class="day-meal-name">Tater Tot Casserole</div>
     <div class="badges-row"><span class="badge b-venison">Ground venison</span></div>
     <div class="day-detail">
-      <strong>Special sauce:</strong> Mayo + ketchup + mustard + pickle juice + onion powder · Mix together<br>
-      <strong>Method:</strong> Brown ground venison · Season with salt, pepper, garlic · Serve in flour tortillas<br>
-      <strong>Toppings:</strong> Shredded lettuce · Sharp cheddar slices · Sandwich pickles · Special sauce<br>
-      <strong>Sides:</strong> Frozen french fries
+      <strong>Method:</strong> Brown ground venison · Season with salt, pepper, garlic, onion powder · Mix with cream of mushroom soup · Pour into baking dish · Top with tater tots · Bake 375°F 35-40 min until tots are golden and crispy<br>
+      <strong>Side:</strong> Frozen veggie
     </div>
-    <div style="margin-top:0.5rem"><span class="event-note">📅 Swim lessons 10:20 AM</span></div>
+    <div style="margin-top:0.5rem"><span class="event-note">📅 Kinsley Ortho 9:50 AM · Teagan Ortho 2:30 PM</span></div>
   </div>
 
-  <div class="day-card" id="thu6">
-    <div class="day-name">Thursday</div><div class="day-date">Aug 6</div>
-    <div class="day-meal-name">Ravioli with Homemade Basil Pesto</div>
-    <div class="badges-row"><span class="badge b-pasta">🌿 Garden basil pesto</span></div>
+  <div class="day-card" id="tue11">
+    <div class="day-name">Tuesday</div><div class="day-date">Aug 11</div>
+    <div class="day-meal-name">Fish Stick Tacos</div>
+    <div class="badges-row"><span class="badge b-fish">🐟 Fish sticks</span></div>
     <div class="day-detail">
-      <strong>Pesto:</strong> Fresh garden basil · Parmesan · Pine nuts or walnuts · Garlic · Olive oil · Salt · Blend in food processor until smooth<br>
-      <strong>Method:</strong> Boil frozen ravioli · Drain · Toss generously with pesto · Extra parmesan on top<br>
-      <strong>Sides:</strong> Italian dressing salad · Cottage cheese · Fruit
+      <strong>Method:</strong> Air fry fish sticks · Char tortillas on gas burner<br>
+      <strong>Upgraded coleslaw:</strong> Coleslaw mix · Mayo · Apple cider vinegar · Dijon mustard · Celery seed · Lime juice · Sugar · Salt · Fresh cilantro · Let sit 30 min before serving for best flavor<br>
+      <strong>Toppings:</strong> Creamy coleslaw · Fresh cilantro · Lime wedges · Hot sauce optional
     </div>
-    <div style="margin-top:0.5rem"><span class="event-note">📅 Swim lessons 10:20 AM · Kate haircut 1:00 PM</span></div>
   </div>
 
-  <div class="day-card" id="fri7">
-    <div class="day-name">Friday</div><div class="day-date">Aug 7</div>
-    <div class="day-meal-name">Shakshuka</div>
-    <div class="badges-row"><span class="badge b-garden">🍅 Fresh romas</span><span class="badge b-meatless">🥚 Meatless</span></div>
+  <div class="day-card" id="wed12">
+    <div class="day-name">Wednesday</div><div class="day-date">Aug 12</div>
+    <div class="day-meal-name">Baked Feta Tomato Pasta</div>
+    <div class="badges-row"><span class="badge b-pasta">🧀 Viral baked feta</span><span class="badge b-garden">🍅 Garden cherry tomatoes</span></div>
     <div class="day-detail">
-      <strong>Method:</strong> Dice fresh roma tomatoes and garden peppers · Sauté onion + garlic in cast iron · Add tomatoes + peppers · Season with cumin, paprika, salt · Simmer 10-15 min until thickened · Make wells with a spoon · Crack fresh eggs into wells · Cover and cook until whites set, yolks still runny<br>
-      <strong>No cilantro!</strong><br>
-      <strong>Sides:</strong> Crusty bread for dipping · Frozen broccoli
+      <strong>Method:</strong> Place block of feta in center of baking dish · Surround with fresh cherry tomatoes · Drizzle generously with olive oil · Season with garlic, salt, pepper, fresh basil · Bake 400°F 35-40 min until feta is soft and tomatoes burst · Remove from oven, smash everything together into a creamy sauce · Toss with cooked noodles<br>
+      <strong>Side:</strong> Bagged salad with Italian dressing
     </div>
+  </div>
+
+  <div class="day-card" id="thu13">
+    <div class="day-name">Thursday</div><div class="day-date">Aug 13 — Kate Solo with Girls</div>
+    <div class="day-meal-name">Tuna Melts</div>
+    <div class="badges-row"><span class="badge b-fish">🐟 Tuna</span><span class="badge b-quick">⚡ Quick</span></div>
+    <div class="day-detail">
+      <strong>Method:</strong> Mix tuna + mayo + a little dijon + salt & pepper · Spread on bread · Top with sliced feta or cheese · Broil until bubbly and golden<br>
+      <strong>Sides:</strong> Fruit + fresh veggies
+    </div>
+    <div style="margin-top:0.5rem"><span class="event-note">📅 Tyler — Dentist 7:00 AM · Soccer doubleheader Des Moines 2:00–6:00 PM</span></div>
+  </div>
+
+  <div class="day-card" id="fri14">
+    <div class="day-name">Friday</div><div class="day-date">Aug 14</div>
+    <div class="day-meal-name">Butter Chicken</div>
+    <div class="badges-row"><span class="badge b-indian">🍛 Butter chicken</span><span class="badge b-chicken">Chicken breast</span></div>
+    <div class="day-detail">
+      <strong>Method:</strong> Season and brown chicken breast · Pour in Aldi butter chicken simmer sauce · Simmer 15-20 min until cooked through · Serve over basmati rice<br>
+      <strong>Sides:</strong> Basmati rice + frozen egg rolls<br>
+      <strong>Note:</strong> Have been waiting all season for this one!
+    </div>
+    <div style="margin-top:0.5rem"><span class="event-note">📅 Kate — Dr Kate 1:00 PM</span></div>
+    <div style="margin-top:0.4rem"><span class="thaw-note">🧊 Pull chicken breast from freezer Thursday night to thaw</span></div>
   </div>
 
   <p class="section-label">Lunch Ideas This Week</p>
@@ -201,22 +210,21 @@
 </div>
 
 <div class="panel" id="panel-grocery">
-  <p class="section-label">Shopping List — Week of Aug 3</p>
+  <p class="section-label">Shopping List — Week of Aug 9</p>
   <div id="grocery-list-container"><div class="loading">Loading list...</div></div>
 </div>
 
 <div class="panel" id="panel-reminders">
   <p class="section-label">Prep Reminders</p>
   <p style="font-size:0.8rem;color:var(--muted);margin-bottom:0.8rem;">Calendar popup reminders set for Tyler & Kate.</p>
-  <div class="reminder-card"><div class="reminder-icon">🥓</div><div><div class="reminder-time">Tue Aug 4 · Afternoon</div><div class="reminder-text">Cook bacon for BLTs · Fresh garden tomatoes · Iowa sweet corn on the side</div></div></div>
-  <div class="reminder-card"><div class="reminder-icon">🌿</div><div><div class="reminder-time">Thu Aug 6 · Before Dinner</div><div class="reminder-text">Make fresh basil pesto — basil from garden · Parmesan · Pine nuts or walnuts · Garlic · Olive oil · Food processor</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🧊</div><div><div class="reminder-time">Thu Aug 13 · Evening</div><div class="reminder-text">Pull chicken breast from freezer — thaw in fridge for Friday butter chicken</div></div></div>
 </div>
 
 <div class="panel" id="panel-archive">
   <p class="section-label">Past weeks</p>
-  <div class="week-archive-item">Week of Aug 3, 2026 <span>Current ↑</span></div>
-  <div class="week-archive-item">Week of July 26, 2026 <span>Previous</span></div>
-  <div class="week-archive-item">Week of July 17, 2026 <span>Earlier</span></div>
+  <div class="week-archive-item">Week of Aug 9, 2026 <span>Current ↑</span></div>
+  <div class="week-archive-item">Week of Aug 3, 2026 <span>Previous</span></div>
+  <div class="week-archive-item">Week of July 26, 2026 <span>Earlier</span></div>
   <div class="footer">Turner Family Meal Planning · Updated by Claude weekly</div>
 </div>
 
@@ -230,55 +238,63 @@
 
 <script>
 const DB_URL = 'https://turner-meals-default-rtdb.firebaseio.com';
-const WEEK_KEY = 'week/aug3_2026';
+const WEEK_KEY = 'week/aug9_2026';
 
 const BASE_ITEMS = {
   'Meat & Deli': [
-    { name: 'Bacon', note: 'Tuesday BLTs' },
-    { name: 'Deli meat for sandwiches', note: 'Lunches' },
+    { name: 'Bacon', note: 'Sunday BLTs' },
+    { name: 'Frozen fish sticks', note: 'Tuesday fish stick tacos' },
+    { name: 'Chicken breast', note: 'Friday butter chicken' },
   ],
   'Produce': [
-    { name: 'Head of lettuce', note: 'Tuesday BLTs' },
-    { name: 'Fruit — whatever is on sale', note: 'Lunches + sides' },
+    { name: 'Head of lettuce', note: 'Sunday BLTs' },
+    { name: 'Coleslaw mix', note: 'Tuesday fish tacos upgraded slaw' },
+    { name: 'Cilantro', note: 'Tuesday fish tacos coleslaw' },
+    { name: 'Fresh veggies — whatever is on sale', note: 'Sides + lunches' },
+    { name: 'Fruit — whatever is on sale', note: 'Sides + lunches' },
   ],
   'Dairy & Refrigerated': [
-    { name: 'Sharp cheddar slices', note: 'Wednesday Big Mac tacos' },
+    { name: 'Block of feta', note: 'Wednesday baked feta pasta + Thursday tuna melts' },
+    { name: 'Milk', note: 'General use' },
+    { name: 'Bagged salad kit', note: 'Wednesday pasta side' },
   ],
   'Bread & Bakery': [
-    { name: 'Bread', note: 'Tuesday BLTs' },
-    { name: 'Crusty bread or sourdough', note: 'Friday shakshuka dipping' },
+    { name: 'Sandwich bread', note: 'Sunday BLTs + Thursday tuna melts' },
+    { name: 'Sourdough', note: 'BLTs + general use' },
+    { name: 'French bread', note: 'Leftovers' },
   ],
   'Frozen': [
-    { name: 'Frozen broccoli', note: 'Friday shakshuka side' },
+    { name: 'Tater tots', note: 'Monday casserole' },
+    { name: 'Frozen veggie', note: 'Monday tater tot casserole side' },
+    { name: 'Frozen egg rolls', note: 'Friday butter chicken side' },
   ],
   'Pantry': [
-    { name: 'Sandwich pickles', note: 'Wednesday Big Mac tacos + Tuesday BLTs' },
-    { name: 'Olive oil', note: 'General use + Thursday pesto' },
+    { name: 'Cream of mushroom soup', note: 'Monday tater tot casserole' },
+    { name: 'Tuna x2-3 cans', note: 'Thursday tuna melts' },
+    { name: 'Dijon mustard', note: 'Tuesday coleslaw + Thursday tuna melts' },
+    { name: 'Celery seed', note: 'Tuesday upgraded coleslaw' },
+    { name: 'Apple cider vinegar', note: 'Tuesday upgraded coleslaw' },
+    { name: 'Lemon juice', note: 'General use' },
+    { name: 'Lime juice', note: 'Tuesday coleslaw' },
+    { name: 'Mayo — jar + squeeze bottle', note: 'General use' },
+    { name: 'Ketchup', note: 'General use' },
   ],
 };
 
 const BASE_STOCKED = [
   { name: 'Ground venison', tag: 'freezer' },
+  { name: 'Butter chicken simmer sauce', tag: 'pantry' },
+  { name: 'Basmati rice', tag: 'pantry' },
   { name: 'Fresh garden tomatoes', tag: 'pantry' },
-  { name: 'Fresh garden peppers', tag: 'pantry' },
+  { name: 'Fresh garden cherry tomatoes', tag: 'pantry' },
   { name: 'Fresh garden basil', tag: 'pantry' },
-  { name: 'Iowa sweet corn (3 ears)', tag: 'pantry' },
-  { name: 'Udon noodles', tag: 'pantry' },
-  { name: 'Canned chicken', tag: 'pantry' },
-  { name: 'Frozen stir fry veggies', tag: 'freezer' },
-  { name: 'Frozen ravioli (half bag)', tag: 'freezer' },
-  { name: 'Frozen french fries', tag: 'freezer' },
-  { name: 'Sweet & sour sauce + soy sauce', tag: 'pantry' },
-  { name: 'Sesame oil', tag: 'pantry' },
   { name: 'Flour tortillas', tag: 'pantry' },
-  { name: 'Mayo + ketchup + mustard', tag: 'pantry' },
-  { name: 'Parmesan', tag: 'pantry' },
-  { name: 'Pine nuts + walnuts', tag: 'pantry' },
+  { name: 'Olive oil', tag: 'pantry' },
   { name: 'Minced garlic in olive oil', tag: 'pantry' },
   { name: 'Italian dressing', tag: 'pantry' },
-  { name: 'Cottage cheese', tag: 'pantry' },
-  { name: 'Fresh eggs (hens)', tag: 'pantry' },
   { name: 'Chips', tag: 'pantry' },
+  { name: 'Fresh eggs (hens)', tag: 'pantry' },
+  { name: 'Noodles/pasta', tag: 'pantry' },
 ];
 
 let state = { checked: {}, extras: {}, stocked: {}, removed: {} };
