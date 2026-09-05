@@ -37,9 +37,12 @@
   .b-quick { background: #FEF3C7; color: #92400E; }
   .b-chicken { background: var(--green-light); color: var(--green); }
   .b-meatless { background: var(--meatless-light); color: var(--meatless); }
+  .b-pork { background: var(--pork-light); color: var(--pork); }
   .b-free { background: var(--border); color: var(--muted); }
-  .b-egg { background: #FEF9E7; color: #7D6608; }
-  .b-ham { background: #FDEEF0; color: #9B2335; }
+  .b-smoke { background: var(--smoke-light); color: var(--smoke); }
+  .b-venison { background: var(--blue-light); color: var(--blue); }
+  .b-fish { background: #EBF5FB; color: #1a5276; }
+  .b-bbq { background: #FEF3C7; color: #92400E; }
   .section-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin: 1.2rem 0 0.6rem; }
   .day-card { background: var(--card); border-radius: 14px; padding: 1rem 1.1rem; margin-bottom: 0.8rem; box-shadow: var(--shadow); border: 1px solid var(--border); transition: border-color 0.3s, box-shadow 0.3s; }
   .day-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--text); line-height: 1.2; }
@@ -51,7 +54,7 @@
   .day-detail strong { color: var(--text); font-weight: 500; }
   .event-note { display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; color: var(--accent); font-weight: 500; margin-top: 0.4rem; background: var(--accent-light); padding: 3px 9px; border-radius: 20px; }
   .prep-note { font-size: 0.75rem; color: #4A7C59; background: var(--green-light); padding: 3px 9px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px; margin-top: 0.4rem; font-weight: 500; }
-  .recipe-link { display: inline-flex; align-items: center; gap: 5px; margin-top: 0.6rem; font-size: 0.8rem; font-weight: 600; color: var(--accent); text-decoration: none; padding: 5px 12px; background: var(--accent-light); border-radius: 8px; border: 1px solid #F0C4A8; }
+  .thaw-note { font-size: 0.75rem; color: var(--blue); background: var(--blue-light); padding: 3px 9px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px; margin-top: 0.4rem; font-weight: 500; }
   .grocery-section { background: var(--card); border-radius: 14px; margin-bottom: 0.8rem; box-shadow: var(--shadow); border: 1px solid var(--border); overflow: hidden; }
   .grocery-section-title { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); padding: 0.7rem 1rem 0.4rem; border-bottom: 1px solid var(--border); }
   .grocery-item { display: flex; align-items: flex-start; gap: 0.7rem; padding: 0.65rem 1rem; border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; transition: opacity 0.2s; }
@@ -94,7 +97,7 @@
 </head>
 <body>
 <div class="header">
-  <div class="header-top"><h1>Turner Family Meals</h1><span class="header-week">Aug 30 – Sep 5</span></div>
+  <div class="header-top"><h1>Turner Family Meals</h1><span class="header-week">Sep 6 – Sep 12</span></div>
   <div class="sync-status" id="sync-status">Connecting...</div>
   <div class="tabs">
     <button class="tab active" onclick="showTab('menu',this)">🗓 Menu</button>
@@ -105,87 +108,115 @@
 </div>
 
 <div class="panel active" id="panel-menu">
-  <p class="section-label">Aug 30 – Sep 5 — Quick Look</p>
+  <p class="section-label">Sep 6–12 — Quick Look</p>
   <div class="glance-grid">
-    <div class="glance-row" onclick="goToDay('sun30')"><div class="glance-day">Sun 30</div><div class="glance-meal">Queso Chicken Bake + Tomato Basil Orzo</div><span class="glance-badge b-chicken">🍗 Chicken</span></div>
-    <div class="glance-row" onclick="goToDay('mon31')"><div class="glance-day">Mon 31</div><div class="glance-meal">Ham Fried Rice + Edamame</div><span class="glance-badge b-ham">🍳 Ham</span></div>
-    <div class="glance-row" onclick="goToDay('tue1')"><div class="glance-day">Tue Sep 1</div><div class="glance-meal">Pigs in a Blanket</div><span class="glance-badge b-quick">⚡ Quick</span></div>
-    <div class="glance-row" onclick="goToDay('wed2')"><div class="glance-day">Wed Sep 2</div><div class="glance-meal">Butter Noodles + Broccoli</div><span class="glance-badge b-meatless">🌿 Kate &amp; Girls</span></div>
-    <div class="glance-row" onclick="goToDay('thu3')"><div class="glance-day">Thu Sep 3</div><div class="glance-meal">Egg Bake + Hash Browns</div><span class="glance-badge b-egg">🥚 Breakfast</span></div>
-    <div class="glance-row" onclick="goToDay('fri4')"><div class="glance-day">Fri Sep 4</div><div class="glance-meal">Open</div><span class="glance-badge b-free">⭐ Free</span></div>
-    <div class="glance-row" onclick="goToDay('sat5')"><div class="glance-day">Sat Sep 5</div><div class="glance-meal">Open</div><span class="glance-badge b-free">⭐ Free</span></div>
+    <div class="glance-row" onclick="goToDay('sun6')"><div class="glance-day">Sun 6</div><div class="glance-meal">Ribs + Pasta Salad</div><span class="glance-badge b-smoke">🔥 Sous Vide + Smoker</span></div>
+    <div class="glance-row" onclick="goToDay('mon7')"><div class="glance-day">Mon 7</div><div class="glance-meal">Air Fryer Chicken Hindquarters</div><span class="glance-badge b-chicken">🍗 Labor Day</span></div>
+    <div class="glance-row" onclick="goToDay('tue8')"><div class="glance-day">Tue 8</div><div class="glance-meal">Tuna Ring</div><span class="glance-badge b-quick">⚡ Kate &amp; Girls</span></div>
+    <div class="glance-row" onclick="goToDay('wed9')"><div class="glance-day">Wed 9</div><div class="glance-meal">Tacos</div><span class="glance-badge b-venison">🌮 Kate &amp; Girls</span></div>
+    <div class="glance-row" onclick="goToDay('thu10')"><div class="glance-day">Thu 10</div><div class="glance-meal">BBQ Chicken on Hawaiian Rolls</div><span class="glance-badge b-bbq">🍗 Quick</span></div>
+    <div class="glance-row" onclick="goToDay('fri11')"><div class="glance-day">Fri 11</div><div class="glance-meal">Grill Night — Dad &amp; Tracy</div><span class="glance-badge b-free">🔥 TBD</span></div>
+    <div class="glance-row" onclick="goToDay('sat12')"><div class="glance-day">Sat 12</div><div class="glance-meal">Open</div><span class="glance-badge b-free">⭐ Free</span></div>
   </div>
+
   <p class="section-label">Daily Detail</p>
-  <div class="day-card" id="sun30">
-    <div class="day-name">Sunday</div><div class="day-date">August 30 — Tonight</div>
-    <div class="day-meal-name">Queso Chicken Bake + Cherry Tomato Basil Orzo</div>
-    <div class="badges-row"><span class="badge b-chicken">Chicken breast</span></div>
-    <div class="day-detail"><strong>Orzo:</strong> Cook orzo · Saute garlic in olive oil · Toss with halved cherry tomatoes + fresh basil + parmesan<br><strong>From garden:</strong> Cherry tomatoes + fresh basil<br><strong>From freezer:</strong> Chicken breast</div>
-    <div style="margin-top:0.5rem"><span class="prep-note">🌙 Pack Tyler's road sandwiches tonight for Wednesday</span></div>
-    <div><a class="recipe-link" href="https://www.juliapacheco.com/tomato-basil-parmesan-orzo/" target="_blank">📖 Orzo Recipe →</a></div>
+
+  <div class="day-card" id="sun6">
+    <div class="day-name">Sunday</div><div class="day-date">September 6</div>
+    <div class="day-meal-name">Ribs + Pasta Salad</div>
+    <div class="badges-row"><span class="badge b-smoke">🔥 Sous Vide + Smoker</span></div>
+    <div class="day-detail">
+      <strong>Ribs:</strong> Sous vide first · Finish on smoker/grill for bark<br>
+      <strong>Sides:</strong> Pasta salad (box kit) + fresh fruit + veggies + chips
+    </div>
+    <div style="margin-top:0.5rem"><span class="event-note">🏀 Tyler refs Coe vs UW Whitewater 1–3 PM CT</span></div>
+    <div style="margin-top:0.4rem"><span class="thaw-note">🧊 Pull chicken hindquarters from freezer tonight for Monday</span></div>
   </div>
-  <div class="day-card" id="mon31">
-    <div class="day-name">Monday</div><div class="day-date">August 31</div>
-    <div class="day-meal-name">Ham Fried Rice + Edamame</div>
-    <div class="badges-row"><span class="badge b-ham">Ham</span><span class="badge b-quick">⚡ ~20 min</span></div>
-    <div class="day-detail"><strong>Sides:</strong> Frozen edamame<br><strong>From freezer:</strong> Easter ham (1 pack) · Edamame<br><strong>Notes:</strong> Use fried rice mix · Dice ham and toss in</div>
+
+  <div class="day-card" id="mon7">
+    <div class="day-name">Monday</div><div class="day-date">September 7 — Labor Day</div>
+    <div class="day-meal-name">Air Fryer Chicken Hindquarters</div>
+    <div class="badges-row"><span class="badge b-chicken">🍗 Chicken</span></div>
+    <div class="day-detail">
+      <strong>Sides:</strong> Box mac and cheese + frozen broccoli<br>
+      <strong>Air fryer:</strong> 400°F · 25–30 min · Flip halfway<br>
+      <strong>From freezer:</strong> Chicken hindquarters
+    </div>
+    <div style="margin-top:0.5rem"><span class="event-note">⚽ Kinsley Soccer 5–6 PM · Dinner after ~6:15 PM</span></div>
   </div>
-  <div class="day-card" id="tue1">
-    <div class="day-name">Tuesday</div><div class="day-date">September 1 — Kate &amp; Girls</div>
-    <div class="day-meal-name">Pigs in a Blanket</div>
-    <div class="badges-row"><span class="badge b-quick">⚡ Quick</span></div>
-    <div class="day-detail"><strong>Sides:</strong> Fruit + chips<br><strong>Dipping:</strong> Open pizza sauce — use it up!<br><strong>From pantry:</strong> Crescent rolls + hot dogs</div>
-    <div style="margin-top:0.5rem"><span class="event-note">📅 Teagan Dance 5:00–6:15 PM CT</span></div>
-    <div style="margin-top:0.4rem"><span class="event-note">🏀 Tyler — Wartburg ref (riding with others)</span></div>
-    <div style="margin-top:0.4rem"><span class="prep-note">🌙 Prep egg bake tonight — refrigerate for Thursday</span></div>
+
+  <div class="day-card" id="tue8">
+    <div class="day-name">Tuesday</div><div class="day-date">September 8 — Kate &amp; Girls</div>
+    <div class="day-meal-name">Tuna Ring</div>
+    <div class="badges-row"><span class="badge b-fish">🐟 Fish</span><span class="badge b-quick">⚡ Quick</span></div>
+    <div class="day-detail">
+      <strong>Sides:</strong> Peas &amp; carrots + fruit + chips<br>
+      <strong>From pantry:</strong> Canned tuna + crescent rolls
+    </div>
+    <div style="margin-top:0.5rem"><span class="event-note">💃 Teagan Dance 5:00–6:15 PM CT · Dinner after</span></div>
+    <div style="margin-top:0.4rem"><span class="event-note">🏀 Tyler — Clarke vs Judson ref, Dubuque 4–6 PM CT</span></div>
   </div>
-  <div class="day-card" id="wed2">
-    <div class="day-name">Wednesday</div><div class="day-date">September 2 — Kate &amp; Girls</div>
-    <div class="day-meal-name">Butter Noodles + Broccoli</div>
-    <div class="badges-row"><span class="badge b-meatless">🌿 Meatless</span><span class="badge b-quick">⚡ Quick</span></div>
-    <div class="day-detail"><strong>Sides:</strong> Frozen broccoli<br><strong>From pantry/freezer:</strong> Noodles + butter + broccoli · All on hand</div>
-    <div style="margin-top:0.5rem"><span class="event-note">🏀 Tyler — Drake ref, Des Moines 7:30 PM CT (road sandwiches)</span></div>
+
+  <div class="day-card" id="wed9">
+    <div class="day-name">Wednesday</div><div class="day-date">September 9 — Kate &amp; Girls</div>
+    <div class="day-meal-name">Tacos</div>
+    <div class="badges-row"><span class="badge b-venison">Ground venison</span><span class="badge b-quick">⚡ Quick</span></div>
+    <div class="day-detail">
+      <strong>Toppings:</strong> Shredded lettuce + shredded cheese + homemade salsa + sour cream<br>
+      <strong>From pantry/freezer:</strong> Ground venison (1 chub) + flour/corn tortillas + homemade salsa
+    </div>
+    <div style="margin-top:0.5rem"><span class="event-note">🏀 Tyler — Cornell ref 5–7 PM CT</span></div>
   </div>
-  <div class="day-card" id="thu3">
-    <div class="day-name">Thursday</div><div class="day-date">September 3</div>
-    <div class="day-meal-name">Egg Bake + Hash Browns + Toast</div>
-    <div class="badges-row"><span class="badge b-egg">🥚 Breakfast for Dinner</span></div>
-    <div class="day-detail"><strong>Sides:</strong> Toast + sliced garden tomatoes<br><strong>Notes:</strong> Prepped Tuesday night · Pull from fridge · Preheat oven to 350°F · Bake 40–60 min until set<br><strong>From freezer:</strong> Breakfast sausage chub + frozen hash browns<br><strong>From garden:</strong> Sliced tomatoes on the side</div>
-    <div><a class="recipe-link" href="https://www.crazyforcrust.com/easy-hashbrown-casserole/" target="_blank">📖 Egg Bake Recipe →</a></div>
+
+  <div class="day-card" id="thu10">
+    <div class="day-name">Thursday</div><div class="day-date">September 10</div>
+    <div class="day-meal-name">BBQ Chicken on Hawaiian Rolls</div>
+    <div class="badges-row"><span class="badge b-bbq">🍗 BBQ Chicken</span><span class="badge b-quick">⚡ Sous Vide Hold</span></div>
+    <div class="day-detail">
+      <strong>Sides:</strong> Frozen veggie + fresh fruit + chips<br>
+      <strong>Notes:</strong> Drop BBQ chicken in sous vide before leaving at 5 PM · Ready when you get home after 6<br>
+      <strong>From freezer:</strong> Shredded BBQ chicken pack
+    </div>
+    <div style="margin-top:0.5rem"><span class="event-note">📅 Parent Night, Hiawatha 5–6 PM CT</span></div>
+    <div style="margin-top:0.4rem"><span class="event-note">📅 Kate PBIS meeting 2–4 PM CT · Tyler picks up girls</span></div>
   </div>
-  <div class="day-card" id="fri4">
-    <div class="day-name">Friday</div><div class="day-date">September 4 — Kate &amp; Girls</div>
-    <div class="day-meal-name">Open</div>
-    <div class="badges-row"><span class="badge b-free">Free night</span></div>
-    <div class="day-detail">Leftovers or Kate's call!</div>
-    <div style="margin-top:0.5rem"><span class="event-note">🏀 Tyler — St. Ambrose ref (riding with others)</span></div>
+
+  <div class="day-card" id="fri11">
+    <div class="day-name">Friday</div><div class="day-date">September 11 — Dad &amp; Tracy Visit</div>
+    <div class="day-meal-name">Grill Night</div>
+    <div class="badges-row"><span class="badge b-free">🔥 TBD</span></div>
+    <div class="day-detail">Details to come — dinner for 6!</div>
+    <div style="margin-top:0.5rem"><span class="event-note">👨 Dad &amp; Tracy arrive 4 PM CT</span></div>
   </div>
-  <div class="day-card" id="sat5">
-    <div class="day-name">Saturday</div><div class="day-date">September 5</div>
+
+  <div class="day-card" id="sat12">
+    <div class="day-name">Saturday</div><div class="day-date">September 12</div>
     <div class="day-meal-name">Open</div>
     <div class="badges-row"><span class="badge b-free">Free night</span></div>
     <div class="day-detail">Ask Claude for a suggestion!</div>
-    <div style="margin-top:0.5rem"><span class="event-note">📅 Kate — Home Depot + Haircut morning</span></div>
+    <div style="margin-top:0.5rem"><span class="event-note">⚽ Kinsley Soccer 9–10 AM CT</span></div>
+    <div style="margin-top:0.4rem"><span class="event-note">🏀 Tyler refs Loras vs St Scholastica 12–4:30 PM CT</span></div>
   </div>
 </div>
 
 <div class="panel" id="panel-grocery">
-  <p class="section-label">Aldi Shopping List — Week of Aug 30</p>
+  <p class="section-label">Shopping Lists — Week of Sep 6</p>
   <div id="grocery-list-container"><div class="loading">Loading list...</div></div>
 </div>
 
 <div class="panel" id="panel-reminders">
   <p class="section-label">This Week's Reminders</p>
   <p style="font-size:0.8rem;color:var(--muted);margin-bottom:0.8rem;">Calendar popup reminders set for Tyler &amp; Kate.</p>
-  <div class="reminder-card"><div class="reminder-icon">🥪</div><div><div class="reminder-time">Sun Aug 30 — Tonight</div><div class="reminder-text">Pack Tyler's road sandwiches for Wednesday's Drake ref game in Des Moines</div></div></div>
-  <div class="reminder-card"><div class="reminder-icon">🥚</div><div><div class="reminder-time">Tue Sep 1 — After Dance</div><div class="reminder-text">Prep egg bake — brown sausage, layer with hash browns and cheese, pour egg mixture over top · Cover and refrigerate overnight for Thursday</div></div></div>
-  <div class="reminder-card"><div class="reminder-icon">🍳</div><div><div class="reminder-time">Thu Sep 3 — Afternoon</div><div class="reminder-text">Pull egg bake from fridge · Let sit while oven preheats to 350°F · Bake 40–60 min until set in center</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🧊</div><div><div class="reminder-time">Sun Sep 6 — Tonight</div><div class="reminder-text">Pull chicken hindquarters from freezer to thaw for Monday Labor Day dinner</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🧊</div><div><div class="reminder-time">Mon Sep 7 — Evening</div><div class="reminder-text">Pull ground venison from freezer to thaw for Wednesday tacos</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🍗</div><div><div class="reminder-time">Thu Sep 10 — Before 5 PM</div><div class="reminder-text">Drop BBQ chicken pack in sous vide before leaving for Parent Night · Ready when you get home after 6 PM</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">👨</div><div><div class="reminder-time">Fri Sep 11 — 4 PM CT</div><div class="reminder-text">Dad &amp; Tracy arrive · Grill night for 6 — details TBD</div></div></div>
 </div>
 
 <div class="panel" id="panel-archive">
   <p class="section-label">Past weeks</p>
-  <div class="week-archive-item">Week of Aug 30, 2026 <span>Current ↑</span></div>
-  <div class="week-archive-item">Week of Aug 23, 2026 <span>Previous</span></div>
+  <div class="week-archive-item">Week of Sep 6, 2026 <span>Current ↑</span></div>
+  <div class="week-archive-item">Week of Aug 30, 2026 <span>Previous</span></div>
   <div class="archive-note">Earlier weeks coming soon.</div>
   <div class="footer">Turner Family Meal Planning · Updated by Claude weekly</div>
 </div>
@@ -200,9 +231,43 @@
 
 <script>
 const DB_URL='https://turner-meals-default-rtdb.firebaseio.com';
-const WEEK_KEY='week_aug30_2026';
-const BASE_ITEMS={'Dairy & Refrigerated':[{name:'Milk',note:'Egg bake + general use'},{name:'Eggs',note:'Monday fried rice + Thursday egg bake'}],'Frozen':[{name:'Frozen hash browns',note:'Thursday egg bake'}],'Bread':[{name:'Loaf of bread',note:'Thursday toast with egg bake'}],'Snacks & Produce':[{name:'Fruit',note:'Tuesday pigs in a blanket side'},{name:'Chips',note:'Tuesday pigs in a blanket side'},{name:'Sunflower seeds',note:'Snacking'}]};
-const BASE_STOCKED=[{name:'Chicken breast',tag:'freezer'},{name:'Easter ham (1 pack)',tag:'freezer'},{name:'Breakfast sausage chub',tag:'freezer'},{name:'Edamame',tag:'freezer'},{name:'Crescent rolls',tag:'pantry'},{name:'Hot dogs',tag:'pantry'},{name:'Noodles',tag:'pantry'},{name:'Fried rice mix',tag:'pantry'},{name:'Parmesan',tag:'pantry'},{name:'Cherry tomatoes + basil (garden)',tag:'pantry'},{name:'Open pizza sauce — use up!',tag:'pantry'}];
+const WEEK_KEY='week_sep6_2026';
+const BASE_ITEMS={
+  'Hy-Vee':[
+    {name:'Ribs (St. Louis style — on sale)',note:'Sunday sous vide + smoker'},
+    {name:'Bone-in pork shoulder roast',note:'Stocking up for future'},
+    {name:'Brats',note:'Stocking up'},
+    {name:'Busch Light',note:''},
+    {name:'Eggs',note:'General use'},
+    {name:'Raspberries',note:''},
+    {name:'Coke/Pepsi products',note:''},
+    {name:'Peas and carrots',note:'Tuesday tuna ring side'},
+  ],
+  'Aldi':[
+    {name:'Onions',note:'General use'},
+    {name:'Sliced cheddar cheese',note:''},
+    {name:'Hawaiian rolls',note:'Thursday BBQ chicken'},
+    {name:'Pasta salad box kit',note:'Sunday ribs side'},
+    {name:'Flour or corn tortillas',note:'Wednesday tacos'},
+    {name:'Shredded lettuce',note:'Wednesday tacos'},
+    {name:'Box mac and cheese',note:'Monday chicken side'},
+    {name:'Crescent rolls',note:'Tuesday tuna ring'},
+    {name:'Tuna (cans)',note:'Tuesday tuna ring'},
+    {name:'Fresh fruit',note:'Sunday + Tuesday + Thursday'},
+    {name:'Fresh veggies',note:'Sunday rib night dipping'},
+    {name:'Chips',note:'Sunday + Tuesday + Thursday'},
+  ]
+};
+const BASE_STOCKED=[
+  {name:'Chicken hindquarters',tag:'freezer'},
+  {name:'BBQ chicken pack',tag:'freezer'},
+  {name:'Ground venison',tag:'freezer'},
+  {name:'Homemade salsa',tag:'pantry'},
+  {name:'Frozen broccoli',tag:'freezer'},
+  {name:'Frozen veggie (Thursday)',tag:'freezer'},
+  {name:'Shredded cheese',tag:'pantry'},
+  {name:'Sour cream',tag:'pantry'},
+];
 let state={checked:{},extras:{},stocked:{},removed:{}};
 let activeItemKey=null,activeItemEl=null,longPressTimer=null;
 function setStatus(msg,cls){const el=document.getElementById('sync-status');el.textContent=msg;el.className='sync-status '+(cls||'');}
@@ -211,10 +276,10 @@ async function fbPatch(path,data){try{await fetch(`${DB_URL}/${WEEK_KEY}/${path}
 async function fbDelete(path){try{await fetch(`${DB_URL}/${WEEK_KEY}/${path}.json`,{method:'DELETE'});}catch(e){}}
 async function loadAndRender(){setStatus('Syncing...','syncing');const remote=await fbGet();if(remote){state.checked=remote.checked||{};state.extras=remote.extras||{};state.stocked=remote.stocked||{};state.removed=remote.removed||{};}renderGroceryList();setStatus('✓ Synced','synced');setInterval(async()=>{const r=await fbGet();if(r){state.checked=r.checked||{};state.extras=r.extras||{};state.stocked=r.stocked||{};state.removed=r.removed||{};renderGroceryList();}},10000);}
 function itemKey(s,n){return(s+'_'+n).replace(/[^a-zA-Z0-9_]/g,'_');}
-function sectionEmoji(s){const map={'Dairy & Refrigerated':'🧀','Frozen':'🧊','Bread':'🍞','Snacks & Produce':'🛒','Other':'➕'};return map[s]||'📦';}
+function sectionEmoji(s){const map={'Hy-Vee':'🏪','Aldi':'🛒','Other':'➕'};return map[s]||'📦';}
 function renderItem(section,nameOrId,note,isExtra,displayName){const key=isExtra?'extra_'+nameOrId:itemKey(section,nameOrId);const isChecked=!!state.checked[key];const name=displayName||nameOrId;const noteHtml=note?`<div class="g-note">${note}</div>`:'';return`<div class="grocery-item${isChecked?' checked':''}" data-key="${key}" data-name="${name.replace(/"/g,'&quot;')}" data-extra="${isExtra?nameOrId:''}" data-section="${section}" onclick="toggleItem(this)" ontouchstart="startLongPress(this)" ontouchend="cancelLongPress()" ontouchmove="cancelLongPress()" onmousedown="startLongPress(this)" onmouseup="cancelLongPress()" onmouseleave="cancelLongPress()"><div class="g-check">${isChecked?'✓':''}</div><div><div class="g-name">${name}</div>${noteHtml}</div></div>`;}
-function renderGroceryList(){const container=document.getElementById('grocery-list-container');let html='';for(const[section,items]of Object.entries(BASE_ITEMS)){const visibleItems=items.filter(i=>!state.removed[itemKey(section,i.name)]);const sectionExtras=Object.entries(state.extras).filter(([id,e])=>e.section===section);if(visibleItems.length===0&&sectionExtras.length===0)continue;html+=`<div class="grocery-section"><div class="grocery-section-title">${sectionEmoji(section)} ${section}</div>`;const allItems=[...visibleItems.map(i=>({key:itemKey(section,i.name),html:renderItem(section,i.name,i.note,false)})),...sectionExtras.map(([id,e])=>({key:'extra_'+id,html:renderItem('extra',id,'',true,e.name)}))];for(const item of [...allItems.filter(i=>!state.checked[i.key]),...allItems.filter(i=>state.checked[i.key])])html+=item.html;html+=`<div class="add-row"><input class="add-input" type="text" placeholder="Add to ${section}..." data-section="${section}" onkeydown="if(event.key==='Enter')addItem(this)"><button class="add-btn" onclick="addItem(this.previousElementSibling)">+</button></div></div>`;}
-const uncatItems=Object.entries(state.extras).filter(([id,e])=>e.section==='Other').map(([id,e])=>({key:'extra_'+id,html:renderItem('extra',id,'',true,e.name)}));html+=`<div class="grocery-section"><div class="grocery-section-title">➕ Other / Extras</div>`;for(const item of [...uncatItems.filter(i=>!state.checked[i.key]),...uncatItems.filter(i=>state.checked[i.key])])html+=item.html;html+=`<div class="add-row"><input class="add-input" type="text" placeholder="Add anything else..." data-section="Other" onkeydown="if(event.key==='Enter')addItem(this)"><button class="add-btn" onclick="addItem(this.previousElementSibling)">+</button></div></div>`;html+=`<div class="grocery-section"><div class="grocery-section-title">✅ Already stocked</div>`;for(const item of BASE_STOCKED)html+=`<div class="g-stocked"><span>${item.name}</span><span class="g-tag ${item.tag==='freezer'?'t-freezer':'t-pantry'}">${item.tag}</span></div>`;for(const[id,s]of Object.entries(state.stocked))html+=`<div class="g-stocked dynamic" onclick="removeFromStocked('${id}')"><span>${s.name}</span><span class="g-tag t-moved">moved ✕</span></div>`;html+=`</div>`;container.innerHTML=html;}
+function renderGroceryList(){const container=document.getElementById('grocery-list-container');let html='';for(const[section,items]of Object.entries(BASE_ITEMS)){const visibleItems=items.filter(i=>!state.removed[itemKey(section,i.name)]);const sectionExtras=Object.entries(state.extras).filter(([id,e])=>e.section===section);if(visibleItems.length===0&&sectionExtras.length===0)continue;html+=`<div class="grocery-section"><div class="grocery-section-title">${sectionEmoji(section)} ${section}</div>`;const allItems=[...visibleItems.map(i=>({key:itemKey(section,i.name),html:renderItem(section,i.name,i.note,false)})),...sectionExtras.map(([id,e])=>({key:'extra_'+id,html:renderItem('extra',id,'',true,e.name)}))];for(const item of[...allItems.filter(i=>!state.checked[i.key]),...allItems.filter(i=>state.checked[i.key])])html+=item.html;html+=`<div class="add-row"><input class="add-input" type="text" placeholder="Add to ${section}..." data-section="${section}" onkeydown="if(event.key==='Enter')addItem(this)"><button class="add-btn" onclick="addItem(this.previousElementSibling)">+</button></div></div>`;}
+const uncatItems=Object.entries(state.extras).filter(([id,e])=>e.section==='Other').map(([id,e])=>({key:'extra_'+id,html:renderItem('extra',id,'',true,e.name)}));html+=`<div class="grocery-section"><div class="grocery-section-title">➕ Other / Extras</div>`;for(const item of[...uncatItems.filter(i=>!state.checked[i.key]),...uncatItems.filter(i=>state.checked[i.key])])html+=item.html;html+=`<div class="add-row"><input class="add-input" type="text" placeholder="Add anything else..." data-section="Other" onkeydown="if(event.key==='Enter')addItem(this)"><button class="add-btn" onclick="addItem(this.previousElementSibling)">+</button></div></div>`;html+=`<div class="grocery-section"><div class="grocery-section-title">✅ Already stocked</div>`;for(const item of BASE_STOCKED)html+=`<div class="g-stocked"><span>${item.name}</span><span class="g-tag ${item.tag==='freezer'?'t-freezer':'t-pantry'}">${item.tag}</span></div>`;for(const[id,s]of Object.entries(state.stocked))html+=`<div class="g-stocked dynamic" onclick="removeFromStocked('${id}')"><span>${s.name}</span><span class="g-tag t-moved">moved ✕</span></div>`;html+=`</div>`;container.innerHTML=html;}
 async function toggleItem(el){if(longPressTimer)return;const key=el.dataset.key,isChecked=el.classList.contains('checked');if(isChecked){delete state.checked[key];}else{state.checked[key]=true;}renderGroceryList();setStatus('Saving...','syncing');if(isChecked){await fbDelete(`checked/${key}`);}else{await fbPatch('checked',{[key]:true});}setStatus('✓ Synced','synced');}
 async function addItem(input){const val=input.value.trim();if(!val)return;const section=input.dataset.section||'Other',id=Date.now().toString();setStatus('Saving...','syncing');state.extras[id]={name:val,section};await fbPatch('extras',{[id]:{name:val,section}});input.value='';renderGroceryList();setStatus('✓ Synced','synced');}
 function startLongPress(el){cancelLongPress();longPressTimer=setTimeout(()=>{longPressTimer=null;activeItemEl=el;activeItemKey=el.dataset.key;document.getElementById('action-sheet-title').textContent=el.dataset.name;document.getElementById('action-sheet').classList.add('show');document.getElementById('overlay').classList.add('show');},600);}
