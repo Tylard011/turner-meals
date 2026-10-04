@@ -37,11 +37,11 @@
   .b-quick { background: #FEF3C7; color: #92400E; }
   .b-venison { background: var(--blue-light); color: var(--blue); }
   .b-chicken { background: var(--green-light); color: var(--green); }
-  .b-smoke { background: var(--smoke-light); color: var(--smoke); }
   .b-pork { background: var(--pork-light); color: var(--pork); }
   .b-free { background: var(--border); color: var(--muted); }
-  .b-egg { background: #FEF9E7; color: #7D6608; }
-  .b-soup { background: #EBF5FB; color: #1a5276; }
+  .b-out { background: #FDE8F5; color: #8B1A6B; }
+  .b-pizza { background: #FEF3C7; color: #92400E; }
+  .b-italian { background: var(--smoke-light); color: var(--smoke); }
   .section-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin: 1.2rem 0 0.6rem; }
   .day-card { background: var(--card); border-radius: 14px; padding: 1rem 1.1rem; margin-bottom: 0.8rem; box-shadow: var(--shadow); border: 1px solid var(--border); transition: border-color 0.3s, box-shadow 0.3s; }
   .day-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--text); line-height: 1.2; }
@@ -54,7 +54,6 @@
   .event-note { display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; color: var(--accent); font-weight: 500; margin-top: 0.4rem; background: var(--accent-light); padding: 3px 9px; border-radius: 20px; }
   .prep-note { font-size: 0.75rem; color: #4A7C59; background: var(--green-light); padding: 3px 9px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px; margin-top: 0.4rem; font-weight: 500; }
   .thaw-note { font-size: 0.75rem; color: var(--blue); background: var(--blue-light); padding: 3px 9px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px; margin-top: 0.4rem; font-weight: 500; }
-  .recipe-link { display: inline-flex; align-items: center; gap: 5px; margin-top: 0.6rem; font-size: 0.8rem; font-weight: 600; color: var(--accent); text-decoration: none; padding: 5px 12px; background: var(--accent-light); border-radius: 8px; border: 1px solid #F0C4A8; }
   .grocery-section { background: var(--card); border-radius: 14px; margin-bottom: 0.8rem; box-shadow: var(--shadow); border: 1px solid var(--border); overflow: hidden; }
   .grocery-section-title { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); padding: 0.7rem 1rem 0.4rem; border-bottom: 1px solid var(--border); }
   .grocery-item { display: flex; align-items: flex-start; gap: 0.7rem; padding: 0.65rem 1rem; border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; transition: opacity 0.2s; }
@@ -97,7 +96,7 @@
 </head>
 <body>
 <div class="header">
-  <div class="header-top"><h1>Turner Family Meals</h1><span class="header-week">Sep 27 – Oct 2</span></div>
+  <div class="header-top"><h1>Turner Family Meals</h1><span class="header-week">Oct 4 – Oct 9</span></div>
   <div class="sync-status" id="sync-status">Connecting...</div>
   <div class="tabs">
     <button class="tab active" onclick="showTab('menu',this)">🗓 Menu</button>
@@ -108,106 +107,98 @@
 </div>
 
 <div class="panel active" id="panel-menu">
-  <p class="section-label">Sep 27 – Oct 2 — Quick Look</p>
+  <p class="section-label">Oct 4–9 — Quick Look</p>
   <div class="glance-grid">
-    <div class="glance-row" onclick="goToDay('sun27')"><div class="glance-day">Sun 27</div><div class="glance-meal">Smoked Wild Turkey + Cheesy Potatoes</div><span class="glance-badge b-smoke">🔥 Pellet Grill</span></div>
-    <div class="glance-row" onclick="goToDay('mon28')"><div class="glance-day">Mon 28</div><div class="glance-meal">Chorizo Egg Bake + Hash Browns + Toast</div><span class="glance-badge b-egg">🥚 Sous Vide</span></div>
-    <div class="glance-row" onclick="goToDay('tue29')"><div class="glance-day">Tue 29</div><div class="glance-meal">Chick-fil-A Spirit Night</div><span class="glance-badge b-quick">🐔 Eating Out</span></div>
-    <div class="glance-row" onclick="goToDay('wed30')"><div class="glance-day">Wed 30</div><div class="glance-meal">Ground Venison Enchiladas</div><span class="glance-badge b-venison">🫙 Venison</span></div>
-    <div class="glance-row" onclick="goToDay('thu1')"><div class="glance-day">Thu Oct 1</div><div class="glance-meal">Broccoli Cheese Soup + Baguette</div><span class="glance-badge b-soup">🥣 Kate Solo</span></div>
-    <div class="glance-row" onclick="goToDay('fri2')"><div class="glance-day">Fri Oct 2</div><div class="glance-meal">Open</div><span class="glance-badge b-free">⭐ Kate Solo</span></div>
+    <div class="glance-row" onclick="goToDay('sun4')"><div class="glance-day">Sun 4</div><div class="glance-meal">Tyler &amp; Kate out — Girls at Grandparents</div><span class="glance-badge b-out">🍷 Date Night</span></div>
+    <div class="glance-row" onclick="goToDay('mon5')"><div class="glance-day">Mon 5</div><div class="glance-meal">Shake and Bake Chicken</div><span class="glance-badge b-chicken">🍗 Chicken</span></div>
+    <div class="glance-row" onclick="goToDay('tue6')"><div class="glance-day">Tue 6</div><div class="glance-meal">Frisco Melts</div><span class="glance-badge b-venison">🍔 Venison Burgers</span></div>
+    <div class="glance-row" onclick="goToDay('wed7')"><div class="glance-day">Wed 7</div><div class="glance-meal">KFC Bowls with Chicken Nuggets</div><span class="glance-badge b-quick">⚡ Kate Solo</span></div>
+    <div class="glance-row" onclick="goToDay('thu8')"><div class="glance-day">Thu 8</div><div class="glance-meal">Baked Italian Sausage Pasta</div><span class="glance-badge b-italian">🍝 Prep Ahead</span></div>
+    <div class="glance-row" onclick="goToDay('fri9')"><div class="glance-day">Fri 9</div><div class="glance-meal">Little Caesars after Soccer</div><span class="glance-badge b-pizza">🍕 Pickup</span></div>
   </div>
 
   <p class="section-label">Daily Detail</p>
 
-  <div class="day-card" id="sun27">
-    <div class="day-name">Sunday</div><div class="day-date">September 27 — Today</div>
-    <div class="day-meal-name">Smoked Wild Turkey Breast + Smoked Cheesy Potato Casserole</div>
-    <div class="badges-row"><span class="badge b-smoke">🔥 Pellet grill all day</span></div>
+  <div class="day-card" id="sun4">
+    <div class="day-name">Sunday</div><div class="day-date">October 4 — Tonight</div>
+    <div class="day-meal-name">Tyler &amp; Kate Out — Girls at Grandparents 🍷</div>
+    <div class="badges-row"><span class="badge b-out">Date Night</span></div>
+    <div class="day-detail">No cooking tonight — enjoy!</div>
+    <div style="margin-top:0.5rem"><span class="event-note">⚽ HGI Soccer 4–5 PM CT</span></div>
+  </div>
+
+  <div class="day-card" id="mon5">
+    <div class="day-name">Monday</div><div class="day-date">October 5</div>
+    <div class="day-meal-name">Shake and Bake Chicken</div>
+    <div class="badges-row"><span class="badge b-chicken">🍗 Chicken breast</span></div>
     <div class="day-detail">
-      <strong>Turkey:</strong> Wild turkey breast · season with your favorite rub · smoke low and slow until 165°F internal<br>
-      <strong>Cheesy Potatoes:</strong> 30 oz thawed hash browns + cream of chicken soup + 2 cups sour cream + ½ cup milk + onion + 2 cups sharp cheddar + garlic salt + pepper · pour into foil pan · top with crushed corn flakes + melted butter · smoker at 350°F for 1 hour<br>
-      <strong>From freezer:</strong> Wild turkey breast
+      <strong>From pantry/freezer:</strong> Chicken breast + last box of Shake and Bake<br>
+      <strong>Notes:</strong> Follow box instructions · Oven baked
     </div>
-    <div style="margin-top:0.5rem"><span class="prep-note">🌙 Prep chorizo egg bake tonight — refrigerate for Monday</span></div>
-    <div><a class="recipe-link" href="https://gimmesomegrilling.com/?p=3651" target="_blank">📖 Cheesy Potatoes Recipe →</a></div>
+    <div style="margin-top:0.5rem"><span class="event-note">⚽ Kinsley Practice 5–6 PM CT · Dinner after ~6:15 PM</span></div>
   </div>
 
-  <div class="day-card" id="mon28">
-    <div class="day-name">Monday</div><div class="day-date">September 28</div>
-    <div class="day-meal-name">Chorizo Sous Vide Egg Bake + Hash Browns + Sourdough Toast</div>
-    <div class="badges-row"><span class="badge b-egg">🥚 Sous Vide</span></div>
+  <div class="day-card" id="tue6">
+    <div class="day-name">Tuesday</div><div class="day-date">October 6</div>
+    <div class="day-meal-name">Frisco Melts</div>
+    <div class="badges-row"><span class="badge b-venison">Venison burger patties</span></div>
     <div class="day-detail">
-      <strong>Egg bake:</strong> Whisked eggs + milk + browned chorizo + diced peppers + onion + shredded cheese · seal in bag · sous vide 167°F · 1 hour · prepped Sunday night<br>
-      <strong>Sides:</strong> Air fryer hash browns + sourdough toast<br>
-      <strong>From freezer/pantry:</strong> Chorizo chub · sourdough bread ✅
+      <strong>Frisco Sauce:</strong> 2 Tbsp Thousand Island + 1 Tbsp French dressing + dash ketchup + ¼ tsp Worcestershire · mix and refrigerate<br>
+      <strong>Build:</strong> Smash venison patties thin · cook in cast iron · top with American + Swiss cheese · butter and toast sourdough bread · spread Frisco sauce · serve<br>
+      <strong>From freezer/pantry:</strong> Venison burger patties + sourdough bread
     </div>
-    <div style="margin-top:0.5rem"><span class="event-note">📅 IEP Meeting 3:15–5:15 PM CT · Tyler picks up girls</span></div>
-    <div style="margin-top:0.4rem"><span class="event-note">⚽ Kinsley Practice 5–6 PM CT · Dinner after ~6:15 PM</span></div>
+    <div style="margin-top:0.5rem"><span class="event-note">💃 Teagan Dance</span></div>
   </div>
 
-  <div class="day-card" id="tue29">
-    <div class="day-name">Tuesday</div><div class="day-date">September 29</div>
-    <div class="day-meal-name">Chick-fil-A Spirit Night 🐔</div>
-    <div class="badges-row"><span class="badge b-quick">Eating out</span></div>
-    <div class="day-detail">No cooking tonight — support the school spirit night!</div>
-    <div style="margin-top:0.5rem"><span class="event-note">💃 Teagan Dance 5:00–6:15 PM CT</span></div>
-    <div style="margin-top:0.4rem"><span class="event-note">🐔 Chick-fil-A Spirit Night 5–8 PM CT</span></div>
-    <div style="margin-top:0.4rem"><span class="thaw-note">🧊 Pull ground venison from freezer tonight for Wednesday</span></div>
-  </div>
-
-  <div class="day-card" id="wed30">
-    <div class="day-name">Wednesday</div><div class="day-date">September 30</div>
-    <div class="day-meal-name">Ground Venison Enchiladas</div>
-    <div class="badges-row"><span class="badge b-venison">Ground venison</span></div>
+  <div class="day-card" id="wed7">
+    <div class="day-name">Wednesday</div><div class="day-date">October 7 — Kate Solo</div>
+    <div class="day-meal-name">KFC Bowls with Chicken Nuggets</div>
+    <div class="badges-row"><span class="badge b-quick">⚡ Kate Solo</span></div>
     <div class="day-detail">
-      <strong>Filling:</strong> Brown ground venison · season with cumin, chili powder, garlic · mix with homemade enchilada sauce<br>
-      <strong>Assembly:</strong> Fill flour tortillas · roll · place seam down in baking dish · pour remaining enchilada sauce over top · top with shredded cheese<br>
-      <strong>Bake:</strong> 375°F · 25–30 min until bubbly<br>
-      <strong>From freezer/pantry:</strong> Ground venison (1 chub) + homemade enchilada sauce ✅
+      <strong>Build:</strong> Instant mashed potatoes on the bottom · chicken nuggets · frozen corn · shredded cheese · gravy drizzled over everything<br>
+      <strong>Notes:</strong> Air fry nuggets for best results · 400°F ~10 min
     </div>
+    <div style="margin-top:0.5rem"><span class="event-note">🏀 Tyler refs UD vs Coe 5–10 PM CT</span></div>
   </div>
 
-  <div class="day-card" id="thu1">
-    <div class="day-name">Thursday</div><div class="day-date">October 1 — Kate Solo</div>
-    <div class="day-meal-name">Homemade Broccoli Cheese Soup + Baguette</div>
-    <div class="badges-row"><span class="badge b-soup">🥣 Soup night</span></div>
+  <div class="day-card" id="thu8">
+    <div class="day-name">Thursday</div><div class="day-date">October 8</div>
+    <div class="day-meal-name">Baked Italian Sausage Pasta</div>
+    <div class="badges-row"><span class="badge b-italian">🍝 Prep ahead</span></div>
     <div class="day-detail">
-      <strong>Base:</strong> Cream of potato soup x2 + chicken broth + half and half<br>
-      <strong>Add:</strong> Frozen broccoli + shredded cheddar cheese<br>
-      <strong>Serve with:</strong> Sliced baguette<br>
-      <strong>Notes:</strong> Tyler hunting · home after supper · Kate handles this one
+      <strong>Before soccer:</strong> Brown sweet Italian sausage · cook pasta al dente · mix with homemade pasta sauce · pour into baking dish · top with mozzarella · cover with foil · refrigerate<br>
+      <strong>When home ~6:30 PM:</strong> Oven to 375°F · bake covered 20 min · uncover last 5 min to brown cheese<br>
+      <strong>From freezer/pantry:</strong> Sweet Italian sausage chub + homemade pasta sauce ✅
     </div>
-    <div style="margin-top:0.5rem"><span class="event-note">🦌 Tyler hunting · home after supper</span></div>
+    <div style="margin-top:0.5rem"><span class="event-note">⚽ Kinsley Soccer 5:30–6:30 PM CT</span></div>
   </div>
 
-  <div class="day-card" id="fri2">
-    <div class="day-name">Friday</div><div class="day-date">October 2 — Kate Solo</div>
-    <div class="day-meal-name">Open</div>
-    <div class="badges-row"><span class="badge b-free">Free night</span></div>
-    <div class="day-detail">Leftovers or Kate's call!</div>
-    <div style="margin-top:0.5rem"><span class="event-note">🏀 Tyler refs Wartburg vs UW Whitewater 7–9 PM CT</span></div>
+  <div class="day-card" id="fri9">
+    <div class="day-name">Friday</div><div class="day-date">October 9</div>
+    <div class="day-meal-name">Little Caesars 🍕</div>
+    <div class="badges-row"><span class="badge b-pizza">🍕 Pickup</span></div>
+    <div class="day-detail">Pick up Little Caesars after soccer · no cooking!</div>
+    <div style="margin-top:0.5rem"><span class="event-note">⚽ Kinsley Soccer 5:30–6:30 PM CT</span></div>
   </div>
 </div>
 
 <div class="panel" id="panel-grocery">
-  <p class="section-label">Aldi Shopping List — Week of Sep 27</p>
+  <p class="section-label">Shopping List — Week of Oct 4</p>
   <div id="grocery-list-container"><div class="loading">Loading list...</div></div>
 </div>
 
 <div class="panel" id="panel-reminders">
   <p class="section-label">This Week's Reminders</p>
   <p style="font-size:0.8rem;color:var(--muted);margin-bottom:0.8rem;">Reminders on Tyler's calendar.</p>
-  <div class="reminder-card"><div class="reminder-icon">🥚</div><div><div class="reminder-time">Sun Sep 27 — Tonight</div><div class="reminder-text">Prep chorizo egg bake tonight · Brown chorizo · whisk eggs + milk + peppers + onion + cheese · seal in bag · refrigerate overnight for Monday's sous vide</div></div></div>
-  <div class="reminder-card"><div class="reminder-icon">🥚</div><div><div class="reminder-time">Mon Sep 28 — Before IEP Meeting</div><div class="reminder-text">Drop egg bake bag in sous vide at 167°F before leaving · 1 hour cook · ready when you get home from practice ~6:15 PM</div></div></div>
-  <div class="reminder-card"><div class="reminder-icon">🧊</div><div><div class="reminder-time">Tue Sep 29 — Tonight</div><div class="reminder-text">Pull ground venison from freezer to thaw for Wednesday enchiladas</div></div></div>
-  <div class="reminder-card"><div class="reminder-icon">🦌</div><div><div class="reminder-time">Thu Oct 1</div><div class="reminder-text">Tyler hunting all day · Kate making broccoli cheese soup · home after supper · don't forget Ila's flea and heartgard tonight!</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🍔</div><div><div class="reminder-time">Tue Oct 6 — Before Dinner</div><div class="reminder-text">Make Frisco sauce ahead — Thousand Island + French dressing + dash ketchup + Worcestershire · refrigerate until ready</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🍝</div><div><div class="reminder-time">Thu Oct 8 — Before Soccer</div><div class="reminder-text">Prep baked pasta before leaving · brown sausage · cook pasta al dente · mix with pasta sauce · into baking dish · top with mozzarella · cover and refrigerate · oven at 375°F when you get home</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🧊</div><div><div class="reminder-time">Thu Oct 8 — Evening</div><div class="reminder-text">Pull sweet Italian sausage from freezer to thaw if not already done for Thursday pasta</div></div></div>
 </div>
 
 <div class="panel" id="panel-archive">
   <p class="section-label">Past weeks</p>
-  <div class="week-archive-item">Week of Sep 27, 2026 <span>Current ↑</span></div>
-  <div class="week-archive-item">Week of Sep 19, 2026 <span>Previous</span></div>
+  <div class="week-archive-item">Week of Oct 4, 2026 <span>Current ↑</span></div>
+  <div class="week-archive-item">Week of Sep 27, 2026 <span>Previous</span></div>
   <div class="archive-note">Earlier weeks coming soon.</div>
   <div class="footer">Turner Family Meal Planning · Updated by Claude weekly</div>
 </div>
@@ -222,38 +213,31 @@
 
 <script>
 const DB_URL='https://turner-meals-default-rtdb.firebaseio.com';
-const WEEK_KEY='week_sep27_2026';
+const WEEK_KEY='week_oct4_2026';
 const BASE_ITEMS={
   'Aldi':[
-    {name:'Sour cream',note:'Sunday cheesy potatoes'},
-    {name:'Shredded cheese',note:'Sunday cheesy potatoes + Wednesday enchiladas'},
-    {name:'Shredded cheddar cheese',note:'Thursday broccoli cheese soup'},
-    {name:'Frozen hash browns x2',note:'Sunday smoker casserole + Monday egg bake'},
-    {name:'Flour tortillas',note:'Wednesday enchiladas'},
-    {name:'Baguette',note:'Thursday broccoli cheese soup'},
-    {name:'Half and half',note:'Thursday broccoli cheese soup'},
-    {name:'Cream of potato soup x2',note:'Thursday broccoli cheese soup'},
-    {name:'Frozen broccoli',note:'Thursday broccoli cheese soup'},
-    {name:'Chicken broth',note:'Thursday broccoli cheese soup'},
-    {name:'Cream of chicken soup',note:'Sunday cheesy potatoes'},
-    {name:'Corn flakes',note:'Sunday cheesy potatoes topping'},
-    {name:'Small peppers (pack)',note:'Monday chorizo egg bake'},
-    {name:'Apple cider',note:'Applesauce canning'},
-    {name:'Vegetable oil',note:'Pantry restock'},
-    {name:'Coconut oil',note:'Microwave popcorn'},
-    {name:'Cinnamon',note:'Applesauce + pantry'},
+    {name:'Instant mashed potatoes',note:'Wednesday KFC bowls'},
+    {name:'Gravy (packet or jar)',note:'Wednesday KFC bowls'},
+    {name:'Frozen chicken nuggets',note:'Wednesday KFC bowls'},
+    {name:'Frozen corn',note:'Wednesday KFC bowls'},
+    {name:'Shredded cheese',note:'Wednesday KFC bowls'},
+    {name:'Pasta',note:'Thursday baked sausage pasta'},
+    {name:'Shredded mozzarella',note:'Thursday baked sausage pasta'},
+    {name:'American cheese slices',note:'Tuesday Frisco melts'},
+    {name:'Swiss cheese slices',note:'Tuesday Frisco melts'},
+    {name:'Sourdough bread',note:'Tuesday Frisco melts'},
+    {name:'Thousand Island dressing',note:'Frisco sauce'},
+    {name:'French dressing',note:'Frisco sauce'},
+    {name:'Salad kit',note:'Sunday steaks — pushed to next week'},
   ]
 };
 const BASE_STOCKED=[
-  {name:'Wild turkey breast',tag:'freezer'},
-  {name:'Chorizo chub',tag:'freezer'},
-  {name:'Ground venison (1 chub)',tag:'freezer'},
-  {name:'Homemade enchilada sauce',tag:'pantry'},
-  {name:'Sourdough bread',tag:'pantry'},
-  {name:'Eggs',tag:'pantry'},
-  {name:'Butter',tag:'pantry'},
-  {name:'Onions',tag:'pantry'},
-  {name:'Cumin + chili powder',tag:'pantry'},
+  {name:'Venison burger patties (2 packs)',tag:'freezer'},
+  {name:'Chicken breast',tag:'freezer'},
+  {name:'Sweet Italian sausage chub',tag:'freezer'},
+  {name:'Shake and Bake (1 box)',tag:'pantry'},
+  {name:'Homemade pasta sauce',tag:'pantry'},
+  {name:'Ketchup + Worcestershire sauce',tag:'pantry'},
 ];
 let state={checked:{},extras:{},stocked:{},removed:{}};
 let activeItemKey=null,activeItemEl=null,longPressTimer=null;
