@@ -39,10 +39,8 @@
   .b-chicken { background: var(--green-light); color: var(--green); }
   .b-pork { background: var(--pork-light); color: var(--pork); }
   .b-free { background: var(--border); color: var(--muted); }
-  .b-pizza { background: #FEF3C7; color: #92400E; }
-  .b-pasta { background: var(--meatless-light); color: var(--meatless); }
-  .b-steak { background: var(--blue-light); color: var(--blue); }
-  .b-smoke { background: var(--smoke-light); color: var(--smoke); }
+  .b-egg { background: #FEF9E7; color: #7D6608; }
+  .b-hunt { background: var(--smoke-light); color: var(--smoke); }
   .section-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin: 1.2rem 0 0.6rem; }
   .day-card { background: var(--card); border-radius: 14px; padding: 1rem 1.1rem; margin-bottom: 0.8rem; box-shadow: var(--shadow); border: 1px solid var(--border); transition: border-color 0.3s, box-shadow 0.3s; }
   .day-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--text); line-height: 1.2; }
@@ -55,7 +53,6 @@
   .event-note { display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; color: var(--accent); font-weight: 500; margin-top: 0.4rem; background: var(--accent-light); padding: 3px 9px; border-radius: 20px; }
   .prep-note { font-size: 0.75rem; color: #4A7C59; background: var(--green-light); padding: 3px 9px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px; margin-top: 0.4rem; font-weight: 500; }
   .thaw-note { font-size: 0.75rem; color: var(--blue); background: var(--blue-light); padding: 3px 9px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px; margin-top: 0.4rem; font-weight: 500; }
-  .recipe-link { display: inline-flex; align-items: center; gap: 5px; margin-top: 0.6rem; font-size: 0.8rem; font-weight: 600; color: var(--accent); text-decoration: none; padding: 5px 12px; background: var(--accent-light); border-radius: 8px; border: 1px solid #F0C4A8; }
   .grocery-section { background: var(--card); border-radius: 14px; margin-bottom: 0.8rem; box-shadow: var(--shadow); border: 1px solid var(--border); overflow: hidden; }
   .grocery-section-title { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); padding: 0.7rem 1rem 0.4rem; border-bottom: 1px solid var(--border); }
   .grocery-item { display: flex; align-items: flex-start; gap: 0.7rem; padding: 0.65rem 1rem; border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; transition: opacity 0.2s; }
@@ -98,7 +95,7 @@
 </head>
 <body>
 <div class="header">
-  <div class="header-top"><h1>Turner Family Meals</h1><span class="header-week">Oct 11 – Oct 16</span></div>
+  <div class="header-top"><h1>Turner Family Meals</h1><span class="header-week">Oct 18 – Oct 22</span></div>
   <div class="sync-status" id="sync-status">Connecting...</div>
   <div class="tabs">
     <button class="tab active" onclick="showTab('menu',this)">🗓 Menu</button>
@@ -109,113 +106,100 @@
 </div>
 
 <div class="panel active" id="panel-menu">
-  <p class="section-label">Oct 11–16 — Quick Look</p>
+  <p class="section-label">Oct 18–22 — Quick Look</p>
   <div class="glance-grid">
-    <div class="glance-row" onclick="goToDay('sun11')"><div class="glance-day">Sun 11</div><div class="glance-meal">Honey BBQ Pork Roast + Potatoes + Green Beans</div><span class="glance-badge b-pork">🥩 Sous Vide</span></div>
-    <div class="glance-row" onclick="goToDay('mon12')"><div class="glance-day">Mon 12</div><div class="glance-meal">Spinach & Mushroom Tortellini Bake</div><span class="glance-badge b-pasta">🍝 Dump & Bake</span></div>
-    <div class="glance-row" onclick="goToDay('tue13')"><div class="glance-day">Tue 13</div><div class="glance-meal">Jack's Pizza or Eat Out</div><span class="glance-badge b-pizza">🍕 Kate's Call</span></div>
-    <div class="glance-row" onclick="goToDay('wed14')"><div class="glance-day">Wed 14</div><div class="glance-meal">Bloody Mary Venison + Mashed Potatoes + Cornbread</div><span class="glance-badge b-venison">🥩 Cast Iron</span></div>
-    <div class="glance-row" onclick="goToDay('thu15')"><div class="glance-day">Thu 15</div><div class="glance-meal">Chinese BBQ Pork Loin + Rice</div><span class="glance-badge b-pork">🥢 Sun Bird</span></div>
-    <div class="glance-row" onclick="goToDay('fri16')"><div class="glance-day">Fri 16</div><div class="glance-meal">Venison Steaks + Oyster Mushrooms + Salad</div><span class="glance-badge b-steak">🥩 Sous Vide</span></div>
+    <div class="glance-row" onclick="goToDay('sun18')"><div class="glance-day">Sun 18</div><div class="glance-meal">Sheet Pan Kielbasa + Sweet Potatoes + Green Beans</div><span class="glance-badge b-pork">🥩 Sheet Pan</span></div>
+    <div class="glance-row" onclick="goToDay('mon19')"><div class="glance-day">Mon 19</div><div class="glance-meal">Chicken Fajitas</div><span class="glance-badge b-chicken">🍗 Sous Vide</span></div>
+    <div class="glance-row" onclick="goToDay('tue20')"><div class="glance-day">Tue 20</div><div class="glance-meal">Korean Venison Bowls</div><span class="glance-badge b-venison">🥩 Ground Venison</span></div>
+    <div class="glance-row" onclick="goToDay('wed21')"><div class="glance-day">Wed 21</div><div class="glance-meal">Breakfast for Dinner</div><span class="glance-badge b-egg">🥚 Pancakes + Eggs</span></div>
+    <div class="glance-row" onclick="goToDay('thu22')"><div class="glance-day">Thu 22</div><div class="glance-meal">Tree Stand Night 🦌</div><span class="glance-badge b-hunt">🏹 Hunting</span></div>
   </div>
 
   <p class="section-label">Daily Detail</p>
 
-  <div class="day-card" id="sun11">
-    <div class="day-name">Sunday</div><div class="day-date">October 11</div>
-    <div class="day-meal-name">Honey BBQ Pork Roast + Air Fryer Potatoes + Garden Green Beans</div>
-    <div class="badges-row"><span class="badge b-pork">Pork roast</span><span class="badge b-smoke">🔥 Sous Vide + Cast Iron</span></div>
+  <div class="day-card" id="sun18">
+    <div class="day-name">Sunday</div><div class="day-date">October 18 — Dinner before 6:30 PM</div>
+    <div class="day-meal-name">Sheet Pan Kielbasa + Sweet Potatoes + Frozen Green Beans</div>
+    <div class="badges-row"><span class="badge b-pork">🥩 Kielbasa</span><span class="badge b-quick">⚡ One pan</span></div>
     <div class="day-detail">
-      <strong>Sous vide:</strong> 140°F · 3–4 hours · drop in when you get home ~3 PM<br>
-      <strong>Finish:</strong> Pat dry · cast iron medium-high heat · 30–45 sec per side · honey BBQ rub will caramelize fast — watch it closely<br>
-      <strong>Potatoes:</strong> Air fryer · olive oil + salt · 400°F · 20 min<br>
-      <strong>Green beans:</strong> Fresh garden beans · sauté in butter with garlic or steam<br>
-      <strong>From freezer:</strong> Boneless pork roast (honey BBQ rub, two pieces, vacuum sealed)
+      <strong>Oven:</strong> 425°F<br>
+      <strong>Step 1:</strong> Toss diced sweet potatoes + sliced onion with olive oil, garlic powder, onion powder, salt, pepper · spread on sheet pan · roast 10 min first<br>
+      <strong>Step 2:</strong> Add kielbasa rounds + frozen green beans (no thawing needed) · toss everything · roast 20–25 more min · stir halfway<br>
+      <strong>From freezer:</strong> Hy-Vee kielbasa pack
     </div>
-    <div style="margin-top:0.5rem"><span class="event-note">🏀 Tyler refs UNI vs Valpo 1–3 PM CT</span></div>
-    <div style="margin-top:0.4rem"><span class="event-note">⚽ HGI Soccer 3–4 PM CT</span></div>
-    <div style="margin-top:0.4rem"><span class="thaw-note">🧊 Pull stew meat from freezer tonight for Wednesday</span></div>
+    <div style="margin-top:0.5rem"><span class="event-note">🏀 Tyler refs Drake vs Belmont 12–2 PM CT</span></div>
+    <div style="margin-top:0.4rem"><span class="event-note">📅 IRC Meeting 7–8:30 PM CT · Dinner done before 6:30!</span></div>
   </div>
 
-  <div class="day-card" id="mon12">
-    <div class="day-name">Monday</div><div class="day-date">October 12</div>
-    <div class="day-meal-name">Spinach & Mushroom Tortellini Bake</div>
-    <div class="badges-row"><span class="badge b-pasta">🍝 Dump & Bake</span></div>
+  <div class="day-card" id="mon19">
+    <div class="day-name">Monday</div><div class="day-date">October 19</div>
+    <div class="day-meal-name">Chicken Fajitas</div>
+    <div class="badges-row"><span class="badge b-chicken">🍗 Pre-seasoned chicken</span></div>
     <div class="day-detail">
-      <strong>Method:</strong> Boursin in center of 9x13 dish · tortellini around it · add spinach, mushrooms, olive oil, salt, pepper · pour chicken broth + white wine over everything · cover tight with foil · bake 375°F 40 min · uncover, stir until creamy · top with parmesan · bake 5 more min · rest 10 min<br>
-      <strong>Notes:</strong> No boiling pasta needed · keep tortellini submerged in liquid
+      <strong>Sous vide:</strong> Drop bag in before leaving · 145°F · 1.5–2 hours<br>
+      <strong>Finish:</strong> Pull · pat dry · screaming hot cast iron · quick sear · slice thin<br>
+      <strong>Peppers + onions:</strong> Same cast iron · high heat · char them<br>
+      <strong>Serve:</strong> Warm tortillas + all the toppings<br>
+      <strong>From freezer:</strong> Pre-seasoned chicken fajita pack
     </div>
     <div style="margin-top:0.5rem"><span class="event-note">⚽ Kinsley Practice 5–6 PM CT · Dinner after ~6:15 PM</span></div>
-    <div><a class="recipe-link" href="https://www.jaroflemons.com/spinach-mushroom-tortellini-bake/" target="_blank">📖 Full Recipe →</a></div>
   </div>
 
-  <div class="day-card" id="tue13">
-    <div class="day-name">Tuesday</div><div class="day-date">October 13 — Kate Solo</div>
-    <div class="day-meal-name">Jack's Pizza or Eat Out 🍕</div>
-    <div class="badges-row"><span class="badge b-pizza">Kate's call</span></div>
-    <div class="day-detail">Kate home at 6:30 PM · her choice tonight!</div>
-    <div style="margin-top:0.5rem"><span class="event-note">💃 Teagan Dance</span></div>
-    <div style="margin-top:0.4rem"><span class="event-note">🏀 Tyler refs Luther vs Beloit 6–8 PM CT</span></div>
-    <div style="margin-top:0.4rem"><span class="thaw-note">🧊 Pull sliced pork loin from freezer tonight for Thursday</span></div>
-  </div>
-
-  <div class="day-card" id="wed14">
-    <div class="day-name">Wednesday</div><div class="day-date">October 14 — Tyler Home Early</div>
-    <div class="day-meal-name">Bloody Mary Venison + Mashed Potatoes + Hot Honey Cornbread</div>
-    <div class="badges-row"><span class="badge b-venison">Venison stew meat</span><span class="badge b-smoke">🔥 Cast Iron</span></div>
+  <div class="day-card" id="tue20">
+    <div class="day-name">Tuesday</div><div class="day-date">October 20</div>
+    <div class="day-meal-name">Korean Venison Bowls + Rice</div>
+    <div class="badges-row"><span class="badge b-venison">Ground venison</span><span class="badge b-quick">⚡ 20 min</span></div>
     <div class="day-detail">
-      <strong>Venison:</strong> Pat dry · season with salt + pepper · screaming hot cast iron · sear chunks on all sides · remove meat · deglaze with bloody mary mix · reduce into a pan sauce · add meat back in briefly<br>
-      <strong>Serve:</strong> Over mashed potatoes · sauce poured over top<br>
-      <strong>Cornbread:</strong> 6666 Steeldust Hot Honey mix · bake 350°F 35 min · drizzle honey mixture over top while warm<br>
-      <strong>From freezer/pantry:</strong> Venison stew meat + homemade bloody mary mix ✅
+      <strong>Sauce:</strong> Soy sauce + sesame oil + brown sugar + garlic + ginger + splash of rice vinegar<br>
+      <strong>Method:</strong> Brown ground venison · drain · add sauce · simmer 3–4 min · serve over Minute rice<br>
+      <strong>Toppings:</strong> Green onions, sesame seeds if you have them, fried egg on top optional<br>
+      <strong>From freezer:</strong> Ground venison (1 chub)
     </div>
-    <div style="margin-top:0.5rem"><span class="event-note">📅 IEP Meeting 3:15–4:15 PM CT · Tyler picks up girls</span></div>
+    <div style="margin-top:0.5rem"><span class="event-note">📅 Kate Conferences 2–7 PM · Tyler picks up girls</span></div>
   </div>
 
-  <div class="day-card" id="thu15">
-    <div class="day-name">Thursday</div><div class="day-date">October 15</div>
-    <div class="day-meal-name">Chinese BBQ Pork Loin + Minute Rice</div>
-    <div class="badges-row"><span class="badge b-pork">Sliced pork loin</span></div>
+  <div class="day-card" id="wed21">
+    <div class="day-name">Wednesday</div><div class="day-date">October 21</div>
+    <div class="day-meal-name">Breakfast for Dinner 🥞</div>
+    <div class="badges-row"><span class="badge b-egg">🥚 Breakfast for dinner</span></div>
     <div class="day-detail">
-      <strong>Marinade:</strong> Sun Bird Chinese-Style BBQ Pork mix · marinate sliced loin before cooking<br>
-      <strong>Cook:</strong> Cast iron or grill on high heat · caramelize the marinade · slice and serve over rice<br>
-      <strong>From freezer/pantry:</strong> Sliced pork loin pack + Sun Bird mix ✅ + Minute rice ✅
+      <strong>Menu:</strong> Pancakes + scrambled eggs + breakfast sausage<br>
+      <strong>From freezer/pantry:</strong> Breakfast sausage chub + eggs ✅ + pancake mix ✅
     </div>
+    <div style="margin-top:0.5rem"><span class="event-note">🏀 Tyler refs Hawkeye vs Iowa Lakes 3:30–5:30 PM CT · home by 6</span></div>
+    <div style="margin-top:0.4rem"><span class="event-note">📅 Kate Conferences 2–7 PM</span></div>
   </div>
 
-  <div class="day-card" id="fri16">
-    <div class="day-name">Friday</div><div class="day-date">October 16</div>
-    <div class="day-meal-name">Sous Vide Venison Steaks + Oyster Mushrooms + Salad</div>
-    <div class="badges-row"><span class="badge b-steak">🥩 Venison steaks</span></div>
+  <div class="day-card" id="thu22">
+    <div class="day-name">Thursday</div><div class="day-date">October 22 — Tree Stand Night 🦌</div>
+    <div class="day-meal-name">Hunting — Pack Your Meal</div>
+    <div class="badges-row"><span class="badge b-hunt">🏹 Tyler + girls hunting</span></div>
     <div class="day-detail">
-      <strong>Sous vide:</strong> 131°F · 1.5–2 hours · venison steaks + rehydrated oyster mushrooms + butter + thyme in same bag<br>
-      <strong>Rehydrate mushrooms:</strong> Warm water 20–30 min · save soaking liquid · add splash to bag<br>
-      <strong>Finish:</strong> Pull steaks · screaming hot cast iron · 45–60 sec per side · quick sauté mushrooms in same pan while steaks rest<br>
-      <strong>Sides:</strong> Salad kit<br>
-      <strong>From freezer/pantry:</strong> Venison steaks + dehydrated oyster mushrooms ✅
+      <strong>Tree stand meal kit:</strong> PB sandwiches (plain, no jelly) · apple slices · trail mix · plain crackers · string cheese · granola bar<br>
+      <strong>Drink:</strong> Water + thermos of plain black coffee if cold<br>
+      <strong>Pack everything in sealed zip locks</strong> to contain scent · eat before getting in the stand or during slow periods
     </div>
-    <div style="margin-top:0.5rem"><span class="thaw-note">🧊 Pull venison steaks from freezer morning of or night before</span></div>
+    <div style="margin-top:0.5rem"><span class="event-note">📅 Kate Conferences 2–7 PM · Tyler picks up girls 3:50 PM</span></div>
   </div>
 </div>
 
 <div class="panel" id="panel-grocery">
-  <p class="section-label">Shopping List — Week of Oct 11</p>
+  <p class="section-label">Shopping List — Week of Oct 18</p>
   <div id="grocery-list-container"><div class="loading">Loading list...</div></div>
 </div>
 
 <div class="panel" id="panel-reminders">
   <p class="section-label">This Week's Reminders</p>
-  <div class="reminder-card"><div class="reminder-icon">🧊</div><div><div class="reminder-time">Sun Oct 11 — Tonight</div><div class="reminder-text">Pull venison stew meat from freezer to thaw for Wednesday</div></div></div>
-  <div class="reminder-card"><div class="reminder-icon">🥩</div><div><div class="reminder-time">Sun Oct 11 — ~3 PM</div><div class="reminder-text">Drop honey BBQ pork roast in sous vide at 140°F · sear in cast iron at 6 PM · medium-high heat, 30–45 sec per side — honey rub caramelizes fast</div></div></div>
-  <div class="reminder-card"><div class="reminder-icon">🧊</div><div><div class="reminder-time">Tue Oct 13 — Tonight</div><div class="reminder-text">Pull sliced pork loin from freezer to thaw for Thursday · marinate in Sun Bird mix overnight for best flavor</div></div></div>
-  <div class="reminder-card"><div class="reminder-icon">🌽</div><div><div class="reminder-time">Wed Oct 14 — Afternoon</div><div class="reminder-text">Tyler home early — start cornbread first (350°F, 35 min) then tackle the venison cast iron while it bakes. Drizzle honey mixture over cornbread while still warm.</div></div></div>
-  <div class="reminder-card"><div class="reminder-icon">🧊</div><div><div class="reminder-time">Thu Oct 15 — Evening</div><div class="reminder-text">Pull venison steaks from freezer tonight for Friday sous vide · rehydrate oyster mushrooms in warm water 20–30 min before cooking</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">⏰</div><div><div class="reminder-time">Sun Oct 18 — Dinner before 6:30 PM</div><div class="reminder-text">IRC Meeting at 7 PM — get sheet pan in the oven by 5:30 PM at the latest</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🧊</div><div><div class="reminder-time">Mon Oct 19 — Before leaving</div><div class="reminder-text">Drop pre-seasoned chicken fajita bag in sous vide at 145°F before Kinsley practice · ready when you get home ~6:15 PM</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🧊</div><div><div class="reminder-time">Mon Oct 19 — Evening</div><div class="reminder-text">Pull ground venison from freezer to thaw for Tuesday Korean bowls</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🏹</div><div><div class="reminder-time">Thu Oct 22 — Pack ahead</div><div class="reminder-text">Pack tree stand meal in zip locks — PB sandwiches, apple slices, trail mix, string cheese, crackers, granola bar, water, thermos coffee · no smelly food!</div></div></div>
 </div>
 
 <div class="panel" id="panel-archive">
   <p class="section-label">Past weeks</p>
-  <div class="week-archive-item">Week of Oct 11, 2026 <span>Current ↑</span></div>
-  <div class="week-archive-item">Week of Oct 4, 2026 <span>Previous</span></div>
+  <div class="week-archive-item">Week of Oct 18, 2026 <span>Current ↑</span></div>
+  <div class="week-archive-item">Week of Oct 11, 2026 <span>Previous</span></div>
   <div class="archive-note">Earlier weeks coming soon.</div>
   <div class="footer">Turner Family Meal Planning · Updated by Claude weekly</div>
 </div>
@@ -230,37 +214,30 @@
 
 <script>
 const DB_URL='https://turner-meals-default-rtdb.firebaseio.com';
-const WEEK_KEY='week_oct11_2026';
+const WEEK_KEY='week_oct18_2026';
 const BASE_ITEMS={
   'Aldi':[
-    {name:'Mini potatoes',note:'Sunday pork roast side'},
-    {name:'Refrigerated cheese tortellini',note:'Monday tortellini bake'},
-    {name:'Boursin garlic & herb cheese',note:'Monday tortellini bake'},
-    {name:'Baby spinach',note:'Monday tortellini bake'},
-    {name:'Sliced mushrooms',note:'Monday tortellini bake'},
-    {name:'Chicken broth',note:'Monday tortellini bake'},
-    {name:'White wine (small bottle)',note:'Monday tortellini bake'},
-    {name:'Parmesan cheese',note:'Monday tortellini bake'},
-    {name:'Instant mashed potatoes',note:'Wednesday venison'},
-    {name:'Cornmeal',note:'Wednesday hot honey cornbread'},
-    {name:'All purpose flour',note:'Wednesday hot honey cornbread'},
-    {name:'Honey',note:'Wednesday hot honey cornbread'},
-    {name:'Salad kit',note:'Friday venison steaks'},
-    {name:'Creamer x2',note:'General use'},
+    {name:'Sweet potatoes',note:'Sunday sheet pan'},
+    {name:'Frozen green beans',note:'Sunday sheet pan'},
+    {name:'Bell peppers',note:'Monday chicken fajitas'},
+    {name:'Dozen eggs',note:'Wednesday breakfast for dinner'},
+  ],
+  'Sam\'s Club':[
+    {name:'Big tub of garlic',note:'Pantry restock'},
   ]
 };
 const BASE_STOCKED=[
-  {name:'Boneless pork roast (honey BBQ rub)',tag:'freezer'},
-  {name:'Venison stew meat',tag:'freezer'},
-  {name:'Sliced pork loin',tag:'freezer'},
-  {name:'Venison steaks',tag:'freezer'},
-  {name:"Jack's pizza (2 packs)",tag:'freezer'},
-  {name:'Dehydrated oyster mushrooms',tag:'pantry'},
-  {name:'Homemade bloody mary mix',tag:'pantry'},
-  {name:'Sun Bird Chinese BBQ mix',tag:'pantry'},
-  {name:'6666 Steeldust Hot Honey mix',tag:'pantry'},
+  {name:'Hy-Vee kielbasa (1 pack)',tag:'freezer'},
+  {name:'Pre-seasoned chicken fajita pack',tag:'freezer'},
+  {name:'Ground venison (1 chub)',tag:'freezer'},
+  {name:'Breakfast sausage chub',tag:'freezer'},
+  {name:'Pancake mix',tag:'pantry'},
   {name:'Minute rice',tag:'pantry'},
-  {name:'Butter + thyme + olive oil',tag:'pantry'},
+  {name:'Soy sauce + sesame oil',tag:'pantry'},
+  {name:'Brown sugar + garlic + ginger',tag:'pantry'},
+  {name:'Onions + olive oil',tag:'pantry'},
+  {name:'String cheese (tree stand)',tag:'pantry'},
+  {name:'PB + crackers + trail mix (tree stand)',tag:'pantry'},
 ];
 let state={checked:{},extras:{},stocked:{},removed:{}};
 let activeItemKey=null,activeItemEl=null,longPressTimer=null;
@@ -270,7 +247,7 @@ async function fbPatch(path,data){try{await fetch(`${DB_URL}/${WEEK_KEY}/${path}
 async function fbDelete(path){try{await fetch(`${DB_URL}/${WEEK_KEY}/${path}.json`,{method:'DELETE'});}catch(e){}}
 async function loadAndRender(){setStatus('Syncing...','syncing');const remote=await fbGet();if(remote){state.checked=remote.checked||{};state.extras=remote.extras||{};state.stocked=remote.stocked||{};state.removed=remote.removed||{};}renderGroceryList();setStatus('✓ Synced','synced');setInterval(async()=>{const r=await fbGet();if(r){state.checked=r.checked||{};state.extras=r.extras||{};state.stocked=r.stocked||{};state.removed=r.removed||{};renderGroceryList();}},10000);}
 function itemKey(s,n){return(s+'_'+n).replace(/[^a-zA-Z0-9_]/g,'_');}
-function sectionEmoji(s){const map={'Aldi':'🛒','Other':'➕'};return map[s]||'📦';}
+function sectionEmoji(s){const map={'Aldi':'🛒',"Sam's Club":'🏪','Other':'➕'};return map[s]||'📦';}
 function renderItem(section,nameOrId,note,isExtra,displayName){const key=isExtra?'extra_'+nameOrId:itemKey(section,nameOrId);const isChecked=!!state.checked[key];const name=displayName||nameOrId;const noteHtml=note?`<div class="g-note">${note}</div>`:'';return`<div class="grocery-item${isChecked?' checked':''}" data-key="${key}" data-name="${name.replace(/"/g,'&quot;')}" data-extra="${isExtra?nameOrId:''}" data-section="${section}" onclick="toggleItem(this)" ontouchstart="startLongPress(this)" ontouchend="cancelLongPress()" ontouchmove="cancelLongPress()" onmousedown="startLongPress(this)" onmouseup="cancelLongPress()" onmouseleave="cancelLongPress()"><div class="g-check">${isChecked?'✓':''}</div><div><div class="g-name">${name}</div>${noteHtml}</div></div>`;}
 function renderGroceryList(){const container=document.getElementById('grocery-list-container');let html='';for(const[section,items]of Object.entries(BASE_ITEMS)){const visibleItems=items.filter(i=>!state.removed[itemKey(section,i.name)]);const sectionExtras=Object.entries(state.extras).filter(([id,e])=>e.section===section);if(visibleItems.length===0&&sectionExtras.length===0)continue;html+=`<div class="grocery-section"><div class="grocery-section-title">${sectionEmoji(section)} ${section}</div>`;const allItems=[...visibleItems.map(i=>({key:itemKey(section,i.name),html:renderItem(section,i.name,i.note,false)})),...sectionExtras.map(([id,e])=>({key:'extra_'+id,html:renderItem('extra',id,'',true,e.name)}))];for(const item of[...allItems.filter(i=>!state.checked[i.key]),...allItems.filter(i=>state.checked[i.key])])html+=item.html;html+=`<div class="add-row"><input class="add-input" type="text" placeholder="Add to ${section}..." data-section="${section}" onkeydown="if(event.key==='Enter')addItem(this)"><button class="add-btn" onclick="addItem(this.previousElementSibling)">+</button></div></div>`;}
 const uncatItems=Object.entries(state.extras).filter(([id,e])=>e.section==='Other').map(([id,e])=>({key:'extra_'+id,html:renderItem('extra',id,'',true,e.name)}));html+=`<div class="grocery-section"><div class="grocery-section-title">➕ Other / Extras</div>`;for(const item of[...uncatItems.filter(i=>!state.checked[i.key]),...uncatItems.filter(i=>state.checked[i.key])])html+=item.html;html+=`<div class="add-row"><input class="add-input" type="text" placeholder="Add anything else..." data-section="Other" onkeydown="if(event.key==='Enter')addItem(this)"><button class="add-btn" onclick="addItem(this.previousElementSibling)">+</button></div></div>`;html+=`<div class="grocery-section"><div class="grocery-section-title">✅ Already stocked</div>`;for(const item of BASE_STOCKED)html+=`<div class="g-stocked"><span>${item.name}</span><span class="g-tag ${item.tag==='freezer'?'t-freezer':'t-pantry'}">${item.tag}</span></div>`;for(const[id,s]of Object.entries(state.stocked))html+=`<div class="g-stocked dynamic" onclick="removeFromStocked('${id}')"><span>${s.name}</span><span class="g-tag t-moved">moved ✕</span></div>`;html+=`</div>`;container.innerHTML=html;}
