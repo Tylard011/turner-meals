@@ -39,7 +39,7 @@
   .b-chicken { background: var(--green-light); color: var(--green); }
   .b-pork { background: var(--pork-light); color: var(--pork); }
   .b-free { background: var(--border); color: var(--muted); }
-  .b-pizza { background: #FEF3C7; color: #92400E; }
+  .b-soup { background: #EBF5FB; color: #1a5276; }
   .b-kate { background: var(--meatless-light); color: var(--meatless); }
   .b-halloween { background: #FEF0D3; color: #B5450B; }
   .section-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin: 1.2rem 0 0.6rem; }
@@ -54,6 +54,7 @@
   .event-note { display: inline-flex; align-items: center; gap: 4px; font-size: 0.75rem; color: var(--accent); font-weight: 500; margin-top: 0.4rem; background: var(--accent-light); padding: 3px 9px; border-radius: 20px; }
   .prep-note { font-size: 0.75rem; color: #4A7C59; background: var(--green-light); padding: 3px 9px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px; margin-top: 0.4rem; font-weight: 500; }
   .thaw-note { font-size: 0.75rem; color: var(--blue); background: var(--blue-light); padding: 3px 9px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px; margin-top: 0.4rem; font-weight: 500; }
+  .recipe-link { display: inline-flex; align-items: center; gap: 5px; margin-top: 0.6rem; font-size: 0.8rem; font-weight: 600; color: var(--accent); text-decoration: none; padding: 5px 12px; background: var(--accent-light); border-radius: 8px; border: 1px solid #F0C4A8; }
   .grocery-section { background: var(--card); border-radius: 14px; margin-bottom: 0.8rem; box-shadow: var(--shadow); border: 1px solid var(--border); overflow: hidden; }
   .grocery-section-title { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); padding: 0.7rem 1rem 0.4rem; border-bottom: 1px solid var(--border); }
   .grocery-item { display: flex; align-items: flex-start; gap: 0.7rem; padding: 0.65rem 1rem; border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; transition: opacity 0.2s; }
@@ -96,7 +97,7 @@
 </head>
 <body>
 <div class="header">
-  <div class="header-top"><h1>Turner Family Meals</h1><span class="header-week">Oct 25 – Oct 31</span></div>
+  <div class="header-top"><h1>Turner Family Meals</h1><span class="header-week">Nov 1 – Nov 6</span></div>
   <div class="sync-status" id="sync-status">Connecting...</div>
   <div class="tabs">
     <button class="tab active" onclick="showTab('menu',this)">🗓 Menu</button>
@@ -107,121 +108,111 @@
 </div>
 
 <div class="panel active" id="panel-menu">
-  <p class="section-label">Oct 25–31 — Quick Look</p>
+  <p class="section-label">Nov 1–6 — Quick Look</p>
   <div class="glance-grid">
-    <div class="glance-row" onclick="goToDay('sun25')"><div class="glance-day">Sun 25</div><div class="glance-meal">Iowa Chops + Sous Vide Corn</div><span class="glance-badge b-pork">🥩 Sous Vide + Grill</span></div>
-    <div class="glance-row" onclick="goToDay('mon26')"><div class="glance-day">Mon 26</div><div class="glance-meal">Porcupines</div><span class="glance-badge b-venison">🥩 Ground Venison</span></div>
-    <div class="glance-row" onclick="goToDay('tue27')"><div class="glance-day">Tue 27</div><div class="glance-meal">Quesadillas / Eggs & Toast / Leftovers</div><span class="glance-badge b-kate">🍳 Kate's Call</span></div>
-    <div class="glance-row" onclick="goToDay('wed28')"><div class="glance-day">Wed 28</div><div class="glance-meal">Grilled Chicken Salad</div><span class="glance-badge b-chicken">🥗 Kate Solo</span></div>
-    <div class="glance-row" onclick="goToDay('thu29')"><div class="glance-day">Thu 29</div><div class="glance-meal">Hamburger Helper</div><span class="glance-badge b-kate">⚡ Kate Solo</span></div>
-    <div class="glance-row" onclick="goToDay('fri30')"><div class="glance-day">Fri 30</div><div class="glance-meal">Jack's Pizza</div><span class="glance-badge b-pizza">🍕 Kate Solo</span></div>
-    <div class="glance-row" onclick="goToDay('sat31')"><div class="glance-day">Sat 31</div><div class="glance-meal">Halloween 🎃</div><span class="glance-badge b-halloween">👻 Figure It Out!</span></div>
+    <div class="glance-row" onclick="goToDay('sun1')"><div class="glance-day">Sun 1</div><div class="glance-meal">Zuppa Toscana + Bread</div><span class="glance-badge b-soup">🥣 Spicy Pork</span></div>
+    <div class="glance-row" onclick="goToDay('mon2')"><div class="glance-day">Mon 2</div><div class="glance-meal">Venison Steaks Outside + Corn Muffins</div><span class="glance-badge b-venison">🥩 Sous Vide</span></div>
+    <div class="glance-row" onclick="goToDay('tue3')"><div class="glance-day">Tue 3</div><div class="glance-meal">Ground Venison Tacos</div><span class="glance-badge b-kate">🌮 Kate &amp; Girls</span></div>
+    <div class="glance-row" onclick="goToDay('wed4')"><div class="glance-day">Wed 4</div><div class="glance-meal">Halloween Butter Noodles + Broccoli</div><span class="glance-badge b-kate">🎃 Kate &amp; Girls</span></div>
+    <div class="glance-row" onclick="goToDay('thu5')"><div class="glance-day">Thu 5</div><div class="glance-meal">Chicken Cobbler</div><span class="glance-badge b-chicken">🍗 Chicken Breast</span></div>
+    <div class="glance-row" onclick="goToDay('fri6')"><div class="glance-day">Fri 6</div><div class="glance-meal">Open</div><span class="glance-badge b-free">⭐ Free</span></div>
   </div>
 
   <p class="section-label">Daily Detail</p>
 
-  <div class="day-card" id="sun25">
-    <div class="day-name">Sunday</div><div class="day-date">October 25</div>
-    <div class="day-meal-name">Sous Vide Iowa Chops + Grill Finish + Sous Vide Corn</div>
-    <div class="badges-row"><span class="badge b-pork">Iowa Chops</span><span class="badge b-quick">⚡ Sous Vide + Grill</span></div>
+  <div class="day-card" id="sun1">
+    <div class="day-name">Sunday</div><div class="day-date">November 1</div>
+    <div class="day-meal-name">Zuppa Toscana with Spicy Ground Pork + Bread</div>
+    <div class="badges-row"><span class="badge b-soup">🥣 Soup night</span><span class="badge b-pork">Spicy ground pork</span></div>
     <div class="day-detail">
-      <strong>Chops:</strong> 140°F · 1.5–2 hours · pat dry · grill finish 1–2 min per side for crust · rest 5 min<br>
-      <strong>Corn:</strong> Frozen corn in vacuum bag · butter + salt + pepper + pinch of sugar · same bath 140°F · 45–60 min · serve straight from the bag<br>
-      <strong>Also Sunday:</strong> Grill 1 pack chicken breast at same time · slice thin · refrigerate for Wednesday salads<br>
-      <strong>Chicken for Wednesday:</strong> 145°F sous vide 1.5 hrs · pat dry · grill marks 1–2 min per side · slice thin against grain · refrigerate
+      <strong>Method:</strong> Brown the pound of spicy ground pork and drain · sauté onion in the pot · add 32 oz chicken broth + sliced russet potatoes · simmer until the potatoes are tender · stir in kale and cream and warm through<br>
+      <strong>Notes:</strong> The pork is already spicy, so skip the red pepper flakes<br>
+      <strong>Serve with:</strong> Baguette or crusty bread<br>
+      <strong>From freezer/pantry:</strong> Spicy ground pork (separate from the venison spicy chub) · chicken broth · garlic
     </div>
-    <div style="margin-top:0.5rem"><span class="event-note">⚽ HGI Soccer 4–5 PM CT</span></div>
-    <div style="margin-top:0.4rem"><span class="prep-note">🍗 Grill chicken breast today — Kate uses it cold on Wednesday salad</span></div>
+    <div style="margin-top:0.5rem"><span class="event-note">⚽ HGI Soccer 3–4 PM CT</span></div>
+    <div style="margin-top:0.4rem"><span class="event-note">🐕 Ila flea &amp; Heartgard 7:30 PM</span></div>
+    <div style="margin-top:0.4rem"><span class="thaw-note">🧊 Thaw spicy pork this morning · steaks + 1 bag chicken breast into the fridge tonight for Monday</span></div>
   </div>
 
-  <div class="day-card" id="mon26">
-    <div class="day-name">Monday</div><div class="day-date">October 26</div>
-    <div class="day-meal-name">Porcupines</div>
-    <div class="badges-row"><span class="badge b-venison">Ground venison</span></div>
+  <div class="day-card" id="mon2">
+    <div class="day-name">Monday</div><div class="day-date">November 2 — Practice cancelled · Everyone home</div>
+    <div class="day-meal-name">Venison Steaks Outside + Corn Muffins</div>
+    <div class="badges-row"><span class="badge b-venison">Venison steaks</span><span class="badge b-quick">🔥 Sous Vide + Grill</span></div>
     <div class="day-detail">
-      <strong>Sauce:</strong> Chili sauce + grape jelly · mix together and pour over<br>
-      <strong>Method:</strong> Mix ground venison + uncooked Minute rice + salt + pepper · roll into balls · brown in cast iron · simmer in sauce covered 45 min until rice is cooked through<br>
-      <strong>From freezer:</strong> Ground venison (1 chub) · chili sauce + grape jelly ✅<br>
-      <strong>Note:</strong> Make a big batch — Tuesday leftovers are an option!
+      <strong>Steaks:</strong> Sous vide 131°F · 1.5–2 hours · pat dry · grill over high heat 45–60 sec per side · rest<br>
+      <strong>Cook extra steaks</strong> for Tuesday and Wednesday drives: slice cold on bread with cheddar and horseradish mayo<br>
+      <strong>Chicken for Thursday's cobbler:</strong> after the steaks come out, raise the bath to 145°F · wait until it actually reads 145°F · add the thawed, sealed chicken breast<br>
+      <strong>Chicken time by thickest part:</strong> 1 inch about 1 hour · 1.5 inches 1.5–2 hours · 2 inches 2.5–3 hours · for thick breasts, slice them in half horizontally first<br>
+      <strong>When done:</strong> ice bath 20–30 min · refrigerate sealed · use within about 3 days<br>
+      <strong>Side:</strong> Corn muffins (corn muffin mix in pantry)
     </div>
-    <div style="margin-top:0.5rem"><span class="event-note">🎉 Tyler — Jim's Retirement Party 3:45–5 PM · Pickle Palace</span></div>
-    <div style="margin-top:0.4rem"><span class="event-note">⚽ Kinsley Practice 5–6 PM · Kate takes Kinsley</span></div>
+    <div style="margin-top:0.5rem"><span class="event-note">🍂 Leaf pickup</span></div>
+    <div style="margin-top:0.4rem"><span class="thaw-note">🧊 Thaw ground venison tonight for Tuesday tacos</span></div>
   </div>
 
-  <div class="day-card" id="tue27">
-    <div class="day-name">Tuesday</div><div class="day-date">October 27 — Late Night</div>
-    <div class="day-meal-name">Quesadillas / Scrambled Eggs & Toast / Leftovers</div>
-    <div class="badges-row"><span class="badge b-kate">Kate's call</span></div>
+  <div class="day-card" id="tue3">
+    <div class="day-name">Tuesday</div><div class="day-date">November 3 — Kate &amp; Girls</div>
+    <div class="day-meal-name">Ground Venison Tacos</div>
+    <div class="badges-row"><span class="badge b-venison">Ground venison</span><span class="badge b-quick">⚡ Quick</span></div>
     <div class="day-detail">
-      <strong>Conferences run until 7:20 PM</strong> — late dinner, keep it simple<br>
-      <strong>Option A:</strong> Leftover porcupines from Monday — just reheat<br>
-      <strong>Option B:</strong> Quesadillas — 15 min, cheese + whatever fillings<br>
-      <strong>Option C:</strong> Scrambled eggs + toast — fast comfort food
+      <strong>Build:</strong> Brown ground venison with taco seasoning · hard shells · shredded lettuce · shredded cheese · sour cream<br>
+      <strong>Tyler:</strong> Out all day · cold steak sandwiches for the drive home
     </div>
-    <div style="margin-top:0.5rem"><span class="event-note">📅 Kinsley Conference 6:40–7 PM · Teagan Conference 7–7:20 PM</span></div>
   </div>
 
-  <div class="day-card" id="wed28">
-    <div class="day-name">Wednesday</div><div class="day-date">October 28 — Kate Solo</div>
-    <div class="day-meal-name">Grilled Chicken Salad</div>
-    <div class="badges-row"><span class="badge b-chicken">🥗 Chicken prepped Sunday</span></div>
+  <div class="day-card" id="wed4">
+    <div class="day-name">Wednesday</div><div class="day-date">November 4 — Kate &amp; Girls</div>
+    <div class="day-meal-name">Halloween Butter Noodles + Frozen Broccoli</div>
+    <div class="badges-row"><span class="badge b-kate">🎃 Halloween noodles</span><span class="badge b-quick">⚡ Quick</span></div>
     <div class="day-detail">
-      <strong>Chicken:</strong> Already grilled Sunday · slice and serve cold or warm briefly in a pan<br>
-      <strong>Salad:</strong> Salad kit + croutons + dressing of choice + sliced chicken on top<br>
-      <strong>Zero cooking required</strong> — just assemble and serve
+      <strong>Build:</strong> Halloween-shaped noodles tossed in butter · frozen broccoli on the side<br>
+      <strong>Tyler:</strong> Out all day · cold steak sandwiches for the drive home
     </div>
-    <div style="margin-top:0.5rem"><span class="event-note">🏀 Tyler refs Mt Mercy vs Graceland 5–10 PM CT</span></div>
+    <div style="margin-top:0.5rem"><span class="event-note">📅 Strategic Plan meeting 2–3:30 PM CT</span></div>
+    <div style="margin-top:0.4rem"><span class="event-note">🏀 ARC Mens Semi 7–9:30 PM CT (time/location TBD on calendar)</span></div>
   </div>
 
-  <div class="day-card" id="thu29">
-    <div class="day-name">Thursday</div><div class="day-date">October 29 — Kate Solo</div>
-    <div class="day-meal-name">Hamburger Helper (Ultimate Cheeseburger)</div>
-    <div class="badges-row"><span class="badge b-venison">Ground venison</span><span class="badge b-quick">⚡ One pan</span></div>
+  <div class="day-card" id="thu5">
+    <div class="day-name">Thursday</div><div class="day-date">November 5</div>
+    <div class="day-meal-name">Chicken Cobbler</div>
+    <div class="badges-row"><span class="badge b-chicken">🍗 Chicken breast</span></div>
     <div class="day-detail">
-      <strong>Swap:</strong> Use ground venison instead of ground beef · follow box directions<br>
-      <strong>From freezer:</strong> Ground venison (1 chub) · box already in pantry ✅
+      <strong>Chicken:</strong> Shred the breast sous vided Monday (about 4 cups)<br>
+      <strong>Filling:</strong> Chicken + 12–15 oz frozen mixed veggies + 1 can cream of chicken soup + 2 cups chicken broth in a 9x13 dish<br>
+      <strong>Topping:</strong> Cheddar Bay biscuit mix (set the seasoning packet aside) + 2 cups milk + ½ cup shredded cheddar, poured over the top<br>
+      <strong>Bake:</strong> 375°F · about 1 hour until golden and bubbly · brush with melted butter mixed with the seasoning packet · rest 10 min<br>
+      <strong>Note:</strong> Chicken and veggie amounts are typical for this recipe, so check them against the recipe page
     </div>
-    <div style="margin-top:0.5rem"><span class="event-note">🏀 Tyler refs Iowa State vs OK State 6–8 PM CT</span></div>
+    <div><a class="recipe-link" href="https://kitchenfunwithmy3sons.com/chicken-cobbler/" target="_blank">📖 Recipe →</a></div>
   </div>
 
-  <div class="day-card" id="fri30">
-    <div class="day-name">Friday</div><div class="day-date">October 30 — Kate Solo</div>
-    <div class="day-meal-name">Jack's Pizza 🍕</div>
-    <div class="badges-row"><span class="badge b-pizza">🍕 Freezer pizza</span></div>
-    <div class="day-detail">
-      <strong>From freezer:</strong> Jack's pizza (last 2 packs)<br>
-      Easy Friday before Halloween weekend!
-    </div>
-    <div style="margin-top:0.5rem"><span class="event-note">🏀 Tyler refs Iowa vs Wisconsin 7–9 PM CT</span></div>
-  </div>
-
-  <div class="day-card" id="sat31">
-    <div class="day-name">Saturday</div><div class="day-date">October 31 — Halloween! 🎃</div>
-    <div class="day-meal-name">Family figures it out! 👻</div>
-    <div class="badges-row"><span class="badge b-halloween">🎃 Halloween</span></div>
-    <div class="day-detail">Trick or treat night — keep it simple and fun!</div>
-    <div style="margin-top:0.5rem"><span class="event-note">⚽ Kinsley Soccer 12–1 PM CT</span></div>
-    <div style="margin-top:0.4rem"><span class="event-note">🏀 Tyler refs St Ambrose vs Park 1–5:30 PM CT</span></div>
+  <div class="day-card" id="fri6">
+    <div class="day-name">Friday</div><div class="day-date">November 6</div>
+    <div class="day-meal-name">Open</div>
+    <div class="badges-row"><span class="badge b-free">Free night</span></div>
+    <div class="day-detail">Nothing planned yet.</div>
   </div>
 </div>
 
 <div class="panel" id="panel-grocery">
-  <p class="section-label">Shopping List — Week of Oct 25</p>
+  <p class="section-label">Shopping List — Week of Nov 1</p>
   <div id="grocery-list-container"><div class="loading">Loading list...</div></div>
 </div>
 
 <div class="panel" id="panel-reminders">
   <p class="section-label">This Week's Reminders</p>
-  <div class="reminder-card"><div class="reminder-icon">🥩</div><div><div class="reminder-time">Sun Oct 25 — Afternoon</div><div class="reminder-text">Iowa chops + chicken breast both in sous vide · chops at 140°F · chicken at 145°F · 1.5–2 hours · grill both · slice chicken thin and refrigerate for Wednesday</div></div></div>
-  <div class="reminder-card"><div class="reminder-icon">🧊</div><div><div class="reminder-time">Sun Oct 25 — Evening</div><div class="reminder-text">Pull ground venison from freezer x2 — 1 chub for Monday porcupines · 1 chub for Thursday Hamburger Helper</div></div></div>
-  <div class="reminder-card"><div class="reminder-icon">🍳</div><div><div class="reminder-time">Mon Oct 26 — Make a big batch!</div><div class="reminder-text">Extra porcupines = Tuesday dinner sorted if Kate wants leftovers · simmer covered 45 min until rice cooked through</div></div></div>
-  <div class="reminder-card"><div class="reminder-icon">🎃</div><div><div class="reminder-time">Sat Oct 31 — Halloween!</div><div class="reminder-text">Tyler refs 1–5:30 PM · Kinsley soccer 12–1 PM · figure out trick or treat plan and a quick dinner before heading out!</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🧊</div><div><div class="reminder-time">Sun Nov 1 — 9:15 AM</div><div class="reminder-text">Thaw and check pantry · spicy ground pork for zuppa tonight · tortillas, hard shells, shredded cheese, lettuce</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🧊</div><div><div class="reminder-time">Sun Nov 1 — Tonight</div><div class="reminder-text">Move venison steaks + 1 bag chicken breast to the fridge for Monday</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🥩</div><div><div class="reminder-time">Mon Nov 2 — Mid-afternoon</div><div class="reminder-text">Steaks into sous vide at 131°F · after they come out, raise to 145°F · wait for it to read 145°F · add the chicken · cook extra steaks for Tue/Wed drives</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🧊</div><div><div class="reminder-time">Mon Nov 2 — Tonight</div><div class="reminder-text">Thaw ground venison for Tuesday tacos · chicken to the ice bath, then the fridge</div></div></div>
+  <div class="reminder-card"><div class="reminder-icon">🍗</div><div><div class="reminder-time">Thu Nov 5 — Start by 5 PM</div><div class="reminder-text">Cobbler bakes about 1 hour at 375°F · assemble and get it in the oven early</div></div></div>
 </div>
 
 <div class="panel" id="panel-archive">
   <p class="section-label">Past weeks</p>
-  <div class="week-archive-item">Week of Oct 25, 2026 <span>Current ↑</span></div>
-  <div class="week-archive-item">Week of Oct 18, 2026 <span>Previous</span></div>
+  <div class="week-archive-item">Week of Nov 1, 2026 <span>Current ↑</span></div>
+  <div class="week-archive-item">Week of Oct 25, 2026 <span>Previous</span></div>
   <div class="archive-note">Earlier weeks coming soon.</div>
   <div class="footer">Turner Family Meal Planning · Updated by Claude weekly</div>
 </div>
@@ -236,27 +227,41 @@
 
 <script>
 const DB_URL='https://turner-meals-default-rtdb.firebaseio.com';
-const WEEK_KEY='week_oct25_2026';
+const WEEK_KEY='week_nov1_2026';
 const BASE_ITEMS={
   'Aldi':[
-    {name:'Frozen corn',note:'Sunday sous vide side'},
-    {name:'Minute rice',note:'Monday porcupines + general'},
-    {name:'Regular rice',note:'General use'},
-    {name:'Salad kit',note:'Wednesday grilled chicken salad'},
-    {name:'Croutons',note:'Wednesday grilled chicken salad'},
-    {name:'Gallon of milk',note:'General use'},
-    {name:'Dozen eggs',note:'General use'},
-    {name:'Loaf of bread',note:'General use'},
+    {name:'Onions',note:'Zuppa + general use'},
+    {name:'Lunch meat turkey',note:'General use'},
+    {name:'Frozen waffles',note:'General use'},
+    {name:'Cereal x 3',note:'General use'},
+    {name:'Peanut butter x 2',note:'For work'},
+    {name:'Oatmeal (big container)',note:'For work'},
+    {name:'Dozen eggs',note:'Staples'},
+    {name:'Russet potatoes (about 1.5 lbs)',note:'Sunday zuppa'},
+    {name:'Kale',note:'Sunday zuppa'},
+    {name:'Heavy cream or half and half',note:'Sunday zuppa'},
+    {name:'Baguette or crusty bread',note:'Sunday zuppa'},
+    {name:'Tortillas',note:'Tuesday tacos'},
+    {name:'Hard shell tacos',note:'Tuesday tacos'},
+    {name:'Shredded lettuce',note:'Tuesday tacos'},
+    {name:'Shredded cheddar (1 bag)',note:'Tuesday tacos + Thursday cobbler'},
+    {name:'Cheddar Bay biscuit mix',note:'Thursday cobbler'},
+    {name:'Cream of chicken soup x 2',note:'1 for Thursday cobbler, 1 spare for the pantry'},
+    {name:'Frozen mixed veggies',note:'Thursday cobbler'},
+    {name:'Frozen broccoli x 2',note:'1 for Wednesday noodles, 1 stays in the freezer'},
   ]
 };
 const BASE_STOCKED=[
-  {name:'Iowa chops (2 packs)',tag:'freezer'},
-  {name:'Chicken breast (6 packs)',tag:'freezer'},
+  {name:'Spicy ground pork (1 lb)',tag:'freezer'},
+  {name:'Venison steaks',tag:'freezer'},
+  {name:'Chicken breast',tag:'freezer'},
   {name:'Ground venison',tag:'freezer'},
-  {name:"Jack's pizza (2 packs)",tag:'freezer'},
-  {name:'Hamburger Helper — Ultimate Cheeseburger',tag:'pantry'},
-  {name:'Chili sauce + grape jelly',tag:'pantry'},
-  {name:'Butter + salt + pepper',tag:'pantry'},
+  {name:'Chicken broth (two 32 oz cartons)',tag:'pantry'},
+  {name:'Corn muffin mix',tag:'pantry'},
+  {name:'Halloween-shaped noodles',tag:'pantry'},
+  {name:'Sour cream',tag:'pantry'},
+  {name:'Milk + butter',tag:'pantry'},
+  {name:'Garlic',tag:'pantry'},
 ];
 let state={checked:{},extras:{},stocked:{},removed:{}};
 let activeItemKey=null,activeItemEl=null,longPressTimer=null;
